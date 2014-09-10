@@ -1,0 +1,26 @@
+development:
+    adapter: mysql2
+    host: localhost
+    database: wecrowd
+    username: root
+    password: 
+    pool: 5
+    timeout: 5000
+    
+stage:
+    adapter: mysql2
+    host: localhost
+    database: wecrowd
+    username: wecrowd
+    password: <%= ENV['WECROWD_DATABASE_PASSWORD'] %>
+    pool: 5
+    timeout: 5000
+    
+production:
+    adapter: mysql2
+    host: localhost
+    database: wecrowd
+    username: wecrowd
+    password: <%= ENV['WECROWD_DATABASE_PASSWORD'] %>
+    pool: 5
+    timeout: 5000
