@@ -21,6 +21,10 @@ gem 'bcrypt', '~> 3.1.7', require: false
 # it being automatically loaded by sprockets
 gem 'uglifier', '>= 1.3.0', require: false
 
+# Assets
+gem 'less-rails'
+gem 'therubyracer', :require => 'v8'
+
 group :doc do
   gem 'sdoc', '~> 0.4.0'
   gem 'redcarpet', '~> 2.2.2', platforms: :ruby
