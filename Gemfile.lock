@@ -31,7 +31,6 @@ GEM
     bcrypt (3.1.7)
     benchmark-ips (2.0.0)
     builder (3.2.2)
-    commonjs (0.2.7)
     dalli (2.7.2)
     erubis (2.7.0)
     execjs (2.2.1)
@@ -44,12 +43,6 @@ GEM
     kindlerb (0.1.1)
       mustache
       nokogiri
-    less (2.5.1)
-      commonjs (~> 0.2.7)
-    less-rails (2.5.0)
-      actionpack (>= 3.1)
-      less (~> 2.5.0)
-    libv8 (3.16.14.5)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -90,12 +83,17 @@ GEM
     rdoc (4.1.2)
       json (~> 1.4)
     redcarpet (2.2.2)
-    ref (1.0.5)
     ruby-prof (0.11.3)
+    sass (3.2.19)
+    sass-rails (4.0.3)
+      railties (>= 4.0.0, < 5.0)
+      sass (~> 3.2.0)
+      sprockets (~> 2.8, <= 2.11.0)
+      sprockets-rails (~> 2.0)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    sprockets (2.12.2)
+    sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -104,10 +102,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sqlite3 (1.3.9)
-    therubyracer (0.12.1)
-      libv8 (~> 3.16.14.0)
-      ref
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
@@ -122,6 +116,7 @@ GEM
     w3c_validators (1.2)
       json
       nokogiri
+    yui-compressor (0.12.0)
 
 PLATFORMS
   ruby
@@ -132,7 +127,6 @@ DEPENDENCIES
   dalli (>= 2.2.1)
   jquery-rails (~> 3.1.0)
   kindlerb
-  less-rails
   minitest (< 5.3.4)
   mocha (~> 0.14)
   mysql2 (>= 0.3.13)
@@ -142,8 +136,8 @@ DEPENDENCIES
   rails (= 4.1.5)
   redcarpet (~> 2.2.2)
   ruby-prof (~> 0.11.2)
+  sass-rails (~> 4.0.0.rc1)
   sdoc (~> 0.4.0)
-  sqlite3 (~> 1.3.6)
-  therubyracer
   uglifier (>= 1.3.0)
   w3c_validators
+  yui-compressor

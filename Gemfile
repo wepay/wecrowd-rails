@@ -9,8 +9,6 @@ gem 'mocha', '~> 0.14', require: false
 
 gem 'rack-cache', '~> 1.2'
 gem 'jquery-rails', '~> 3.1.0'
-#gem 'turbolinks'
-#gem 'coffee-rails', '~> 4.0.0'
 
 # require: false so bcrypt is loaded only when has_secure_password is used.
 # This is to avoid ActiveModel (and by extension the entire framework)
@@ -22,8 +20,8 @@ gem 'bcrypt', '~> 3.1.7', require: false
 gem 'uglifier', '>= 1.3.0', require: false
 
 # Assets
-gem 'less-rails'
-gem 'therubyracer', :require => 'v8'
+gem 'sass-rails', '~> 4.0.0.rc1'
+gem 'yui-compressor'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -59,10 +57,6 @@ platforms :ruby do
 
   # Needed for compiling the ActionDispatch::Journey parser
   gem 'racc', '>=1.4.6', require: false
-
-  # AR
-  gem 'sqlite3', '~> 1.3.6'
-
   group :db do
     gem 'mysql2', '>= 0.3.13'
   end
