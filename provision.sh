@@ -18,8 +18,8 @@ sudo -u vagrant echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> /home/vagrant/.pr
 sudo -u vagrant echo 'eval "$(rbenv init -)"' >> /home/vagrant/.profile
 sudo -u vagrant git clone git://github.com/sstephenson/ruby-build.git /home/vagrant/.rbenv/plugins/ruby-build
 
-sudo -u vagrant -i rbenv install 2.0.0-p247
-sudo -u vagrant -i rbenv global 2.0.0-p247
+sudo -u vagrant -i rbenv install 2.1.2
+sudo -u vagrant -i rbenv global 2.1.2
 # Sanity check
 sudo -u vagrant -i ruby -v
 
@@ -36,6 +36,11 @@ echo 'Installing nginx...'
 apt-get -y install nginx >/dev/null 2>&1
 sudo cp /vagrant/nginx /etc/nginx/sites-enabled/everbutton
 sudo /etc/init.d/nginx restart
+
+# Install Node.js
+echo 'Installing Node.js'
+curl -sL https://deb.nodesource.com/setup | sudo bash -
+sudo apt-get install nodejs
 
 # Update Gems
 echo 'Updating gems...'
