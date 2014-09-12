@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   validates :email, :uniqueness => { :case_sensitive => false }
   validates :email, :format => { :with => /.+@.+\..+/, :message => " is invalid" }
   
+  has_one :campaign
+  
   acts_as_paranoid # use the paranoia gem to handle user deletion
   
   include BCrypt # use bcrypt for password hashing

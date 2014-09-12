@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140911201548) do
+ActiveRecord::Schema.define(version: 20140912183822) do
+
+  create_table "campaigns", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "goal"
+    t.integer  "amount_donated"
+    t.string   "account_type"
+    t.boolean  "state"
+    t.integer  "promoted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "campaigns", ["promoted"], name: "index_campaigns_on_promoted", using: :btree
+  add_index "campaigns", ["user_id"], name: "index_campaigns_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name",                         default: "", null: false

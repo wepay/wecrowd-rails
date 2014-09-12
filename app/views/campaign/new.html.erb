@@ -1,0 +1,50 @@
+<%= form_tag("/campaign/new", :class => 'col-md-3') do %>
+
+<legend>Campaign Details</legend>
+
+<div class="form-group">
+  <label for="email">Campaign Name:</label>
+  <%= text_field_tag(:campaign_name, params[:campaign_name], :class => 'text form-control', :placeholder => 'Coffee for Everyone!', :maxlength => 255) %>
+</div>
+
+<div class="form-group">
+  <label for="email">Campaign Description:</label>
+  <%= text_field_tag(:campaign_description, params[:campaign_description], :class => 'text form-control', :placeholder => 'Let\'s supply coffee to the overworked people.') %>
+</div>
+
+<div class="form-group">
+  <label for="email">Donation Goal:</label>
+  <%= text_field_tag(:campaign_goal, params[:campaign_goal], :class => 'text form-control', :placeholder => '$5,000', :maxlength => 10) %>
+</div>
+
+<div class="form-group">
+  <label for="email">Account Type:</label>
+  <%= select_tag(:account_type, options_for_select({ "Individual" => "personal", "Business" =>"business", "Non-profit" => "nonprofit"}, params[:account_type]), :class => 'text form-control', :placeholder => '$5,000', :maxlength => 10) %>
+</div>
+
+<% if !signed_in? %>
+
+  <legend>User Details</legend>
+
+  <div class="form-group">
+    <label for="name">Your first and last name<b>*</b></label>
+    <%= text_field_tag(:user_name, params[:name], :class => 'text form-control', :placeholder => 'First & Last Name', :maxlength => 255) %>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Your email address<b>*</b></label>
+    <%= text_field_tag(:user_email, params[:email], :class => 'text form-control', :placeholder => 'jane.doe@gmail.com', :maxlength => 255) %>
+  </div>
+
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <%= password_field_tag(:user_password, nil, :class => 'password form-control', :maxlength => 255) %>
+  </div>
+
+<% end %>
+
+<div class="form-group">
+  <button type="submit" class="btn btn-success">Create</button>
+</div>
+<% end %>

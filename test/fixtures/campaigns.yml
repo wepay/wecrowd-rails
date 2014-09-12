@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  name: MyString
+  description: MyText
+  goal: 1
+  amount_donated: 1
+  account_type: MyString
+  state: 1
+
+two:
+  user_id: 1
+  name: MyString
+  description: MyText
+  goal: 1
+  amount_donated: 1
+  account_type: MyString
+  state: 1

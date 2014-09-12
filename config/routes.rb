@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
 
+  get 'campaign/index'
+  
+  get 'campaign/edit'
+
+  get 'campaign/donate'
+
+  get 'campaign/donation_success'
+
+  #campaign
+  get '/campaign/new', :to => "campaign#new"
+  post '/campaign/new', :to => "campaign#create"
+  get '/campaign/details/:campaign_id', :to => "campaign#details"
+
   #user
   match '/login', :to => "user#login", :via => [:get,:post]
   get '/logout', :to => "user#logout"
