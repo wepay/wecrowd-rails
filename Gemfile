@@ -31,6 +31,7 @@ group :doc do
 end
 
 #app
+gem 'wepay'
 gem 'paranoia', '~> 2.0'
 
 # AS
