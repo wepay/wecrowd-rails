@@ -1,0 +1,20 @@
+<% if flash.present? %>
+	<% if flash[:error].present? %>
+		<% if flash[:error].kind_of?(Array) %>
+			<% flash[:error].each do |f| %>
+				<div class="alert alert-danger alert-dismissable"><%= f %><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></div>
+			<% end %>
+		<% else %>
+			<div class="alert alert-danger alert-dismissable"><%= flash[:error ]%><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></div>
+		<% end %>
+	<% end %>
+	<% if flash[:message].present? %>
+		<% if flash[:message].kind_of?(Array) %>
+			<% flash[:message].each do |f| %>
+				<div class="alert alert-success alert-dismissable"><%= f %><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></div>
+			<% end %>
+		<% else %>
+			<div class="alert alert-success alert-dismissable"><%= flash[:message ]%><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></div>
+		<% end %>
+	<% end %>
+<% end %>

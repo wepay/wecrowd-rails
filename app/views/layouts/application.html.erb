@@ -7,8 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= render("shared/header.html.erb")%>
 
-<%= yield %>
+
+<div id="content" class="container">
+	<%= render("shared/flash", { :flash => flash })%>
+	<%= yield %>
+</div>
 
 </body>
 </html>

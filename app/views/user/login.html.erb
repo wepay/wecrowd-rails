@@ -1,0 +1,18 @@
+<%= form_tag("/login", :class => 'col-md-3') do %>
+
+<div class="form-group">
+<label for="email">Email address:</label>
+<%= text_field_tag(:email, params[:email], :class => 'text form-control', :placeholder => 'jane.doe@gmail.com', :maxlength => 255) %>
+</div>
+
+<div class="form-group">
+<label for="password">Password</label>
+<%= password_field_tag(:password, nil, :class => 'password form-control', :maxlength => 255) %>
+</div>
+
+<div class="form-group">
+	<button type="submit" class="btn btn-success">Login</button>
+	
+</div>
+<input type="hidden" name="redirect" value="<%= @redirect %>">
+<% end %>
