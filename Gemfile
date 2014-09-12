@@ -30,6 +30,9 @@ group :doc do
   gem 'kindlerb'
 end
 
+#app
+gem 'paranoia', '~> 2.0'
+
 # AS
 gem 'dalli', '>= 2.2.1'
 
