@@ -1,1 +1,31 @@
 <h1><%= @campaign.name %></h1>
+
+<%= form_tag("/campaign/edit/#{@campaign.id}", :class => 'col-md-3') do %>
+
+<legend>Edit Campaign Details</legend>
+
+<div class="form-group">
+  <label for="email">Campaign Name:</label>
+  <%= text_field_tag(:campaign_name, @campaign.name, :class => 'text form-control', :placeholder => 'Coffee for Everyone!', :maxlength => 255) %>
+</div>
+
+<div class="form-group">
+  <label for="email">Campaign Description:</label>
+  <%= text_field_tag(:campaign_description, @campaign.description, :class => 'text form-control', :placeholder => 'Let\'s supply coffee to the overworked people.') %>
+</div>
+
+<div class="form-group">
+  <label for="email">Donation Goal:</label>
+  <%= text_field_tag(:campaign_goal, @campaign.goal, :class => 'text form-control', :placeholder => '$5,000', :maxlength => 10) %>
+</div>
+
+<div class="form-group">
+  <label for="email">Account Type:</label>
+  <%= select_tag(:account_type, options_for_select({ "Individual" => "personal", "Business" =>"business", "Non-profit" => "nonprofit"}, @campaign.account_type), :class => 'text form-control', :placeholder => '$5,000', :maxlength => 10) %>
+</div>
+
+<div class="form-group">
+  <button type="submit" class="btn btn-success">Edit</button>
+</div>
+
+<% end %>

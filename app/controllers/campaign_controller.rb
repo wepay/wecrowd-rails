@@ -43,6 +43,17 @@ class CampaignController < ApplicationController
   end
 
   def edit
+    if @campaign.update_attributes({
+      name: params[:campaign_name],
+      description: params[:campaign_description],
+      goal: params[:campaign_goal],
+      account_type: params[:account_type]
+    })
+      message("Your campaign has been edited successfully!")
+    else
+      error(@campaign.errors.full_messages)
+    end
+    redirect_to("/campaign/details/#{@campaign.id}")
   end
 
   def donate

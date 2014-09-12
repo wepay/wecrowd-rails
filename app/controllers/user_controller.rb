@@ -1,6 +1,6 @@
 class UserController < ApplicationController
   
-  before_filter :check_user, :except => [ :register, :login, :logout]
+  before_filter :check_user, :except => [ :register, :create, :login, :logout]
   
   def index
   end
