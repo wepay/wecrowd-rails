@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-
-  get 'campaign/index'
   
   get 'campaign/edit'
 
@@ -13,6 +11,7 @@ Rails.application.routes.draw do
   post '/campaign/new', :to => "campaign#create"
   get '/campaign/details/:campaign_id', :to => "campaign#details"
   post '/campaign/edit/:campaign_id', :to => "campaign#edit"
+  get '/campaign/:campaign_id', :to => "campaign#index"
 
   #user
   match '/login', :to => "user#login", :via => [:get,:post]
