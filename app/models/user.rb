@@ -45,4 +45,48 @@ class User < ActiveRecord::Base
   def hash
     Digest::SHA2.hexdigest(self.id.to_s + self.password_hash.to_s + self.email.to_s).slice(0,10)
   end
+  
+  def has_access_token?
+    self.wepay_access_token.present?
+  end
+  
+  def has_wepay_account?
+    self.wepay_account_id.present?
+  end
+  
+  def register_on_wepay(ip, user_agent)
+    if self.has_access_token? then return true end
+    split_name = self.name.split(" ", 2)
+    response = WEPAY.call("/user/register", nil, {
+      client_id: WEPAY_CONFIG['client_id'],
+      client_secret: WEPAY_CONFIG['client_secret'],
+      email: self.email,
+      first_name: split_name[0],
+      last_name: split_name[1],
+      scope: 'manage_accounts,collect_payments,view_user,manage_subscriptions,preapprove_payments,send_money',
+      original_ip: ip,
+      original_device: user_agent,
+      tos_acceptance_time: Time.now.to_i
+    })
+    if response['error'].present?
+      raise response['error_description']
+    end
+    self.wepay_access_token = response['access_token']
+    self.wepay_user_id      = response['user_id']
+    self.save
+  end
+  
+  def create_wepay_account
+    if self.has_wepay_account? then return true end
+    response = WEPAY.call("/account/create", self.wepay_access_token, {
+      name: self.campaign.name,
+      description: self.campaign.description,
+      type: self.campaign.account_type
+    })
+    if response['error'].present?
+      raise response['error_description']
+    end
+    self.wepay_account_id   = response['account_id']
+    self.save
+  end
 end

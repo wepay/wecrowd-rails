@@ -1,16 +1,20 @@
 development:
-  client_id: <%= ENV['WECROWD_CLIENT_ID'] %>
-  client_secret: <%= ENV['WECROWD_CLIENT_SECRET'] %>
-  account_id: <%= ENV['WECROWD_ACCOUNT_ID'] %>
-  access_token: <%= ENV['WECROWD_ACCESS_TOKEN'] %>    
+    client_id: <%= ENV['WECROWD_CLIENT_ID'] %>
+    client_secret: <%= ENV['WECROWD_CLIENT_SECRET'] %>
+    account_id: <%= ENV['WECROWD_ACCOUNT_ID'] %>
+    access_token: <%= ENV['WECROWD_ACCESS_TOKEN'] %>
+    use_stage: true
+    
 stage:
     client_id: <%= ENV['WECROWD_CLIENT_ID'] %>
     client_secret: <%= ENV['WECROWD_CLIENT_SECRET'] %>
     account_id: <%= ENV['WECROWD_ACCOUNT_ID'] %>
     access_token: <%= ENV['WECROWD_ACCESS_TOKEN'] %>
+    use_stage: true
       
 production:
     client_id: <%= ENV['WECROWD_CLIENT_ID'] %>
     client_secret: <%= ENV['WECROWD_CLIENT_SECRET'] %>
     account_id: <%= ENV['WECROWD_ACCOUNT_ID'] %>
     access_token: <%= ENV['WECROWD_ACCESS_TOKEN'] %>
+    use_stage: false

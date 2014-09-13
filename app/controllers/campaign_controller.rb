@@ -1,7 +1,7 @@
 class CampaignController < ApplicationController
   
-  before_filter :get_campaign, except: [ :new ]
-  before_filter :check_user,   except: [ :new, :index, :donate, :donation_success ]
+  before_filter :get_campaign, except: [ :new, :create ]
+  before_filter :check_user,   except: [ :new, :create, :index, :donate, :donation_success ]
   
   def index
   end
@@ -31,6 +31,8 @@ class CampaignController < ApplicationController
       account_type: params[:account_type]
     })
     if @campaign.valid? && @campaign.save
+      @user.register_on_wepay(request.ip, request.env['HTTP_USER_AGENT'])
+      @user.create_wepay_account
       message("Your campaign has been created successfully!")
       redirect_to("/campaign/details/#{@campaign.id}")
     else
