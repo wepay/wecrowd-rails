@@ -32,6 +32,7 @@ end
 
 #app
 gem 'wepay'
+gem 'money-rails'
 gem 'paranoia', '~> 2.0'
 
 # AS

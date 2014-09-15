@@ -4,7 +4,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.integer :user_id
       t.string :name
       t.text :description
-      t.integer :goal
+      t.integer :goal_cents
       t.integer :amount_donated
       t.string :account_type
       t.boolean :state, :limit => 1
