@@ -9,5 +9,6 @@ class Campaign < ActiveRecord::Base
   # this Money object will be accessible via the goal property on all Campaign objects
   monetize :goal_cents
   
+  acts_as_paranoid # use the paranoia gem to handle user deletion
   
 end

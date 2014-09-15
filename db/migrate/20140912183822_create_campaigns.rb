@@ -9,6 +9,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.string :account_type
       t.boolean :state, :limit => 1
       t.integer :promoted
+      t.datetime :deleted_at
       
       t.timestamps
     end

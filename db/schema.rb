@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20140912183822) do
     t.string   "account_type"
     t.boolean  "state"
     t.integer  "promoted"
+    t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
