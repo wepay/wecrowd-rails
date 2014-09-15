@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/user/register', :to => "user#register"
   post '/user/register', :to => "user#create"
   get '/user/view/:user_id', :to => "user#view"
+  post '/user/resend_confirmation_email/:user_id', :to => "user#resend_confirmation_email" 
 
   #welcome
   get 'welcome/index'

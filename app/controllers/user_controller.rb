@@ -7,6 +7,9 @@ class UserController < ApplicationController
 
   def view
     @user = User.find(params[:user_id])
+    @wepay_details = @user.get_wepay_user
+    @account_details = @user.get_wepay_account
+    @balance = Money.new(@account_details["balances"][0]["balance"], @account_details["balances"][0]["currency"])
   end
 
   def edit
@@ -55,6 +58,16 @@ class UserController < ApplicationController
         redirect_to("/user/register")
       end
     end
+  end
+  
+  def resend_confirmation_email
+    response = @user.resend_confirmation_email
+    if response["error"]
+      error(response["error_description"])
+    else
+      message("Confirmation Email Sent!")
+    end
+    redirect_to("/user/view/#{@user.id}")
   end
   
   private

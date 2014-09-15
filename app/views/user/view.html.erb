@@ -1,2 +1,23 @@
 <h1><%= @user.name %></h1>
-<p><%= @user.email %></p>
+
+<div class="row">
+  <div class="span6">
+    <h3>Profile Details</h3>
+    <dl class="dl-horizontal">
+      <dt>Name:</dt><dd><%= @user.name %></dd>
+      <dt>Email:</dt><dd><%= @user.email %></dd>
+      <dt>Registration Date:</dt><dd><%= @user.created_at.strftime("%B %d, %G %I:%M%P %Z") %>
+    </dl>
+  </div>
+  <div class="span6">
+    <h3>Account Details</h3>
+    <p><b>Status:</b> <%= @wepay_details["state"]%></p>
+    <% if @wepay_details["state"] != "registered" %>
+      <p>You still have not confirmed your account.<p>
+      <%= form_tag("/user/resend_confirmation_email/#{@user.id}", :class => '') do %>
+        <button class="btn btn-warning">Resend Confirmation Email</button>
+      <% end %>
+    <% end %>
+    <p><b>Balance:</b> <%= @balance.format_with_settings %></p>
+  </div>
+</div>

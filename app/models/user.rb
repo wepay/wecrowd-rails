@@ -89,4 +89,18 @@ class User < ActiveRecord::Base
     self.wepay_account_id   = response['account_id']
     self.save
   end
+  
+  def get_wepay_user
+    WEPAY.call('/user', self.wepay_access_token, {})
+  end
+  
+  def resend_confirmation_email
+    WEPAY.call('/user/resend_confirmation', self.wepay_access_token, {})
+  end
+  
+  def get_wepay_account
+    WEPAY.call('/account', self.wepay_access_token, {
+      account_id: self.wepay_account_id
+    })
+  end
 end
