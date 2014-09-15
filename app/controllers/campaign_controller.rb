@@ -42,6 +42,7 @@ class CampaignController < ApplicationController
   end
 
   def details
+    @payments = @campaign.payments
   end
 
   def edit

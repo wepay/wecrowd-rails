@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates :email, :uniqueness => { :case_sensitive => false }
   validates :email, :format => { :with => /.+@.+\..+/, :message => " is invalid" }
   
-  has_one :campaign
+  has_many :campaigns
   
   acts_as_paranoid # use the paranoia gem to handle user deletion
   
@@ -103,4 +103,9 @@ class User < ActiveRecord::Base
       account_id: self.wepay_account_id
     })
   end
+  
+  def campaign
+    self.campaigns.first
+  end
+  
 end

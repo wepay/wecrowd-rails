@@ -10,6 +10,7 @@ class UserController < ApplicationController
     @wepay_details = @user.get_wepay_user
     @account_details = @user.get_wepay_account
     @balance = Money.new(@account_details["balances"][0]["balance"], @account_details["balances"][0]["currency"])
+    @campaigns = @user.campaigns
   end
 
   def edit

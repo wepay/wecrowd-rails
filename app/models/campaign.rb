@@ -1,5 +1,6 @@
 class Campaign < ActiveRecord::Base
   belongs_to :user
+  has_many :payments
   
   validates :name, :presence => true
   validates :description, :presence => true

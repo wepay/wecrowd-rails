@@ -32,4 +32,12 @@ class Payment < ActiveRecord::Base
       app_fee: 0
     })
   end
+  
+  def payer_name
+    self.payer.present? ? self.payer.name : ''
+  end
+  
+  def payer_email
+    self.payer.present? ? self.payer.email : ''
+  end
 end

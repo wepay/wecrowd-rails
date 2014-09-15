@@ -21,3 +21,14 @@
     <p><b>Balance:</b> <%= @balance.format_with_settings %></p>
   </div>
 </div>
+<div class="row">
+  <div class="span6">
+    <h3>Your Campaigns</h3>
+    <p>This is a list of campaigns you have started.</p>
+    <p>Click on each one to view and edit its details.</p>
+    <ul>
+      <% @campaigns.each do |c| %>
+        <li><a href="/campaign/details/<%= c.id %>"><%= c.name %></a></li>
+      <% end %>
+  </div>
+</div>
