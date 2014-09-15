@@ -1,7 +1,7 @@
 class CampaignController < ApplicationController
   
   before_filter :get_campaign, except: [ :new, :create ]
-  before_filter :check_user,   except: [ :new, :create, :index, :donate, :donation_success ]
+  before_filter :check_user,   except: [ :new, :create, :index, :donate, :make_donation, :donation_success ]
   
   def index
   end
@@ -59,6 +59,36 @@ class CampaignController < ApplicationController
   end
 
   def donate
+    params[:user_name] ||= "Test User"
+    params[:user_email] ||= "test@example.com"
+    params[:cc_number] ||= "5496198584584769"
+    params[:cvv] ||= "123"
+    params[:expiration_month] ||= "11"
+    params[:expiration_year] ||= "2015"
+    params[:zip] ||= "94025"
+  end
+  
+  def make_donation
+    @user = User.find_by_email(params[:user_email])
+    if !@user
+      @user = User.new({
+        name: params[:user_name],
+        email: params[:user_email]
+      })
+      unless @user.valid? && @user.save
+        error(@user.errors.full_messages)
+        return redirect_to("/campaign/donate/#{@campaign.id}")
+      end
+    end
+    
+    @payment = Payment.create(params[:credit_card_id], params[:amount], @user, @campaign)
+    if @payment.valid? && @payment.save
+      message("Donation Made!")
+      redirect_to("/campaign/#{@campaign.id}/")
+    else
+      error(@payment.errors.full_messages)
+      redirect_to("/campaign/donate/#{@campaign.id}")
+    end
   end
 
   def donation_success

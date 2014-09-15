@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  
-  get 'campaign/edit'
-
-  get 'campaign/donate'
-
-  get 'campaign/donation_success'
 
   #campaign
   get '/campaign/new', :to => "campaign#new"
@@ -12,6 +6,9 @@ Rails.application.routes.draw do
   get '/campaign/details/:campaign_id', :to => "campaign#details"
   post '/campaign/edit/:campaign_id', :to => "campaign#edit"
   get '/campaign/:campaign_id', :to => "campaign#index"
+  get '/campaign/donate/:campaign_id', :to => "campaign#donate"
+  post '/campaign/donate/:campaign_id', :to => "campaign#make_donation"
+  get '/campaign/donation_success/:campaign_id/:payment_id', :to => "campaign#donation_success"
 
   #user
   match '/login', :to => "user#login", :via => [:get,:post]

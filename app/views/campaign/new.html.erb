@@ -19,7 +19,7 @@
 
 <div class="form-group">
   <label for="email">Account Type:</label>
-  <%= select_tag(:account_type, options_for_select({ "Individual" => "personal", "Business" =>"business", "Non-profit" => "nonprofit"}, params[:account_type]), :class => 'text form-control', :placeholder => '$5,000', :maxlength => 10) %>
+  <%= select_tag(:account_type, options_for_select({ "Individual" => "personal", "Business" =>"business", "Non-profit" => "nonprofit"}, params[:account_type]), :class => 'text form-control') %>
 </div>
 
 <% if !signed_in? %>

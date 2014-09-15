@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140912183822) do
+ActiveRecord::Schema.define(version: 20140915174217) do
 
   create_table "campaigns", force: true do |t|
     t.integer  "user_id"
@@ -29,6 +29,20 @@ ActiveRecord::Schema.define(version: 20140912183822) do
 
   add_index "campaigns", ["promoted"], name: "index_campaigns_on_promoted", using: :btree
   add_index "campaigns", ["user_id"], name: "index_campaigns_on_user_id", using: :btree
+
+  create_table "payments", force: true do |t|
+    t.integer  "campaign_id"
+    t.integer  "payer_id"
+    t.integer  "wepay_checkout_id",    limit: 8
+    t.integer  "wepay_credit_card_id", limit: 8
+    t.integer  "amount_cents"
+    t.integer  "app_fee_cents"
+    t.integer  "wepay_fee_cents"
+    t.integer  "state",                limit: 1
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name",                         default: "", null: false
