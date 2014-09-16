@@ -3,8 +3,8 @@
 <div class="row">
   <%= form_tag("/campaign/edit/#{@campaign.id}", :class => 'span3') do %>
 
+  <p>The public URL for your campaign is <strong><a href="<%= request.protocol + request.host %>/campaign/<%= @campaign.id %>"><%= request.host %>/campaign/<%= @campaign.id %></a></strong></p>
   <legend>Edit Campaign Details</legend>
-
   <div class="form-group">
     <label for="email">Campaign Name:</label>
     <%= text_field_tag(:campaign_name, @campaign.name, :class => 'text form-control', :placeholder => 'Coffee for Everyone!', :maxlength => 255) %>
