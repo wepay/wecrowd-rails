@@ -186,7 +186,7 @@ SITE HEADER
 }
 
 #site-header .wrapper {
-    padding: 45px 0 45px;
+    padding: 35px 0 45px;
 }
 
 #site-header .wrapper.no-border {
@@ -270,6 +270,18 @@ SITE HEADER
 
 #site-header #main-nav ul li.login-signup a:hover {
     background-color: #feefe9;
+}
+
+#site-header #main-nav ul li.demo a {
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Open Sans';
+    font-size: 14px;
+    background-color: #ef5e27;
+    border: 1px solid #ef5e27;
+    padding: 5px 15px 5px 15px;
+    margin-right: -5px;
 }
 
 #site-header #main-nav ul li ul {

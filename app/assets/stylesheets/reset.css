@@ -81,6 +81,7 @@ a {
 
 a:hover {
     color: #000000;
+    text-decoration: none;
 }
 
 nav#main-nav {
