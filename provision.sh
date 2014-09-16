@@ -23,14 +23,6 @@ sudo -u vagrant -i rbenv global 2.1.2
 # Sanity check
 sudo -u vagrant -i ruby -v
 
-# Install mysql
-#echo 'Installing mysql...'
-
-#apt-get -y install  mysql-client mysql-server libmysqlclient-dev libmysql-ruby >/dev/null 2>&1
-#service mysql restart
-
-#mysql -u root -e ";CREATE DATABASE wecrowd;"
-
 # Install Postgres
 echo 'Installing Postgres...'
 apt-get -y install postgresql-9.1 libpq-dev
