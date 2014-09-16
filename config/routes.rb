@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/campaign/donate/:campaign_id', :to => "campaign#donate"
   post '/campaign/donate/:campaign_id', :to => "campaign#make_donation"
   get '/campaign/donation_success/:campaign_id/:payment_id', :to => "campaign#donation_success"
+  match '/campaign/ipn/:campaign_id', :to => "campaign#ipn", via: [:get, :post]
 
   #user
   match '/login', :to => "user#login", :via => [:get,:post]

@@ -1,7 +1,7 @@
 class CampaignController < ApplicationController
   
   before_filter :get_campaign, except: [ :new, :create ]
-  before_filter :check_user,   except: [ :new, :create, :index, :donate, :make_donation, :donation_success ]
+  before_filter :check_user,   except: [ :new, :create, :index, :donate, :make_donation, :donation_success, :ipn ]
   
   # GET /campaign/12345
   # the public page for the campaign
@@ -126,6 +126,15 @@ class CampaignController < ApplicationController
   end
 
   def donation_success
+  end
+  
+  def ipn
+    @payment = Payment.find_by_wepay_checkout_id(params[:checkout_id])
+    if !@payment
+      throw "no payment found for checkout #{params[:checkout_id]}"
+    end
+    @payment.handle_ipn(params[:checkout_id])
+    render :json => { :success => "thanks for the update" }
   end
   
   private

@@ -8,6 +8,16 @@ class Payment < ActiveRecord::Base
   
   acts_as_paranoid # use the paranoia gem to handle user deletion
   
+  STATE_NEW         = 'new'
+  STATE_AUTHORIZED  = 'authorized'
+  STATE_RESERVED    = 'reserved'
+  STATE_CAPUTED     = 'captured'
+  STATE_CANCELLED   = 'cancelled'
+  STATE_REFUNDED    = 'refunded'
+  STATE_CHARGEBACK  = 'charged back'
+  STATE_FAILED      = 'failed'
+  STATE_EXPIRED     = 'expired'
+  
   # make the /checkout/create call to immediately charge the credit card associated with this payment
   def create_checkout
     response = WEPAY.call("/checkout/create", self.campaign.user.wepay_access_token, {
@@ -25,6 +35,25 @@ class Payment < ActiveRecord::Base
     self.wepay_checkout_id = response["checkout_id"];
     self.wepay_fee = response["fee"]
     self
+  end
+  
+  def handle_ipn(checkout_id)
+    response = WEPAY.call("/checkout", self.campaign.user.wepay_access_token, { checkout_id: checkout_id })
+    if response["error"]
+      throw response
+    end
+    if !self.payer_id && response["payer_email"]
+      payer = User.with_deleted.find_by_email(response["payer_email"]) || User.new({ name: response["payer_name"], email: response["payer_email"] })
+      unless payer.valid? && payer.save
+        raise "IPN Error: Unable to save payer: #{payer.errors.full_messages}"
+      end
+      self.payer_id = payer.id
+    end
+    self.wepay_fee = response["fee"]
+    self.app_fee = response["app_fee"]
+    self.amount = response["amount"]
+    self.state = response["state"]
+    self.save
   end
   
   def payer_name
