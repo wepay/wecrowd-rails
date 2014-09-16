@@ -10,13 +10,9 @@
 <body>
   <%= render("shared/header.html.erb")%>
 
-	    <%= render("shared/flash", { :flash => flash })%>
-	    <%= yield %>
-
-      </div> <!-- end main container -->
-    </section> <!-- end campaign section -->
-  </div>
-
+  <%= render("shared/flash", { :flash => flash })%>
+  <%= yield %>
+	    
   <%= render("shared/footer.html.erb")%>
 </body>
 </html>

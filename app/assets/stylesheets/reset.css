@@ -109,6 +109,11 @@ footer#site-footer {
     font-size: 100%;
 }
 
+.row {
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
 @media only screen and (max-width: 700px) {
     nav#main-nav ul li, nav#main-nav ul li.section,
     nav#main-nav.open > ul,

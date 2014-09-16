@@ -102,14 +102,16 @@ p a, p a:visited {
 .grey-dark {
     color:#828587;
 }
+
 .grey-light {
     color:#aab5bc;
+    font-size: 35px;
 }
 
 .location-name {
     white-space:nowrap;
     overflow:hidden;
-    margin: 0 1.25em 20px 1.25em;
+    margin: 0 1.25em 20px 1.1em;
 }
 
 .bg-grey {
@@ -338,6 +340,7 @@ BLUE TITLE HEADER
     color: #ffffff;
     font-family: 'Open Sans';
     font-size: 35px;
+    line-height: 45px;
     text-align: center;
 }
 
@@ -536,10 +539,11 @@ MAIN CONTAINER
 }
 
 .main-container {
-    max-width:960px;
-    margin-right:auto;
-    margin-left:auto;
-    margin-bottom:20px;
+    max-width: 960px;
+    min-height: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-bottom: 20px;
 }
 
 
@@ -641,6 +645,7 @@ WIDGETS
 }
 
 .widgets .blank p {
+    line-height: 20px;
     margin-bottom: 20px;
 }
 
@@ -682,12 +687,13 @@ FOOTER
 ************************************/
 
 #site-footer {
-    padding: 20px;
-    text-align: center;
+    padding-top: 40px;
 }
 
 #site-footer .wrapper {
     font-size: .75em;
+    min-height: 100%;
+    position: relative;
 }
 
 
@@ -708,7 +714,7 @@ CAMPAIGN CARDS
     color:#ef5e27;
 }
 .campaign-meta  {
-    margin: 0 0 0.25em 1em;
+    margin: 0 0 0.75em 1em;
 }
 .campaign-card-wrap .successful .campaign-pledged-successful {
     display:block;
