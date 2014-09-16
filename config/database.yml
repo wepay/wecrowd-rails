@@ -1,14 +1,14 @@
 development:
-    adapter: mysql2
+    adapter: postgresql
     host: localhost
     database: wecrowd
-    username: root
-    password: 
+    username: wecrowd
+    password: wecrowd
     pool: 5
     timeout: 5000
     
 stage:
-    adapter: mysql2
+    adapter: postgresql
     host: localhost
     database: wecrowd
     username: wecrowd
@@ -17,7 +17,7 @@ stage:
     timeout: 5000
     
 production:
-    adapter: mysql2
+    adapter: postgresql
     host: localhost
     database: wecrowd
     username: wecrowd

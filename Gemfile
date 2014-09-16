@@ -63,6 +63,6 @@ platforms :ruby do
   # Needed for compiling the ActionDispatch::Journey parser
   gem 'racc', '>=1.4.6', require: false
   group :db do
-    gem 'mysql2', '>= 0.3.13'
+    gem 'pg'
   end
 end

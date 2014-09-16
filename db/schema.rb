@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140915174217) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "campaigns", force: true do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 20140915174217) do
     t.integer  "goal_cents"
     t.integer  "amount_donated"
     t.string   "account_type"
-    t.boolean  "state"
+    t.integer  "state",          limit: 2
     t.integer  "promoted"
     t.datetime "deleted_at"
     t.datetime "created_at"
@@ -38,7 +41,7 @@ ActiveRecord::Schema.define(version: 20140915174217) do
     t.integer  "amount_cents"
     t.integer  "app_fee_cents"
     t.integer  "wepay_fee_cents"
-    t.integer  "state",                limit: 1
+    t.integer  "state",                limit: 2
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -51,7 +54,7 @@ ActiveRecord::Schema.define(version: 20140915174217) do
     t.string   "wepay_access_token"
     t.integer  "wepay_account_id",   limit: 8
     t.integer  "wepay_user_id",      limit: 8
-    t.integer  "role",               limit: 1, default: 0,  null: false
+    t.integer  "role",               limit: 2, default: 0,  null: false
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"

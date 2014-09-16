@@ -63,11 +63,11 @@ GEM
       railties (>= 3.0)
     multi_json (1.10.1)
     mustache (0.99.6)
-    mysql2 (0.3.16)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     paranoia (2.0.2)
       activerecord (~> 4.0)
+    pg (0.17.1)
     polyglot (0.3.5)
     racc (1.4.12)
     rack (1.5.2)
@@ -142,9 +142,9 @@ DEPENDENCIES
   minitest (< 5.3.4)
   mocha (~> 0.14)
   money-rails
-  mysql2 (>= 0.3.13)
   nokogiri (>= 1.4.5)
   paranoia (~> 2.0)
+  pg
   racc (>= 1.4.6)
   rack-cache (~> 1.2)
   rails (= 4.1.5)
