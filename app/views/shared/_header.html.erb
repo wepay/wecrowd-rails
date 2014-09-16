@@ -1,14 +1,32 @@
-<div class="navbar">
-  <div class="navbar-inner">
-    <a class="brand" href="/"><img src="/assets/wecrowd_logo_small.png"></a>
-    <ul class="nav pull-right">
-      <% if signed_in? %>
-        <li class="divider-vertical"><a href="/user/view/<%= current_user.id %>">PROFILE</a></li>
-        <li class="divider-vertical"><a href="/logout">LOGOUT</a></li>
-      <% else %>
-        <li class="divider-vertical"><a href="/user/register">REGISTER</a></li>
-        <li class="divider-vertical"><a href="/login">LOGIN</a></li>
-      <% end %>
-    </ul>
-  </div>
+<div class="top-container">
+  <header id="site-header">
+      <div class="wrapper group">
+          <!-- Logo -->
+          <div class="logo">
+              <h1>
+                  <a href="/"><img src="/assets/wecrowd.png" alt="WeCrowd"></a>
+              </h1>
+          </div>
+
+          <!-- Navigation -->
+          <nav id="main-nav">
+              <span class="toggle">
+                  <a href="#open-close" data-icon="&equiv;">Menu</a>
+              </span>
+
+              <ul id="menu">
+                  <li><a href="#">Success Stories</a></li>
+                  <li><a href="#">How It Works</a></li>
+                  <% if signed_in? %>
+                    <li class="login-signup"><a href="#">Profile</a></li>
+                    <li class="login-signup"><a href="#">Log Out</a></li>
+                  <% else %>
+                    <li class="login-signup"><a href="#">Create a Campaign</a></li>
+                    <li class="login-signup"><a href="#">Log In</a></li>
+                  <% end %>
+              </ul>
+
+          </nav>
+      </div>
+  </header>
 </div>

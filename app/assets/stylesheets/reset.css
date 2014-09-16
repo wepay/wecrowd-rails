@@ -1,0 +1,124 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/assets/fonts/open-sans/OpenSans-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Museo Slab';
+    src: url('/assets/fonts/museo-slab/Museo_Slab_500.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #ffffff;
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+#main-content {
+    color: #ffffff;
+}
+
+header#site-header {
+    background-color: #ffffff;
+}
+
+header#title-header {
+    background: url('/assets/title-header-pattern.png') repeat;
+    background-color: #7ac9ea;
+    background-size: 550px auto;
+}
+
+.widgets {
+    background-color: #f5f6f7;
+}
+
+footer#site-footer {
+    background-color: #efefef;
+}
+
+.logo h1 a {
+    color: #414042;
+}
+
+#main-content #subheader {
+    color: #414042;
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+#main-content .menu .menu-list li p, {
+    color: #73818a;
+}
+
+a {
+    color: #959595;
+}
+
+a:hover {
+    color: #000000;
+}
+
+nav#main-nav {
+    font-family: 'Museo Slab', Georgia, "Times New Roman", serif;
+}
+
+.widgets {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: 110%;
+}
+
+body {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: 100%;
+}
+
+.logo {
+    font-size: 100%;
+}
+
+#subheader {
+    font-size: 100%;
+}
+
+footer#site-footer {
+    font-size: 100%;
+}
+
+@media only screen and (max-width: 700px) {
+    nav#main-nav ul li, nav#main-nav ul li.section,
+    nav#main-nav.open > ul,
+	.no-js nav#main-nav > ul#menu,
+	.js nav#main-nav .toggle {
+        border-color: transparent;
+        border-color: #dadada;
+    }
+
+    .js nav#main-nav .toggle a {
+        color: #414042;
+    }
+}
