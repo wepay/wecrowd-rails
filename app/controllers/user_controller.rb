@@ -5,6 +5,9 @@ class UserController < ApplicationController
   def index
   end
 
+  # GET /user/view/12345
+  # this is the profile of the user
+  # it shows the WePay account details and a list of all campaigns
   def view
     @user = User.find(params[:user_id])
     @wepay_details = @user.get_wepay_user
@@ -17,6 +20,8 @@ class UserController < ApplicationController
   def edit
   end
 
+  # GET/POST /login
+  # lets people login to the site
   def login
     @redirect = params[:redirect]
     if request.post?
@@ -35,6 +40,8 @@ class UserController < ApplicationController
     end
   end
 
+  # GET /logout
+  # if you are logged in, log yourself out
   def logout
     if signed_in?
       sign_out
@@ -43,10 +50,14 @@ class UserController < ApplicationController
     redirect_to("/")
   end
   
+  # GET /user/register
+  # allows people to register on the site
   def register
     @user = User.new
   end
 
+  # POST /user/register
+  # handles the form post from the user register page
   def create
     if request.post?
       @user = User.new({:name => params[:name], :email => params[:email]})
@@ -62,6 +73,8 @@ class UserController < ApplicationController
     end
   end
   
+  # POST /user/resend_confirmation_email/12345
+  # allows users to resend the WePay registration confirmation email
   def resend_confirmation_email
     response = @user.resend_confirmation_email
     if response["error"]
@@ -74,6 +87,7 @@ class UserController < ApplicationController
   
   private
   
+  # make sure the user is logged in and has permission to access that user's details
   def check_user
     if !params[:user_id] || params[:user_id].empty?
       raise "No user_id passed for action that requires user"
