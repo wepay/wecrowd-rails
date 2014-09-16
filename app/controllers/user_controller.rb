@@ -11,6 +11,7 @@ class UserController < ApplicationController
     @account_details = @user.get_wepay_account
     @balance = Money.new(@account_details["balances"][0]["balance"], @account_details["balances"][0]["currency"])
     @campaigns = @user.campaigns
+    @update_uri = @user.get_wepay_account_update_uri['uri']
   end
 
   def edit

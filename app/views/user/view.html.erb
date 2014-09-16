@@ -11,6 +11,7 @@
   </div>
   <div class="span6">
     <h3>Account Details</h3>
+    <p><b>Balance:</b> <%= @balance.format_with_settings %></p>
     <p><b>Status:</b> <%= @wepay_details["state"]%></p>
     <% if @wepay_details["state"] != "registered" %>
       <p>You still have not confirmed your account.<p>
@@ -18,7 +19,6 @@
         <button class="btn btn-warning">Resend Confirmation Email</button>
       <% end %>
     <% end %>
-    <p><b>Balance:</b> <%= @balance.format_with_settings %></p>
   </div>
 </div>
 <div class="row">
@@ -31,4 +31,17 @@
         <li><a href="/campaign/details/<%= c.id %>"><%= c.name %></a></li>
       <% end %>
   </div>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <% if @update_uri %>
+      <h3>Manage your payment settings</h3>
+      <p>Use the panel below to sign into WePay and manage your payment settings.</p>
+      <p>Once you have verified your identity and added your bank account information, all money in your account will be automatically deposited into your bank account.</p>
+      <div>
+        <iframe class="wepay-iframe barier" src="<%= @update_uri %>"></iframe>
+      </div>
+    <% end %>
+  <div>
 </div>

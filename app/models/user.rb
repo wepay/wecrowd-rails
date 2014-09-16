@@ -104,6 +104,13 @@ class User < ActiveRecord::Base
     })
   end
   
+  def get_wepay_account_update_uri
+    WEPAY.call('/account/get_update_uri', self.wepay_access_token, {
+      account_id: self.wepay_account_id,
+      mode: :iframe
+    })
+  end
+  
   def campaign
     self.campaigns.first
   end
