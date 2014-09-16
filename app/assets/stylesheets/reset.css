@@ -1,10 +1,51 @@
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+html, body, div, span, applet, object, iframe, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
-    font: inherit;
+    font-size: 14px;
+    font-family: 'Open Sans';
+    line-height: 24px;
     vertical-align: baseline;
+}
+
+h1, .h1 {
+    font-size: 32px !important;
+    line-height: 50px !important;
+}
+h2, .h2 {
+    font-size: 24px !important;
+    line-height: 30px !important;
+}
+h3, .h3 {
+    font-size: 18px !important;
+    line-height: 24px !important;
+}
+h4, .h4 {
+    font-size: 16px !important;
+    line-height: 20px !important;
+}
+h5, .h5 {
+    font-size: 14px !important;
+    line-height: 20px !important;
+}
+h6, .h6 {
+    font-size: 12px !important;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    font-weight: normal !important;
+}
+
+p {
+    margin: 0 0 20px 0 !important;
+}
+
+a, a:visited {
+    text-decoration: none !important;
+}
+
+p a, p a:visited {
+    line-height: inherit !important;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -113,6 +154,16 @@ footer#site-footer {
 .row {
     margin-right: -10px;
     margin-left: -10px;
+}
+
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 20px;
 }
 
 @media only screen and (max-width: 700px) {

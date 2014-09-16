@@ -1,32 +1,42 @@
 <div class="top-container">
   <header id="site-header">
       <div class="wrapper group">
-          <!-- Logo -->
           <div class="logo">
               <h1>
                   <a href="/"><img src="/assets/wecrowd.png" alt="WeCrowd"></a>
               </h1>
           </div>
-
-          <!-- Navigation -->
           <nav id="main-nav">
               <span class="toggle">
                   <a href="#open-close" data-icon="&equiv;">Menu</a>
               </span>
-
               <ul id="menu">
-                  <li class="demo"><a href="/user/view">Buyer Demo</a></li>
-                  <li class="demo"><a href="/user/view">Seller Demo</a></li>
+                  <li class="demo"><a href="#">Buyer Demo</a></li>
+                  <li class="demo"><a href="#">Seller Demo</a></li>
                   <% if signed_in? %>
                     <li class="login-signup"><a href="/user/view">Profile</a></li>
-                    <li class="login-signup"><a href="/user/logout">Log Out</a></li>
+                    <li class="login-signup"><a href="/logout">Log Out</a></li>
                   <% else %>
                     <li class="login-signup"><a href="/user/register">Create a Campaign</a></li>
-                    <li class="login-signup"><a href="/user/login">Log In</a></li>
+                    <li class="login-signup"><a href="/login">Log In</a></li>
                   <% end %>
               </ul>
-
           </nav>
       </div>
   </header>
+
+  <% if current_page?(root_path) %>
+  <header id="title-header">
+      <div class="wrapper">
+          <h1>
+              The best way to raise money<br />for any cause
+              <div class="title-line">
+              </div>
+          </h1>
+          <h5>WeCrowd has helped raise over 651M!</h5>
+      </div>
+  </header>
+  <% else %>
+  <% end %>
+
 </div>

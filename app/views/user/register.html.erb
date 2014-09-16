@@ -1,30 +1,22 @@
-<div class="border-top">
-  <section id="campaigns">
-    <div class="main-container">
+<%= form_tag("/user/register", :class => 'col-md-3') do %>
+	<div class="form-group">
+	<label for="name">Your first and last name<b>*</b></label>
+	<%= text_field_tag(:name, params[:name], :class => 'text form-control', :placeholder => 'First & Last Name', :maxlength => 255) %>
+	</div>
 
-	<%= form_tag("/user/register", :class => 'col-md-3') do %>
-		<div class="form-group">
-		<label for="name">Your first and last name<b>*</b></label>
-		<%= text_field_tag(:name, params[:name], :class => 'text form-control', :placeholder => 'First & Last Name', :maxlength => 255) %>
-		</div>
+	<div class="form-group">
+	<label for="email">Your email address<b>*</b></label>
+	<%= text_field_tag(:email, params[:email], :class => 'text form-control', :placeholder => 'jane.doe@gmail.com', :maxlength => 255) %>
+	</div>
 
-		<div class="form-group">
-		<label for="email">Your email address<b>*</b></label>
-		<%= text_field_tag(:email, params[:email], :class => 'text form-control', :placeholder => 'jane.doe@gmail.com', :maxlength => 255) %>
-		</div>
-
-		<div class="form-group">
-		<label for="password">Choose a password<b>*</b></label>
-		<%= password_field_tag(:password, nil, :class => 'password form-control', :maxlength => 255) %>
-		</div>
-		
-		<input type="hidden" name="redirect" value="<%= @redirect %>">
-		
-		<div class="form-group">
-			<button type="submit" class="btn btn-success">Register</button>
-		</div>
-	<% end %>
-
-		</div>
-	</section>
-</div>
+	<div class="form-group">
+	<label for="password">Choose a password<b>*</b></label>
+	<%= password_field_tag(:password, nil, :class => 'password form-control', :maxlength => 255) %>
+	</div>
+	
+	<input type="hidden" name="redirect" value="<%= @redirect %>">
+	
+	<div class="form-group">
+		<button type="submit" class="btn btn-success">Register</button>
+	</div>
+<% end %>
