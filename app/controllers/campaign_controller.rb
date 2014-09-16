@@ -82,8 +82,17 @@ class CampaignController < ApplicationController
       end
     end
     
-    @payment = Payment.create(params[:credit_card_id], params[:amount], @user, @campaign)
-    if @payment.valid? && @payment.save
+    @payment = Payment.new({
+      campaign_id: @campaign.id,
+      payer_id: @user.id,
+      wepay_credit_card_id: params[:credit_card_id],
+      amount: params[:amount],
+    })
+    if !@payment.valid?
+      error(@payment.errors.full_messages)
+      return redirect_to("/campaign/donate/#{@campaign.id}")
+    end
+    if @payment.valid? && @payment.create_checkout
       message("Donation Made!")
       redirect_to("/campaign/#{@campaign.id}/")
     else
