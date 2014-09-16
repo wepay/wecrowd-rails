@@ -7,16 +7,19 @@ class User < ActiveRecord::Base
   validates :email, :uniqueness => { :case_sensitive => false }
   validates :email, :format => { :with => /.+@.+\..+/, :message => " is invalid" }
   
+  # each user can have many donation campaigns
   has_many :campaigns
   
   acts_as_paranoid # use the paranoia gem to handle user deletion
   
   include BCrypt # use bcrypt for password hashing
   
+  # @user.password always returns a bcrypt password object
   def password
     @password ||= Password.new(password_hash)
   end
   
+  # set the user's password using bcrypt
   def password=(new_pw)
     @password = Password.create(new_pw)
     self.password_hash = @password
@@ -26,6 +29,7 @@ class User < ActiveRecord::Base
     !(self.password_hash.nil? || self.password_hash.empty?)
   end
   
+  # check to see if the user-provided password is correct
   def self.authenticate(email, test_password)
     user = User.find_by_email(email)
     if user && user.password_hash.present?
@@ -35,6 +39,7 @@ class User < ActiveRecord::Base
     end
   end
   
+  # use the authentication cookie to authenticate the user
   def self.authenticate_by_token(id, token)
     user = User.find_by_id(id)
     user ? (Digest::SHA2.hexdigest(user.hash) == token ? user : false) : false
@@ -54,8 +59,11 @@ class User < ActiveRecord::Base
     self.wepay_account_id.present?
   end
   
+  # register the user on WePay using the /user/register call
   def register_on_wepay(ip, user_agent)
+    # if we already have an access_token for this user, then we don't need to make this call
     if self.has_access_token? then return true end
+    # get the first and last name by splitting on the first space
     split_name = self.name.split(" ", 2)
     response = WEPAY.call("/user/register", nil, {
       client_id: WEPAY_CONFIG['client_id'],
@@ -76,8 +84,11 @@ class User < ActiveRecord::Base
     self.save
   end
   
+  # create a WePay account for the user
   def create_wepay_account
-    if self.has_wepay_account? then return true end
+    # if we don't have an access_token for this user, then we cannot make this call
+    if self.has_wepay_account? then return false end
+    # make the /account/create call
     response = WEPAY.call("/account/create", self.wepay_access_token, {
       name: self.campaign.name,
       description: self.campaign.description,
@@ -94,6 +105,8 @@ class User < ActiveRecord::Base
     WEPAY.call('/user', self.wepay_access_token, {})
   end
   
+  # resend the WePay registration confirmation email
+  # so the user can confirm that they want this app to register them on WePay
   def resend_confirmation_email
     WEPAY.call('/user/resend_confirmation', self.wepay_access_token, {})
   end
