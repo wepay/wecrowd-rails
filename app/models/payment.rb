@@ -8,6 +8,7 @@ class Payment < ActiveRecord::Base
   
   acts_as_paranoid # use the paranoia gem to handle user deletion
   
+  # make the /checkout/create call to immediately charge the credit card associated with this payment
   def create_checkout
     response = WEPAY.call("/checkout/create", self.campaign.user.wepay_access_token, {
       account_id: self.campaign.user.wepay_account_id,
