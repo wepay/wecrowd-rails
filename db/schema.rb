@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20140915174217) do
     t.integer  "amount_cents"
     t.integer  "app_fee_cents"
     t.integer  "wepay_fee_cents"
-    t.integer  "state",                limit: 2
+    t.string   "state"
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"

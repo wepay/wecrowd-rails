@@ -8,7 +8,7 @@ class CreatePayments < ActiveRecord::Migration
       t.integer :amount_cents
       t.integer :app_fee_cents
       t.integer :wepay_fee_cents
-      t.integer :state, :limit => 1
+      t.string :state
       t.datetime :deleted_at
 
       t.timestamps
