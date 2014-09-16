@@ -9,7 +9,7 @@ class UserController < ApplicationController
     @user = User.find(params[:user_id])
     @wepay_details = @user.get_wepay_user
     @account_details = @user.get_wepay_account
-    @balance = Money.new(@account_details["balances"][0]["balance"], @account_details["balances"][0]["currency"])
+    @balance = Money.new(@account_details["balances"][0]["balance"]*100, @account_details["balances"][0]["currency"])
     @campaigns = @user.campaigns
     @update_uri = @user.get_wepay_account_update_uri['uri']
   end
