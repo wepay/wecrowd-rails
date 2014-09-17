@@ -1,14 +1,41 @@
-<div class="navbar">
-  <div class="navbar-inner">
-    <a class="brand" href="/"><img src="/assets/wecrowd_logo_small.png"></a>
-    <ul class="nav pull-right">
-      <% if signed_in? %>
-        <li class="divider-vertical"><a href="/user/view/<%= current_user.id %>">PROFILE</a></li>
-        <li class="divider-vertical"><a href="/logout">LOGOUT</a></li>
-      <% else %>
-        <li class="divider-vertical"><a href="/campaign/new">REGISTER</a></li>
-        <li class="divider-vertical"><a href="/login">LOGIN</a></li>
-      <% end %>
-    </ul>
-  </div>
+<div class="top-container">
+  <header id="site-header">
+      <div class="wrapper group">
+          <div class="logo">
+              <h1>
+                  <a href="/"><img src="/assets/wecrowd.png" alt="WeCrowd"></a>
+              </h1>
+          </div>
+          <nav id="main-nav">
+              <span class="toggle">
+                  <a href="#open-close" data-icon="&equiv;">Menu</a>
+              </span>
+              <ul id="menu">
+                  <li class="demo"><a href="#">Buyer Demo</a></li>
+                  <li class="demo"><a href="#">Seller Demo</a></li>
+                  <% if signed_in? %>
+                    <li class="login-signup"><a href="/user/view/<%= current_user.id %>">Profile</a></li>
+                    <li class="login-signup"><a href="/logout">Log Out</a></li>
+                  <% else %>
+                    <li class="login-signup"><a href="/campaign/new">Create a Campaign</a></li>
+                    <li class="login-signup"><a href="/login">Log In</a></li>
+                  <% end %>
+              </ul>
+          </nav>
+      </div>
+  </header>
+
+  <% if current_page?(root_path) %>
+  <header id="title-header">
+      <div class="wrapper">
+          <h1>
+              The best way to raise money<br />for any cause
+              <div class="title-line">
+              </div>
+          </h1>
+          <h4>WeCrowd has helped raise over 651M!</h4>
+      </div>
+  </header>
+  <% else %>
+  <% end %>
 </div>

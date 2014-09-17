@@ -6,14 +6,15 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
-<%= render("shared/header.html.erb")%>
+  <%= render("shared/header.html.erb")%>
 
+  <div class="main-container">
+	  <%= render("shared/flash", { :flash => flash })%>
+	  <%= yield %>
+  </div>
 
-<div id="content" class="container">
-	<%= render("shared/flash", { :flash => flash })%>
-	<%= yield %>
-</div>
-
+	<%= render("shared/footer.html.erb")%>
 </body>
 </html>
