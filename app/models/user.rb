@@ -66,8 +66,8 @@ class User < ActiveRecord::Base
     # get the first and last name by splitting on the first space
     split_name = self.name.split(" ", 2)
     response = WEPAY.call("/user/register", nil, {
-      client_id: WEPAY_CONFIG['client_id'],
-      client_secret: WEPAY_CONFIG['client_secret'],
+      client_id: WEPAY_CONFIG[:client_id],
+      client_secret: WEPAY_CONFIG[:client_secret],
       email: self.email,
       first_name: split_name[0],
       last_name: split_name[1],

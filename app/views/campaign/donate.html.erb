@@ -3,7 +3,7 @@
 <p><%= @campaign.description %></p>
 
 <%= form_tag("/campaign/donate/#{@campaign.id}", :class => 'donate-form span3') do %>
-  <input type="hidden" name="client_id" value="<%= WEPAY_CONFIG['client_id'] %>" />
+  <input type="hidden" name="client_id" value="<%= WEPAY_CONFIG[:client_id] %>" />
   <input type="hidden" name="credit_card_id" value="" />
   
   <div class="form-group">
