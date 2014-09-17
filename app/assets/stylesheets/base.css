@@ -19,7 +19,8 @@ body {
 
 .social img {
     width: auto;
-    height: 25px;
+    height: 30px;
+    float: right;
 }
 
 * html {
@@ -69,7 +70,7 @@ body {
 
 .grey-light {
     color:#aab5bc;
-    font-weight:normal;
+    line-height: 35px !important;
 }
 
 .location-name {
@@ -93,7 +94,7 @@ body {
 
 .inline-block {
     display:inline-block;
-    margin: 1.1em 0 1.5em 1.5em;
+    margin: 0.5em 0 1.5em 1.1em;
 }
 
 .block {
@@ -328,8 +329,9 @@ BLUE TITLE HEADER
     width: 100px;
 }
 
-#title-header h5 {
+#title-header h4 {
     color: #ffffff;
+    font-weight: bold !important;
     padding-top: 25px;
     text-align: center;
 }
@@ -619,7 +621,7 @@ WIDGETS
 .widgets .blank h4.widget-title {
     color: #aab5bc;
     font-family: 'Open Sans';
-    font-weight: bold;
+    font-weight: bold !important;
     margin-bottom: 10px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -726,14 +728,6 @@ CAMPAIGN CARDS
     }
     .campaign-card-wrap ul.campaign-stats strong {
         font-size:16px
-    }
-    .campaign-card-wrap ul.campaign-stats li:not(.backers) {
-        -webkit-box-flex:1;
-        -moz-box-flex:1;
-        -ms-box-flex:1;
-        -o-box-flex:1;
-        box-flex:1;
-        display:block
     }
     .campaign-card-wrap .campaign-pledged-wrap {
         height:8px;
