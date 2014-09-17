@@ -21,6 +21,10 @@ class CampaignController < ApplicationController
     if signed_in?
       @user = current_user
     else # otherwise register a user from the information provided
+      if !params[:wepay_terms]
+        error("You must accept WePay's terms of service.")
+        return redirect_to("/campaign/new")
+      end
       @user = User.new({:name => params[:user_name], :email => params[:user_email]})
       @user.password = params[:user_password]
       if @user.valid? && @user.save

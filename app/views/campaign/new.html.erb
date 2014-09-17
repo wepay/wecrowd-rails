@@ -41,6 +41,10 @@
     <label for="password">Password</label>
     <%= password_field_tag(:user_password, nil, :class => 'password form-control', :maxlength => 255) %>
   </div>
+  
+  <div class="form-group">
+    <label for="wepay_terms"><%= check_box_tag(:wepay_terms, true, true) %> I accept the WePay <a target="_blank" href="https://www.wepay.com/legal/terms-of-service">Terms of Service</a>.</label>
+  </div>
 
 <% end %>
 
