@@ -69,6 +69,7 @@ body {
 
 .grey-light {
     color:#aab5bc;
+    font-weight:normal;
 }
 
 .location-name {
@@ -581,15 +582,6 @@ WIDGETS
     text-decoration: underline;
 }
 
-.widgets .widget .date {
-    display: block;
-    font-size: .85em;
-}
-
-.widgets .widget .date a {
-    display: block;
-}
-
 .widgets .widget p {
     margin-bottom: 0;
 }
@@ -624,7 +616,7 @@ WIDGETS
     margin-bottom: 20px;
 }
 
-.widgets .blank h2.widget-title {
+.widgets .blank h4.widget-title {
     color: #aab5bc;
     font-family: 'Open Sans';
     font-weight: bold;
@@ -662,7 +654,7 @@ FOOTER
 ************************************/
 
 #site-footer {
-    padding-top: 40px;
+    padding-top: 25px;
 }
 
 #site-footer .wrapper {
