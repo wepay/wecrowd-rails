@@ -58,14 +58,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 @font-face {
     font-family: 'Open Sans';
-    src: url('/assets/fonts/open-sans/OpenSans-Regular.ttf');
+    src: url('open-sans/OpenSans-Regular.ttf');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Museo Slab';
-    src: url('/assets/fonts/museo-slab/Museo_Slab_500.otf');
+    src: url('museo-slab/Museo_Slab_500.otf');
     font-weight: normal;
     font-style: normal;
 }
