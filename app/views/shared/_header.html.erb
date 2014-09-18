@@ -14,6 +14,9 @@
                   <li class="demo"><a href="#">Buyer Demo</a></li>
                   <li class="demo"><a href="#">Seller Demo</a></li>
                   <% if signed_in? %>
+                    <% if current_user.is_admin? %>
+                    <li class="login-signup"><a href="/admin">Admin</a></li>
+                    <% end %>
                     <li class="login-signup"><a href="/user/view/<%= current_user.id %>">Profile</a></li>
                     <li class="login-signup"><a href="/logout">Log Out</a></li>
                   <% else %>
