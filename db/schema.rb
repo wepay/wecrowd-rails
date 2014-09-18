@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918172310) do
+ActiveRecord::Schema.define(version: 20140918183245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,13 +24,12 @@ ActiveRecord::Schema.define(version: 20140918172310) do
     t.integer  "amount_donated",           default: 0, null: false
     t.string   "account_type"
     t.integer  "state",          limit: 2
-    t.integer  "promoted"
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "featured"
   end
 
-  add_index "campaigns", ["promoted"], name: "index_campaigns_on_promoted", using: :btree
   add_index "campaigns", ["user_id"], name: "index_campaigns_on_user_id", using: :btree
 
   create_table "payments", force: true do |t|
