@@ -27,7 +27,8 @@ class Payment < ActiveRecord::Base
       amount: self.amount.to_s,
       fee_payer: "payer",
       payment_method_type: "credit_card",
-      payment_method_id: self.wepay_credit_card_id
+      payment_method_id: self.wepay_credit_card_id,
+      callback_uri: self.callback_uri
     })
     if response["error"]
       throw response["error_description"]
@@ -66,5 +67,9 @@ class Payment < ActiveRecord::Base
   
   def total_fee
     self.wepay_fee + self.app_fee
+  end
+  
+  def callback_uri
+    Rails.application.secrets.host + "/campaign/ipn/#{self.campaign_id}"
   end
 end
