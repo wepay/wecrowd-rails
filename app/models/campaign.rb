@@ -12,4 +12,16 @@ class Campaign < ActiveRecord::Base
   
   acts_as_paranoid # use the paranoia gem to handle user deletion
   
+  def featured?
+    self.featured.to_i > 0
+  end
+  
+  def feature
+    self.featured = true
+  end
+  
+  def unfeature
+    self.featured = false
+  end
+  
 end
