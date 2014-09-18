@@ -20,12 +20,15 @@ class CampaignController < ApplicationController
     # if the user is signed in, just use that user
     if signed_in?
       @user = current_user
+      @user.add_role(User::ROLE_MERCHANT)
+      @user.save
     else # otherwise register a user from the information provided
       if !params[:wepay_terms]
         error("You must accept WePay's terms of service.")
         return redirect_to("/campaign/new")
       end
       @user = User.new({:name => params[:user_name], :email => params[:user_email]})
+      @user.add_role(User::ROLE_MERCHANT)
       @user.password = params[:user_password]
       if @user.valid? && @user.save
         sign_in(@user)
@@ -121,6 +124,8 @@ class CampaignController < ApplicationController
     # if the payment is valid, make the /checkout/create call
     # and then save the updated details
     if @payment.valid? && @payment.create_checkout && @payment.save
+      @user.add_role(User::ROLE_PAYER)
+      @user.save
       message("Donation Made!")
       redirect_to("/campaign/#{@campaign.id}/")
     else
