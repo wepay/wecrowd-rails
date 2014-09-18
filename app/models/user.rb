@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
   
   include BCrypt # use bcrypt for password hashing
   
+  STATE_PENDING = "pending"
+  STATE_REGISTERED = "registered"
+  STATE_DELETED = "deleted"
+  
   # @user.password always returns a bcrypt password object
   def password
     @password ||= Password.new(password_hash)
@@ -122,6 +126,15 @@ class User < ActiveRecord::Base
       account_id: self.wepay_account_id,
       mode: :iframe
     })
+  end
+  
+  def handle_ipn
+    response = self.get_wepay_user
+    if response["error"]
+      raise response
+    end
+    self.state = response["state"]
+    self.save
   end
   
   def campaign

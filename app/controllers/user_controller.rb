@@ -1,6 +1,6 @@
 class UserController < ApplicationController
   
-  before_filter :check_user, :except => [ :register, :create, :login, :logout]
+  before_filter :check_user, :except => [ :register, :create, :login, :logout, :ipn]
   
   def index
   end
@@ -10,7 +10,6 @@ class UserController < ApplicationController
   # it shows the WePay account details and a list of all campaigns
   def view
     @user = User.find(params[:user_id])
-    @wepay_details = @user.get_wepay_user
     @account_details = @user.get_wepay_account
     @balance = Money.new(@account_details["balances"][0]["balance"]*100, @account_details["balances"][0]["currency"])
     @campaigns = @user.campaigns
@@ -83,6 +82,12 @@ class UserController < ApplicationController
       message("Confirmation Email Sent!")
     end
     redirect_to("/user/view/#{@user.id}")
+  end
+  
+  def ipn
+    @user = User.find(params[:user_id])
+    @user.handle_ipn
+    render :json => { :success => "thanks for the update" }
   end
   
   private

@@ -12,8 +12,8 @@
   <div class="span6">
     <h3>Account Details</h3>
     <p><b>Balance:</b> <%= @balance.format_with_settings %></p>
-    <p><b>Status:</b> <%= @wepay_details["state"]%></p>
-    <% if @wepay_details["state"] != "registered" %>
+    <p><b>Status:</b> <%= @user.state%></p>
+    <% if @user.state != User::STATE_REGISTERED %>
       <p>You still have not confirmed your account.<p>
       <%= form_tag("/user/resend_confirmation_email/#{@user.id}", :class => '') do %>
         <button class="btn btn-warning">Resend Confirmation Email</button>
