@@ -76,7 +76,7 @@ body {
 .location-name {
     white-space: nowrap;
     overflow: hidden;
-    margin: 0.5em 1.25em 20px 1.2em;
+    margin: 0.5em 1.25em 20px 1.35em;
     font-size: 14px;
 }
 
@@ -238,13 +238,13 @@ SITE HEADER
 }
 
 #site-header #main-nav ul li.demo a {
-    color: #ffffff;
+    color: #71bedd;
     text-decoration: none;
     text-transform: uppercase;
     font-family: 'Open Sans';
     font-size: 14px;
-    background-color: #ef5e27;
-    border: 1px solid #ef5e27;
+    background-color: #ffffff;
+    border: 1px solid #71bedd;
     padding: 5px 15px 5px 15px;
     margin-right: -5px;
 }
@@ -661,8 +661,6 @@ FOOTER
 
 #site-footer .wrapper {
     font-size: .75em;
-    min-height: 100%;
-    position: relative;
 }
 
 
