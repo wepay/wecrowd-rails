@@ -11,7 +11,7 @@ class Payment < ActiveRecord::Base
   STATE_NEW         = 'new'
   STATE_AUTHORIZED  = 'authorized'
   STATE_RESERVED    = 'reserved'
-  STATE_CAPUTED     = 'captured'
+  STATE_CAPTURED    = 'captured'
   STATE_CANCELLED   = 'cancelled'
   STATE_REFUNDED    = 'refunded'
   STATE_CHARGEBACK  = 'charged back'
@@ -55,6 +55,8 @@ class Payment < ActiveRecord::Base
     self.amount = response["amount"]
     self.state = response["state"]
     self.save
+    
+    self.campaign.update_amount_donated
   end
   
   def payer_name
