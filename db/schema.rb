@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918001958) do
+ActiveRecord::Schema.define(version: 20140918172310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20140918001958) do
     t.string   "name"
     t.text     "description"
     t.integer  "goal_cents"
-    t.integer  "amount_donated"
+    t.integer  "amount_donated",           default: 0, null: false
     t.string   "account_type"
     t.integer  "state",          limit: 2
     t.integer  "promoted"
@@ -38,9 +38,9 @@ ActiveRecord::Schema.define(version: 20140918001958) do
     t.integer  "payer_id"
     t.integer  "wepay_checkout_id",    limit: 8
     t.integer  "wepay_credit_card_id", limit: 8
-    t.integer  "amount_cents"
-    t.integer  "app_fee_cents"
-    t.integer  "wepay_fee_cents"
+    t.integer  "amount_cents",                   default: 0, null: false
+    t.integer  "app_fee_cents",                  default: 0, null: false
+    t.integer  "wepay_fee_cents",                default: 0, null: false
     t.string   "state"
     t.datetime "deleted_at"
     t.datetime "created_at"
