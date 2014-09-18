@@ -63,4 +63,8 @@ class Payment < ActiveRecord::Base
   def payer_email
     self.payer.present? ? self.payer.email : ''
   end
+  
+  def total_fee
+    self.wepay_fee + self.app_fee
+  end
 end
