@@ -7,7 +7,7 @@ class AdminController < ApplicationController
   end
   
   def campaigns
-    @campaigns = Campaign.all
+    @campaigns = Campaign.all.order("created_at DESC")
   end
   
   def campaign
@@ -42,7 +42,7 @@ class AdminController < ApplicationController
   end
   
   def users
-    @users = User.all
+    @users = User.all.order("created_at DESC")
   end
   
   def user
