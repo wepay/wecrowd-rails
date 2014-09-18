@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get '/user/view/:user_id', :to => "user#view"
   post '/user/resend_confirmation_email/:user_id', :to => "user#resend_confirmation_email"
   match '/user/ipn/:user_id', :to => "user#ipn", via: [:get, :post]
+  
+  #admin
+  get "/admin", :to => "admin#index"
 
   #welcome
   get 'welcome/index'

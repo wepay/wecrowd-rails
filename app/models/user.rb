@@ -14,9 +14,14 @@ class User < ActiveRecord::Base
   
   include BCrypt # use bcrypt for password hashing
   
-  STATE_PENDING = "pending"
+  ROLE_DEFAILT  = 0x00;
+  ROLE_PAYER    = 0x01;
+  ROLE_MERCHANT = 0x02;
+  ROLE_ADMIN    = 0x04;
+  
+  STATE_PENDING    = "pending"
   STATE_REGISTERED = "registered"
-  STATE_DELETED = "deleted"
+  STATE_DELETED    = "deleted"
   
   # @user.password always returns a bcrypt password object
   def password
@@ -140,5 +145,22 @@ class User < ActiveRecord::Base
   def campaign
     self.campaigns.first
   end
+  
+  def has_role?(role)
+    self.role & role != 0
+  end
+  
+  def is_admin?
+    self.has_role?(ROLE_ADMIN)
+  end
+  
+  def add_role(role)
+    self.role = self.role | role
+  end
+  
+  def role
+    super || ROLE_DEFAULT
+  end
+  
   
 end
