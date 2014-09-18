@@ -6,6 +6,7 @@
       <th>ID</th>
       <th>Create Date</th>
       <th>Name</th>
+      <th>Email</th>
       <th>State</th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
         <td><a href="/admin/user/<%= u.id %>"><%= u.id %></a></td>
         <td><%= u.created_at.strftime("%Y/%m/%d %I:%M%P %Z") %></td>
         <td><%= u.name %></td>
+        <td><%= u.email %></td>
         <td><%= u.state %></td>
       </tr>
     <% end %>
