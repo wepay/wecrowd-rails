@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   
   # each user can have many donation campaigns
   has_many :campaigns
+  has_many :payments, :foreign_key => :payer_id
   
   acts_as_paranoid # use the paranoia gem to handle user deletion
   

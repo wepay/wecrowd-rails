@@ -1,0 +1,47 @@
+<%= render("shared/admin_header")%>
+
+<h3>Campaign <%= @campaign.id %></h3>
+<dl class="dl-horizontal">
+  <dt>ID</dt><dd><%= @campaign.id %></dd>
+  <dt>Merchant</dt><dd><a href="/admin/user/<%= @campaign.user_id %>"><%= @campaign.user.name%> (<%= @campaign.user_id %>)</a></dd>
+  <dt>Name</dt><dd><%= @campaign.name %></dd>
+  <dt>Description</dt><dd><%= @campaign.description %></dd>
+  <dt>Amount Donated</dt><dd><%= @campaign.amount_donated %></dd>
+  <dt>Featured</dt><dd><%= @campaign.featured? %></dt>
+  <dt>Create Date</dt><dd><%= @campaign.created_at %></dd>
+  <dt>Delete Date</dt><dd><%= @campaign.deleted_at %></dd>
+</dl>
+
+
+<div class="row">
+  <h3>Actions:</h3>
+  
+  <% if @campaign.featured? %>
+    <%= form_tag("/admin/unfeature_campaign/#{@campaign.id}", :class => 'span2') do %>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success">Unfeature</button>
+    </div>
+    <% end %>
+  <% else %>
+    <%= form_tag("/admin/feature_campaign/#{@campaign.id}", :class => 'span2') do %>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success">Feature</button>
+    </div>
+    <% end %>
+  <% end%>
+
+  <% if @campaign.deleted? %>
+    <%= form_tag("/admin/undelete_campaign/#{@campaign.id}", :class => 'span2') do %>
+    <div class="form-group">
+      <button type="submit" class="btn btn-danger">Undelete</button>
+    </div>
+    <% end %>
+  <% else %>
+    <%= form_tag("/admin/delete_campaign/#{@campaign.id}", :class => 'span2') do %>
+    <div class="form-group">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </div>
+    <% end %>
+  <% end %>
+
+</div>

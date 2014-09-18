@@ -1,0 +1,22 @@
+<%= render("shared/admin_header")%>
+<h3>User <%= @user.id %></h3>
+<dl class="dl-horizontal">
+  <dt>ID</dt><dd><%= @user.id %></dd>
+  <dt>Name</dt><dd><%= @user.name %></dd>
+  <dt>Email</dt><dd><%= @user.email %></dd>
+  <dt>OAuth2</dt><dd><%= @user.wepay_access_token.present? ? @user.wepay_access_token[0,14] : false %></dd>
+  <dt>WePay Account ID</dt><dd><%= @user.wepay_account_id %></dd>
+  <dt>Create Date</dt><dd><%= @user.created_at %></dd>
+</dl>
+<h4>Campaigns owned by this user:</h4>
+<ol>
+<% @user.campaigns.each do |c| %>
+  <li><a href="/admin/campaign/<%= c.id %>"><span class=""><%= c.name %> (<%= c.id %>)</span></a></li>
+<% end %>
+</ol>
+<h4>Payments made by this user:</h4>
+<ol>
+<% @user.payments. each do |p| %>
+  <li><a href="/admin/payment/<%= p.id %>"><span class=""><%= p.amount.dollars %> to <%= p.campaign.name %> (<%= p.id %>)</span></a></li>
+<% end%>
+</ol>

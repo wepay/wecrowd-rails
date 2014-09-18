@@ -21,7 +21,15 @@ Rails.application.routes.draw do
   match '/user/ipn/:user_id', :to => "user#ipn", via: [:get, :post]
   
   #admin
-  get "/admin", :to => "admin#index"
+  get '/admin', :to => "admin#index"
+  get '/admin/campaigns', :to => "admin#campaigns"
+  get '/admin/campaign/:campaign_id', :to => "admin#campaign"
+  post '/admin/delete_campaign/:campaign_id', :to => "admin#delete_campaign"
+  post '/admin/undelete_campaign/:campaign_id', :to => "admin#undelete_campaign"
+  post '/admin/feature_campaign/:campaign_id', :to => "admin#feature_campaign"
+  post '/admin/unfeature_campaign/:campaign_id', :to => "admin#unfeature_campaign"
+  get '/admin/users', :to => "admin#users"
+  get '/admin/user/:user_id', :to => "admin#user"
 
   #welcome
   get 'welcome/index'
