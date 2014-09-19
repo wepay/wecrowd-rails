@@ -84,7 +84,8 @@ class User < ActiveRecord::Base
       scope: 'manage_accounts,collect_payments,view_user,manage_subscriptions,preapprove_payments,send_money',
       original_ip: ip,
       original_device: user_agent,
-      tos_acceptance_time: Time.now.to_i
+      tos_acceptance_time: Time.now.to_i,
+      callback_uri: self.callback_uri
     })
     if response['error'].present?
       raise response['error_description']
@@ -141,6 +142,10 @@ class User < ActiveRecord::Base
     end
     self.state = response["state"]
     self.save
+  end
+  
+  def callback_uri
+    Rails.application.secrets.host + "/user/ipn/#{self.id}"
   end
   
   def campaign
