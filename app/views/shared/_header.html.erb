@@ -1,44 +1,42 @@
-<div class="top-container">
-  <header id="site-header">
-      <div class="wrapper group">
-          <div class="logo">
-              <h1>
-                  <a href="/"><img src="<%= asset_path 'wecrowd.png' %>" alt="WeCrowd"></a>
-              </h1>
-          </div>
-          <nav id="main-nav">
-              <span class="toggle">
-                  <a href="#open-close" data-icon="&equiv;">Menu</a>
-              </span>
-              <ul id="menu">
-                  <li class="demo"><a href="#">Buyer Demo</a></li>
-                  <li class="demo"><a href="#">Seller Demo</a></li>
-                  <% if signed_in? %>
-                    <% if current_user.is_admin? %>
-                    <li class="login-signup"><a href="/admin">Admin</a></li>
-                    <% end %>
-                    <li class="login-signup"><a href="/user/view/<%= current_user.id %>">Profile</a></li>
-                    <li class="login-signup"><a href="/logout">Log Out</a></li>
-                  <% else %>
-                    <li class="login-signup"><a href="/campaign/new">Create a Campaign</a></li>
-                    <li class="login-signup"><a href="/login">Log In</a></li>
-                  <% end %>
-              </ul>
-          </nav>
-      </div>
-  </header>
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu-expand">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        <img src="<%= asset_path 'wecrowd.png' %>" alt="WeCrowd" />
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="menu-expand">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Buyer Demo</a></li>
+        <li><a href="#">Seller Demo</a></li>
+        <% if signed_in? %>
+          <% if current_user.is_admin? %>
+            <li><a href="/admin">Admin</a></li>
+          <% end %>
+          <li><a href="/user/view/<%= current_user.id %>">Profile</a></li>
+          <li><a href="/logout">Log Out</a></li>
+        <% else %>
+          <li><a href="/campaign/new">Create a Campaign</a></li>
+          <li><a href="/login">Log In</a></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-  <% if current_page?(root_path) %>
-  <header id="title-header">
-      <div class="wrapper">
-          <h1>
-              The best way to raise money<br />for any cause
-              <div class="title-line">
-              </div>
-          </h1>
-          <h4>WeCrowd has helped raise over 651 million dollars!</h4>
-      </div>
+<% if current_page?(root_path) %>
+<div class="header-container">
+  <header class="jumbotron header-container-content">
+    <h1>The best way to raise money<br />for any cause</h1>  
+    <hr>
+    <p>WeCrowd has helped raise over 651 million dollars!</p>
   </header>
-  <% else %>
-  <% end %>
 </div>
+<% else %>
+<% end %>
