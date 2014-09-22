@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post '/campaign/edit/:campaign_id', :to => "campaign#edit"
   get '/campaign/:campaign_id', :to => "campaign#index"
   get '/campaign/donate/:campaign_id', :to => "campaign#donate"
+  get '/campaign/payment/:campaign_id', :to => "campaign#payment"
   post '/campaign/donate/:campaign_id', :to => "campaign#make_donation"
   get '/campaign/donation_success/:campaign_id/:payment_id', :to => "campaign#donation_success"
   match '/campaign/ipn/:campaign_id', :to => "campaign#ipn", via: [:get, :post]

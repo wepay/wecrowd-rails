@@ -1,55 +1,114 @@
-<h1><%= @campaign.name %></h1>
+<div class="donation">
 
-<p><%= @campaign.description %></p>
+  <div id="spacer"></div>
 
-<%= form_tag("/campaign/donate/#{@campaign.id}", :class => 'donate-form span3') do %>
-  <input type="hidden" name="client_id" value="<%= WEPAY_CONFIG[:client_id] %>" />
-  <input type="hidden" name="credit_card_id" value="" />
-  
-  <div class="form-group">
-  <label for="email">The amount you want to donate:</label>
-  <%= text_field_tag(:amount, params[:amount], :class => 'text form-control', :placeholder => '500', :maxlength => 255) %>
+  <div class="row">
+    <div class="col-lg-12 main-content-feature text-center">
+      <h1><%= @campaign.name %></h1>
+      <h3><%= @campaign.description %></h3>
+    </div>
   </div>
 
-  <legend>Credit Card Details</legend>
-  <div class="form-group">
-  <label for="name">Your first and last name<b>*</b></label>
-  <%= text_field_tag(:user_name, params[:user_name], :class => 'text form-control', :placeholder => 'First & Last Name', :maxlength => 255) %>
+  <div class="row">
+    <div class="col-md-4 main-content-feature">
+      <h4 class="active">Donate</h4>
+      <hr class="blue">
+    </div>
+    <div class="col-md-4 main-content-feature">
+      <h4 class="inactive">Payment</h4>
+      <hr class="gray">
+    </div>
+    <div class="col-md-4 main-content-feature">
+      <h4 class="inactive">Confirmation</h4>
+      <hr class="gray">
+    </div>
   </div>
 
-  <div class="form-group">
-  <label for="email">Your email address<b>*</b></label>
-  <%= text_field_tag(:user_email, params[:user_email], :class => 'text form-control', :placeholder => 'jane.doe@gmail.com', :maxlength => 255) %>
-  </div>
-  
-  <div class="form-group">
-  <label for="email">Your credit card number<b>*</b></label>
-  <%= text_field_tag(:cc_number, params[:cc_number], :class => 'text form-control', :placeholder => '5496198584584769', :maxlength => 255) %>
-  </div>
-  
-  <div class="form-group">
-  <label for="email">Your credit card CVV<b>*</b></label>
-  <%= text_field_tag(:cvv, params[:cvv], :class => 'text form-control', :placeholder => '456', :maxlength => 255) %>
-  </div>
-  
-  <div class="form-group">
-  <label for="email">Expiration Month<b>*</b></label>
-  <%= select_tag(:expiration_month, options_for_select(['01','02','03','04','05','06','07','08','09','10','11','12'], params[:expiration_month]), :class => 'text form-control') %>
-  </div>
-  
-  <div class="form-group">
-  <label for="email">Expiration Year<b>*</b></label>
-  <%= select_tag(:expiration_year, options_for_select(['2014','2015','2016','2017','2018','2019','2020','2021','2022', '2023', '2024', '2025','2026'], params[:expiration_year]), :class => 'text form-control') %>
-  </div>
-  
-  <div class="form-group">
-  <label for="email">Your billing zip code<b>*</b></label>
-  <%= text_field_tag(:zip, params[:zip], :class => 'text form-control', :placeholder => '94025', :maxlength => 255) %>
-  </div>
-  
-  <div class="form-group">
-    <button id="donation-button" type="submit" class="btn-orange">Donate</button>
-  </div>
-<% end %>
+  <%= form_tag("/campaign/donate/#{@campaign.id}", :class => 'donate-form span3') do %>
+    <input type="hidden" name="client_id" value="<%= WEPAY_CONFIG[:client_id] %>" />
+    <input type="hidden" name="credit_card_id" value="" />
+
+    <div class="row">
+      <div class="col-md-4 col-center spacing">
+        <%= text_field_tag(:amount, params[:amount], :class => 'form-control input-lg blue', :placeholder => '$', :maxlength => 255) %>
+      </div>
+    </div>
+
+    <div class="col-lg-8 col-center">
+      <div class="row">
+        <div class="col-lg-12 main-content-feature">
+          <label>Name</label>
+          <%= text_field_tag(:user_name, params[:user_name], :class => 'form-control input-lg gray', :placeholder => 'First & Last Name', :maxlength => 255) %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 main-content-feature">
+          <label>Email</label>
+          <%= text_field_tag(:user_email, params[:user_email], :class => 'form-control input-lg gray', :placeholder => '@', :maxlength => 255) %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 main-content-feature">
+          <label>Billing Address</label>
+          <%= text_field_tag(:user_address_one, params[:user_address_one], :class => 'form-control input-lg gray', :placeholder => '1 Test Street', :maxlength => 255) %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5 col-md-6 main-content-feature">
+          <label>Apartment / Suite</label>
+          <%= text_field_tag(:user_address_two, params[:user_address_two], :class => 'form-control input-lg gray', :placeholder => 'Apt 1', :maxlength => 255) %>
+        </div>
+
+        <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0 main-content-feature">
+          <label>State</label>
+          
+          <br />
+          
+          <button class="btn btn-dropdown btn-default dropdown-toggle" type="button" id="dropdown-state" data-toggle="dropdown">
+            Select State
+            <span class="caret right"></span>
+          </button>
+          
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-state">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Alabama</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5 col-md-6 main-content-feature">
+          <label>Zip Code</label>
+          <%= text_field_tag(:user_zip, params[:user_zip], :class => 'form-control input-lg gray', :placeholder => '12345', :maxlength => 255) %>
+        </div>
+
+        <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0 main-content-feature">
+          <label>Country</label>
+          
+          <br />
+          
+          <button class="btn btn-dropdown btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+            Select Country
+            <span class="caret right"></span>
+          </button>
+          
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-state">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">United States</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 main-content-feature col-center spacing">
+        <a href="/campaign/payment/<%= @campaign.id %>" class="btn btn-orange">Continue</a>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 
 <script type="text/javascript" src="https://static.wepay.com/min/js/tokenization.v2.js"></script>

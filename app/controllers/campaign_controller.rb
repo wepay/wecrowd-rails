@@ -80,16 +80,28 @@ class CampaignController < ApplicationController
   end
 
   # GET /campaign/donate/12345
-  # the donation page, asks for donation amount and credit card details
+  # the donation page, asks for donation amount and billing details
   def donate
-    # prefill the credit card form with data so demo users don't have to enter it in every time
     params[:user_name] ||= "Test User"
     params[:user_email] ||= "test@example.com"
+    params[:user_address_one] ||= "1 Test Street"
+    params[:user_address_two] ||= "Apt 1"
+    params[:user_state] ||= "Select State"
+    params[:user_zip] ||= "12345"
+    params[:user_country] ||= "Select Country"
+  end
+
+  # GET /campaign/payment/12345
+  # the payment page, donation amount carries over and asks for credit card details
+  def payment
+    # prefill the credit card form with data so demo users don't have to enter it in every time
+    params[:payment_name] ||= "Name on credit card"
     params[:cc_number] ||= "5496198584584769"
     params[:cvv] ||= "123"
     params[:expiration_month] ||= "11"
     params[:expiration_year] ||= "2015"
-    params[:zip] ||= "94025"
+    params[:payment_country] ||= "Select Country"
+    params[:payment_zip] ||= "12345"
   end
   
   # POST /campaign/donate/12345

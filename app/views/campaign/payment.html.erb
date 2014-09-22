@@ -1,0 +1,124 @@
+<div class="donation">
+
+  <div id="spacer"></div>
+
+  <div class="row">
+    <div class="col-lg-12 main-content-feature text-center">
+      <h1><%= @campaign.name %></h1>
+      <h3><%= @campaign.description %></h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 main-content-feature">
+      <h4 class="inactive">Donate</h4>
+      <hr class="gray">
+    </div>
+    <div class="col-md-4 main-content-feature">
+      <h4 class="active">Payment</h4>
+      <hr class="blue">
+    </div>
+    <div class="col-md-4 main-content-feature">
+      <h4 class="inactive">Confirmation</h4>
+      <hr class="gray">
+    </div>
+  </div>
+
+  <%= form_tag("/campaign/payment/#{@campaign.id}", :class => 'donate-form span3') do %>
+    <input type="hidden" name="client_id" value="<%= WEPAY_CONFIG[:client_id] %>" />
+    <input type="hidden" name="credit_card_id" value="" />
+
+    <div class="row">
+      <div class="col-md-4 col-center spacing">
+        <%= text_field_tag(:amount, params[:amount], :class => 'form-control input-lg blue', :placeholder => '$', :maxlength => 255) %>
+      </div>
+    </div>
+
+    <div class="col-lg-8 col-center">
+      <div class="row">
+        <div class="col-lg-12 main-content-feature">
+          <label>Name</label>
+         <%= text_field_tag(:payment_name, params[:payment_name], :class => 'form-control input-lg gray', :placeholder => 'Name on credit card', :maxlength => 255) %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 main-content-feature">
+          <label>Credit Card Number</label>
+          <%= text_field_tag(:cc_number, params[:cc_number], :class => 'form-control input-lg gray', :placeholder => '5496198584584769', :maxlength => 255) %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5 col-md-6 main-content-feature">
+          <label>Expiration Date</label>
+          <div class="row">
+            <div class="col-md-4">
+              <button class="btn btn-dropdown btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                01
+                <span class="caret right"></span>
+              </button>
+
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-state">
+                <li role="presentation">
+                  <%= select_tag(:expiration_month, options_for_select(['01','02','03','04','05','06','07','08','09','10','11','12'], params[:expiration_month]), :class => 'dropdown-menu') %>
+                </li>
+              </ul>
+            </div>
+            
+            <div class="col-md-1 exp-date">
+              <h1>&#47;</h1>
+            </div>
+
+            <div class="col-md-5">
+              <button class="btn btn-dropdown btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                2015
+                <span class="caret right"></span>
+              </button>
+
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-state">
+                <li role="presentation">
+                  <%= select_tag(:expiration_year, options_for_select(['2014','2015','2016','2017','2018','2019','2020','2021','2022', '2023', '2024', '2025','2026'], params[:expiration_year]), :class => 'dropdown-menu') %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0 main-content-feature">
+            <label>CVV</label>
+            <%= text_field_tag(:cvv, params[:cvv], :class => 'form-control input-lg gray', :placeholder => '123', :maxlength => 255) %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5 col-md-6 main-content-feature">
+            <label>Country</label>
+            
+            <br />
+            
+            <button class="btn btn-dropdown btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                Select Country
+                <span class="caret right"></span>
+            </button>
+            
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-state">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">United States</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0 main-content-feature">
+            <label>Zip Code</label>
+            <%= text_field_tag(:payment_zip, params[:payment_zip], :class => 'form-control input-lg gray', :placeholder => '12345', :maxlength => 255) %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 main-content-feature col-center spacing">
+        <a href="/campaign/payment/<%= @campaign.id %>" class="btn btn-orange">Donate</a>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+<script type="text/javascript" src="https://static.wepay.com/min/js/tokenization.v2.js"></script>

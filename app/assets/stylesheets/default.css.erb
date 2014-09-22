@@ -53,6 +53,10 @@ body {
     margin-top: -1px;
 }
 
+.container > .navbar-header {
+    margin-left: 0;
+}
+
 .navbar > .container .navbar-brand,
 .navbar >.container-fluid .navbar-brand {
     margin-left: 0;
@@ -89,6 +93,26 @@ body {
 
 .navbar-nav > li > a {
     padding: 5px 15px 5px 15px;
+}
+
+.nav > li.regular {
+    border: none;
+    margin-left: 15px;
+}
+
+.navbar-inverse .navbar-nav > li.regular > a {
+    color: #55636a;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.navbar-inverse .navbar-nav > li.regular > a:hover {
+    background-color: transparent;
+    color: #55636a;
+}
+
+.navbar-nav > li.regular > a {
+    padding: 5px 15px 5px 0;
 }
 
 
