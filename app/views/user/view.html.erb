@@ -1,49 +1,110 @@
-<div class="row">
-  <div class="col-lg-12 main-content-feature text-center">
-    <h1><%= @user.name %></h1>
-  </div>
-</div>
+<div class="user">
 
-<div class="col-lg-6 main-content-feature">
-  <div class="row main-content-feature">
-      <h3>Profile Details</h3>
-      <dl class="dl-horizontal">
-        <dt>Name:</dt><dd><%= @user.name %></dd>
-        <dt>Email:</dt><dd><%= @user.email %></dd>
-        <dt>Registration Date:</dt><dd><%= @user.created_at.strftime("%B %d, %G %I:%M%P %Z") %>
-      </dl>
+  <div id="spacer"></div>
+  
+  <div class="row">
+    <div class="col-lg-12 main-content-feature text-center">
+      <h1><%= @user.name %></h1>
+      <hr>
+    </div>
   </div>
-  <div class="row main-content-feature">
+
+  <div class="col-lg-4 main-content-feature">
+    
+    <div class="row main-content-feature">
+      <h3>Profile Details</h3>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td class="category">
+              Name
+            </td>
+            <td>
+              <%= @user.name %>
+            </td>
+          </tr>
+          <tr>
+            <td class="category">
+              Email
+            </td>
+            <td>
+              <%= @user.email %>
+            </td>
+          <tr>
+            <td class="category">
+              Registration Date
+            </td>
+            <td>
+              <%= @user.created_at.strftime("%B %d, %G %I:%M%P %Z") %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row main-content-feature">
       <h3>Account Details</h3>
-      <p><b>Balance:</b> <%= @balance.format_with_settings %></p>
-      <p><b>Status:</b> <%= @user.state%></p>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td class="category account-details">
+              Balance
+            </td>
+            <td>
+              <%= @balance.format_with_settings %>
+            </td>
+          </tr>
+          <tr>
+            <td class="category account-details">
+              Status
+            </td>
+            <td>
+              <%= @user.state %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <% if @user.state != User::STATE_REGISTERED %>
         <p>You still have not confirmed your account.<p>
         <%= form_tag("/user/resend_confirmation_email/#{@user.id}", :class => '') do %>
-          <button class="btn btn-warning">Resend Confirmation Email</button>
+          <button class="btn btn-resend-orange">Resend Confirmation Email</button>
         <% end %>
       <% end %>
-  </div>
-  <div class="row main-content-feature">
+    </div>
+
+    <div class="row main-content-feature">
       <h3>Your Campaigns</h3>
-      <p>This is a list of campaigns you have started.</p>
-      <p>Click on each one to view and edit its details.</p>
-      <ul>
-        <% @campaigns.each do |c| %>
-          <li><a href="/campaign/details/<%= c.id %>"><%= c.name %></a></li>
+      <p>This is a list of your campaigns. Click on each to view and edit its details.</p>
+      <table class="table table-bordered">
+        <tbody>
+          <% @campaigns.each do |c| %>
+          <tr>
+            <td>
+              <a href="/campaign/details/<%= c.id %>"><%= c.name %></a>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="col-sm-1"></div>
+
+  <div class="col-lg-7 main-content-feature">
+    <div class="row main-content-feature">
+        <% if @update_uri %>
+          <h3>Manage Your Payment Settings</h3>
+          <p>Use the panel below to sign into WePay and manage your payment settings.</p>
+          <p>Once you have verified your identity and added your bank account information, all money in your account will be automatically deposited into your bank account.</p>
+
+          <div id="spacer"></div>
+
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="wepay-iframe barier embed-responsive-item" src="<%= @update_uri %>"></iframe>
+          </div>
         <% end %>
     </div>
-</div>
-
-<div class="col-lg-6 main-content-feature">
-  <div class="row main-content-feature">
-      <% if @update_uri %>
-        <h3>Manage your payment settings</h3>
-        <p>Use the panel below to sign into WePay and manage your payment settings.</p>
-        <p>Once you have verified your identity and added your bank account information, all money in your account will be automatically deposited into your bank account.</p>
-        <div>
-          <iframe class="wepay-iframe barier" src="<%= @update_uri %>"></iframe>
-        </div>
-      <% end %>
   </div>
 </div>

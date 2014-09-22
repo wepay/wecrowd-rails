@@ -1,0 +1,53 @@
+.user p {
+	font-size: 14px;
+}
+
+.user h1 {
+	color: #ef5e27;
+	font-size: 37px;
+	font-weight: 300;
+}
+
+.user h3 {
+	color: #3a4b53;
+	font-size: 20px;
+	font-weight: 400;
+}
+
+.user hr {
+    border: 2px solid #ef5e27;
+    margin-top: 40px;
+    width: 80px;
+}
+
+/* Table */
+td.category {
+	font-weight: 700;
+}
+
+td.account-details {
+	width: 37%;
+}
+
+/* Resend Button */
+.btn-resend-orange {
+	background-color: #ef5e27;
+	border-radius: 0;
+	color: #ffffff;
+	font-size: 16px;
+	letter-spacing: 1px;
+	outline: 0;
+	padding: 10px 0;
+	text-transform: uppercase;
+	min-width: 80%;
+}
+
+.btn-resend-orange:hover {
+	color: #ffffff;
+}
+
+
+/* iframe */
+.embed-responsive .embed-responsive-item, .embed-responsive iframe {
+	border: 1px solid #dddddd;
+}
