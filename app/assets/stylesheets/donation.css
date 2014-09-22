@@ -218,14 +218,3 @@ input[type="color"]:focus,
 .btn-orange:hover {
 	color: #ffffff;
 }
-
-
-/* Verification icons */
-.glyphicon-ok-circle {
-	font-size: 30px;
-	font-weight: 300;
-}
-
-.glyphicon-remove {
-
-}
