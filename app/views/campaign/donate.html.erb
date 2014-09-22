@@ -64,17 +64,7 @@
 
         <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0 main-content-feature">
           <label>State</label>
-          
-          <br />
-          
-          <button class="btn btn-dropdown btn-default dropdown-toggle" type="button" id="dropdown-state" data-toggle="dropdown">
-            Select State
-            <span class="caret right"></span>
-          </button>
-          
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-state">
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Alabama</a></li>
-          </ul>
+          <%= select_tag(:user_state, options_for_select(us_states, params[:user_state]), :class => 'dropdown') %>
         </div>
       </div>
 
@@ -86,17 +76,7 @@
 
         <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0 main-content-feature">
           <label>Country</label>
-          
-          <br />
-          
-          <button class="btn btn-dropdown btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-            Select Country
-            <span class="caret right"></span>
-          </button>
-          
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-state">
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">United States</a></li>
-          </ul>
+          <%= select_tag(:user_country, options_for_select(['United States','Canada','Other'], params[:user_country]), :class => 'dropdown') %>
         </div>
       </div>
 
