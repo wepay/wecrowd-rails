@@ -1,5 +1,62 @@
-<h1><%= @campaign.name %></h1>
+<div class="campaign-public">
 
-<p><%= @campaign.description %></p>
+  <div id="spacer"></div>
+  
+  <div class="col-lg-12 main-content-feature text-center">
+    <div class="row">
+      <h1><%= @campaign.name %></h1>
+      <hr>
+    </div>
+  </div>
 
-<a href="/campaign/donate/<%= @campaign.id %>" class="btn-orange">Donate</a>
+  <div class="col-lg-8">
+    <div class="row main-content-feature">
+    	<img src="http://placehold.it/760x375" class="img-responsive" alt="">
+    </div>
+    
+    <div class="row">
+			<ul class="list-inline">
+        <li><a href="#">Email</a></li>
+        <li><a href="#">Share</a></li>
+        <li><a href="#">Tweet</a></li>
+        <li><a href="#">Embed</a></li>
+      </ul>
+    </div>
+
+    <div class="row main-content-feature">
+    	<h3>Lorem Ipsum</h3>
+
+    	<p>Bacon ipsum dolor sit amet officia ex aliqua, excepteur labore in jerky laborum minim id qui pancetta shoulder. Consectetur tempor ut dolore. Leberkas officia drumstick dolore, ad chuck minim dolore sirloin short ribs kielbasa eu biltong. Nostrud aute doner beef ribs. Enim ut veniam fatback, reprehenderit prosciutto dolore bresaola velit drumstick in aliquip commodo meatloaf consectetur.</p>
+
+			<p>Fugiat sausage commodo pork elit dolor officia meatball ribeye occaecat dolore est leberkas ullamco consectetur. Veniam jowl meatball tongue ground round, reprehenderit pastrami shankle jerky aute bacon bresaola sausage nulla. Non occaecat dolore excepteur, swine drumstick porchetta strip steak landjaeger ut eu ullamco. Mollit pork loin ut, filet mignon pork chop bacon brisket irure adipisicing culpa porchetta aute pancetta salami. Beef ribs shank sed chicken excepteur.</p>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-offset-1 main-content-feature">
+  	<table class="table table-bordered-campaign campaign-public">
+	  	<tbody>
+		  	<tr>
+			  	<td>
+						<a href="/campaign/donate/<%= @campaign.id %>" class="btn btn-donate-orange">Donate</a>
+					</td>
+				</tr>
+		  	<tr>
+			  	<td>
+						Palo Alto, CA
+					</td>
+				</tr>
+		  	<tr>
+			  	<td>
+						Read full bio
+					</td>
+				</tr>
+		  	<tr>
+			  	<td>
+						Report Campaign
+					</td>
+				</tr>
+			</tbody>
+		</table>
+  </div>
+
+</div>
