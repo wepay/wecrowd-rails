@@ -54,16 +54,18 @@
           <label>Expiration Date</label>
           <div class="row">
             <div class="col-md-4">
-              <button class="btn btn-dropdown btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                01
-                <span class="caret right"></span>
-              </button>
+              <div class="dropdown">
+                <button class="btn btn-dropdown btn-default dropdown-toggle" type="button" id="dropdown-mm" data-toggle="dropdown">
+                  01
+                  <span class="caret right"></span>
+                </button>
 
-              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-state">
-                <li role="presentation">
-                  <%= select_tag(:expiration_month, options_for_select(['01','02','03','04','05','06','07','08','09','10','11','12'], params[:expiration_month]), :class => 'dropdown-menu') %>
-                </li>
-              </ul>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-mm">
+                  <li role="presentation">
+                    <%= select_tag(:expiration_month, options_for_select(['01','02','03','04','05','06','07','08','09','10','11','12'], params[:expiration_month]), :class => 'dropdown-menu') %>
+                  </li>
+                </ul>
+              </div>
             </div>
             
             <div class="col-md-1 exp-date">
@@ -71,16 +73,18 @@
             </div>
 
             <div class="col-md-5">
-              <button class="btn btn-dropdown btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                2015
-                <span class="caret right"></span>
-              </button>
+              <div class="dropdown">
+                <button class="btn btn-dropdown btn-default dropdown-toggle" type="button" id="dropdown-yy" data-toggle="dropdown">
+                  2015
+                  <span class="caret right"></span>
+                </button>
 
-              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-state">
-                <li role="presentation">
-                  <%= select_tag(:expiration_year, options_for_select(['2014','2015','2016','2017','2018','2019','2020','2021','2022', '2023', '2024', '2025','2026'], params[:expiration_year]), :class => 'dropdown-menu') %>
-                </li>
-              </ul>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-yy">
+                  <li role="presentation">
+                    <%= select_tag(:expiration_year, options_for_select(['2014','2015','2016','2017','2018','2019','2020','2021','2022', '2023', '2024', '2025','2026'], params[:expiration_year]), :class => 'dropdown-menu') %>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -96,14 +100,16 @@
             
             <br />
             
-            <button class="btn btn-dropdown btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                Select Country
-                <span class="caret right"></span>
-            </button>
-            
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-state">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">United States</a></li>
-            </ul>
+            <div class="dropdown">
+              <button class="btn btn-dropdown btn-default dropdown-toggle" type="button" id="dropdown-state" data-toggle="dropdown">
+                  Select Country
+                  <span class="caret right"></span>
+              </button>
+              
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-state">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">United States</a></li>
+              </ul>
+            </div>
         </div>
         <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0 main-content-feature">
             <label>Zip Code</label>

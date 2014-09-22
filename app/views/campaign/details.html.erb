@@ -1,40 +1,19 @@
-<h1><%= @campaign.name %></h1>
+<div class="campaign-details">
 
-<div class="row">
-  <%= form_tag("/campaign/edit/#{@campaign.id}", :class => 'span3') do %>
-
-  <p>The public URL for your campaign is <strong><a href="<%= request.protocol + request.host + ':' + request.port.to_s %>/campaign/<%= @campaign.id %>"><%= request.host %>/campaign/<%= @campaign.id %></a></strong></p>
-  <legend>Edit Campaign Details</legend>
-  <div class="form-group">
-    <label for="email">Campaign Name:</label>
-    <%= text_field_tag(:campaign_name, @campaign.name, :class => 'text form-control', :placeholder => 'Coffee for Everyone!', :maxlength => 255) %>
-  </div>
-
-  <div class="form-group">
-    <label for="email">Campaign Description:</label>
-    <%= text_field_tag(:campaign_description, @campaign.description, :class => 'text form-control', :placeholder => 'Let\'s supply coffee to the overworked people.') %>
-  </div>
-
-  <div class="form-group">
-    <label for="email">Donation Goal:</label>
-    <%= text_field_tag(:campaign_goal, @campaign.goal, :class => 'text form-control', :placeholder => '$5,000', :maxlength => 10) %>
-  </div>
-
-  <div class="form-group">
-    <label for="email">Account Type:</label>
-    <%= select_tag(:account_type, options_for_select({ "Individual" => "personal", "Business" =>"business", "Non-profit" => "nonprofit"}, @campaign.account_type), :class => 'text form-control', :placeholder => '$5,000', :maxlength => 10) %>
-  </div>
-
-  <div class="form-group">
-    <button type="submit" class="btn-orange">Edit</button>
-  </div>
-
-  <% end %>
+  <div id="spacer"></div>
   
-  <div class="span9">
-    <legend>Payments</legend>
-    <% if @payments.length > 0 %>
-        <table class="table tablesorter table-hover">
+  <div class="col-lg-12 main-content-feature text-center">
+    <div class="row">
+      <h1><%= @campaign.name %></h1>
+      <hr>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="row main-content-feature">
+      <h3>Payments</h3>
+        <% if @payments.length > 0 %>
+        <table class="table table-bordered tablesorter table-hover">
           <thead>
             <tr>
               <th>ID</th>
@@ -64,8 +43,60 @@
         <% else %>
           <p>No payments received yet.</p>
         <% end %>
-      </div>
     </div>
     
+    <div class="row main-content-feature">
+      <h3>Campaign URL</h3>
+      <p>The public URL for your campaign is: <strong><a href="<%= request.protocol + request.host + ':' + request.port.to_s %>/campaign/<%= @campaign.id %>"><%= request.host %>/campaign/<%= @campaign.id %></a></strong></p>
+    </div>
   </div>
+
+  <div class="col-sm-1"></div>
+
+  <%= form_tag("/campaign/edit/#{@campaign.id}", :class => 'col-lg-5 main-content-feature') do %>
+    <div class="row">
+      <h3>Edit Campaign Details</h3>
+
+      <div id="spacer"></div>
+
+      <div class="form-group">
+        <label for="email">Campaign Name</label>
+        <%= text_field_tag(:campaign_name, @campaign.name, :class => 'form-control input-lg campaign-gray', :placeholder => 'Coffee for Everyone!', :maxlength => 255) %>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Campaign Description</label>
+        <%= text_field_tag(:campaign_description, @campaign.description, :class => 'form-control input-lg campaign-gray', :placeholder => 'Let\'s supply coffee to the overworked people.') %>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Donation Goal</label>
+        <%= text_field_tag(:campaign_goal, @campaign.goal, :class => 'form-control input-lg campaign-gray', :placeholder => '$5,000', :maxlength => 10) %>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Account Type</label>
+
+        <div class="dropdown">
+          <button class="btn btn-dropdown-campaign btn-default dropdown-toggle" type="button" id="dropdown-yy" data-toggle="dropdown">
+            Individual
+            <span class="caret-campaign right"></span>
+          </button>
+
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-yy">
+            <li role="presentation">
+              <%= select_tag(:account_type, options_for_select({ "Individual" => "personal", "Business" =>"business", "Non-profit" => "nonprofit"}, @campaign.account_type), :class => 'form-control input-lg campaign-gray', :placeholder => '$5,000', :maxlength => 10) %>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="spacer"></div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-edit-orange">Edit</button>
+      </div>
+    </div>
+  <% end %>
+
 </div>
