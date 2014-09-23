@@ -10,17 +10,8 @@
   </div>
 
   <div class="col-lg-8">
-    <div class="row main-content-feature">
-    	<img src="http://placehold.it/760x375" class="img-responsive" alt="">
-    </div>
-    
     <div class="row">
-			<ul class="list-inline">
-        <li><a href="#">Email</a></li>
-        <li><a href="#">Share</a></li>
-        <li><a href="#">Tweet</a></li>
-        <li><a href="#">Embed</a></li>
-      </ul>
+    	<img src="http://placehold.it/760x375" class="img-responsive" alt="">
     </div>
 
     <div class="row main-content-feature">
@@ -36,28 +27,35 @@
   	<table class="table table-bordered campaign-public">
 	  	<tbody>
 		  	<tr>
-			  	<td>
-		  			$25,000 USD
-						<a href="/campaign/donate/<%= @campaign.id %>" class="btn btn-donate-orange">Donate</a>
-					</td>
-				</tr>
-		  	<tr>
-			  	<td>
-						Palo Alto, CA
-					</td>
-				</tr>
-		  	<tr>
-			  	<td>
-						Read full bio
-					</td>
-				</tr>
-		  	<tr>
-			  	<td>
-						Report Campaign
+			  	<td class="sidebar">
+		  			<h1 class="inline-block">
+		  				$250,000
+	  				</h1>
+		  			<h5 class="inline-block">
+		  				USD
+		  			</h5>
+
+						<div class="sidebar-progress-bar bg-gray">
+							<div class="bg-blue full-height" style="width: 75%"></div>
+						</div>
+						<p>
+							75% of goal met
+						</p>
+
+						<p>
+							<a href="/campaign/donate/<%= @campaign.id %>" class="btn btn-donate-orange">Donate</a>
+						</p>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+
+		<ul class="list-inline">
+      <li><a href="#">Email</a></li>
+      <li><a href="#">Share</a></li>
+      <li><a href="#">Tweet</a></li>
+      <li><a href="#">Embed</a></li>
+    </ul>
   </div>
 
 </div>

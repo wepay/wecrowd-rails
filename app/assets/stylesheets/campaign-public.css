@@ -15,6 +15,7 @@
 	color: #738086;
 	font-size: 22px;
 	margin-bottom: 30px;
+	margin-top: 30px;
 }
 
 .campaign-public hr {
@@ -32,7 +33,43 @@
 /* Table */
 .table.campaign-public > tbody > tr > td {
 	border: 2px solid #f2f2f2;
-	padding: 15px;
+	padding: 0 20px 0 20px;
+}
+
+
+/* Sidebar */
+.sidebar h1 {
+    color: #738086;
+    font-size: 45px;
+    font-weight: 300;
+}
+
+.sidebar h5 {
+    color: #738086;
+    font-size: 16px;
+    font-weight: 400;
+    margin-left: 7px;
+}
+
+.sidebar p {
+	margin-top: 20px;
+	margin-bottom: 25px;
+}
+
+
+/* Progress bar */
+.sidebar-progress-bar {
+    height: 25px;
+    margin: 15px 0 15px 0;
+    overflow: hidden;
+}
+
+.bg-blue {
+    background-color: #7cc8e6;
+}
+
+.full-height {
+    height: 100%;
 }
 
 
