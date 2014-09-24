@@ -76,6 +76,10 @@ td.account-details {
 	text-align: center;
 }
 
+.row-push {
+	margin-top: 5%;
+}
+
 
 /* Form */
 .input-lg.gray {
