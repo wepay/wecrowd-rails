@@ -9,22 +9,20 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-4 main-content-feature">
-      <h4 class="active">Donate</h4>
-      <hr class="blue">
-    </div>
-    <div class="col-md-4 main-content-feature">
-      <h4 class="inactive">Payment</h4>
-      <hr class="gray">
-    </div>
-    <div class="col-md-4 main-content-feature">
-      <h4 class="inactive">Confirmation</h4>
-      <hr class="gray">
+  <div class="col-lg-8 col-center">
+    <div class="row col-center">
+      <div class="col-lg-6 main-content-feature">
+        <h4 class="active">Donate</h4>
+        <hr class="blue">
+      </div>
+      <div class="col-lg-6 main-content-feature">
+        <h4 class="inactive">Confirmation</h4>
+        <hr class="gray">
+      </div>
     </div>
   </div>
 
-  <%= form_tag("/campaign/donate/#{@campaign.id}", :class => 'donate-form span3') do %>
+  <%= form_tag("/campaign/donate/#{@campaign.id}", :class => 'donate-form col-lg-12') do %>
     <input type="hidden" name="client_id" value="<%= WEPAY_CONFIG[:client_id] %>" />
     <input type="hidden" name="credit_card_id" value="" />
 
@@ -51,42 +49,43 @@
 
       <div class="row">
         <div class="col-lg-12 main-content-feature">
-          <label>Billing Address</label>
-          <%= text_field_tag(:user_address_one, params[:user_address_one], :class => 'form-control input-lg gray', :placeholder => '1 Test Street', :maxlength => 255) %>
+          <label>Credit Card Number</label>
+          <%= text_field_tag(:cc_number, params[:cc_number], :class => 'form-control input-lg gray', :placeholder => '5496198584584769', :maxlength => 255) %>
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-5 col-md-6 main-content-feature">
-          <label>Apartment / Suite</label>
-          <%= text_field_tag(:user_address_two, params[:user_address_two], :class => 'form-control input-lg gray', :placeholder => 'Apt 1', :maxlength => 255) %>
-        </div>
+          <label>Expiration Date</label>
+          <div class="row">
+            <div class="col-md-4">
+              <%= select_tag(:expiration_month, options_for_select(['01','02','03','04','05','06','07','08','09','10','11','12'], params[:expiration_month]), :class => 'dropdown') %>
+            </div>
+            
+            <div class="col-md-1 exp-date">
+              <h1>&#47;</h1>
+            </div>
 
-        <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0 main-content-feature">
-          <label>State</label>
-          <%= select_tag(:user_state, options_for_select(us_states, params[:user_state]), :class => 'dropdown') %>
+            <div class="col-md-5">
+              <%= select_tag(:expiration_year, options_for_select(['2014','2015','2016','2017','2018','2019','2020','2021','2022', '2023', '2024', '2025','2026'], params[:expiration_year]), :class => 'dropdown') %>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0 main-content-feature">
+            <label>CVV</label>
+            <%= text_field_tag(:cvv, params[:cvv], :class => 'form-control input-lg gray', :placeholder => '123', :maxlength => 255) %>
+        </div>
+        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0 main-content-feature">
+            <label>Zip Code</label>
+            <%= text_field_tag(:user_zip, params[:user_zip], :class => 'form-control input-lg gray', :placeholder => '12345', :maxlength => 255) %>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-sm-5 col-md-6 main-content-feature">
-          <label>Zip Code</label>
-          <%= text_field_tag(:user_zip, params[:user_zip], :class => 'form-control input-lg gray', :placeholder => '12345', :maxlength => 255) %>
-        </div>
-
-        <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0 main-content-feature">
-          <label>Country</label>
-          <%= select_tag(:user_country, options_for_select(['United States','Canada','Other'], params[:user_country]), :class => 'dropdown') %>
+        <div class="col-md-4 main-content-feature col-center spacing">
+          <button id="donation-button" type="submit" class="btn btn-orange">Donate</button>
         </div>
       </div>
-
-    </div>
-
-    <div class="row">
-      <div class="col-md-4 main-content-feature col-center spacing">
-        <a href="/campaign/payment/<%= @campaign.id %>" class="btn btn-orange">Continue</a>
-      </div>
-    </div>
   <% end %>
 </div>
 
