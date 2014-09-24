@@ -11,9 +11,13 @@
 <body>
 
   <div id="wrap">
-    <%= render("shared/header.html.erb")%>
+    <div class="container">
+      <%= render("shared/flash", { :flash => flash })%>
+    </div>
 
-    <%= render("shared/flash", { :flash => flash })%>
+    <div id="spacer"></div>
+
+    <%= render("shared/header.html.erb")%>
     
     <div class="container">
       <%= yield %>
