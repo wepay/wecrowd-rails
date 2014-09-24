@@ -73,6 +73,18 @@
 }
 
 
+/* List style */
+.list-wrap {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+ul.campaign-public > li {
+	padding: 15px;
+}
+
+
 /* Edit Button */
 .btn-donate-orange {
 	background-color: #ef5e27;

@@ -9,10 +9,11 @@
 </head>
 
 <body>
-  <%= render("shared/flash", { :flash => flash })%>
 
   <div id="wrap">
     <%= render("shared/header.html.erb")%>
+
+    <%= render("shared/flash", { :flash => flash })%>
     
     <div class="container">
       <%= yield %>
@@ -24,6 +25,6 @@
 	<%= render("shared/footer.html.erb")%>
   
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script src="/assets/bootstrap.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>
