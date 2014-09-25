@@ -29,17 +29,17 @@
 		  	<tr>
 			  	<td class="sidebar">
 		  			<h1 class="inline-block">
-		  				$250,000
+		  				$<%= @campaign.goal %>
 	  				</h1>
 		  			<h5 class="inline-block">
-		  				USD
+		  				<%= @campaign.goal.currency %>
 		  			</h5>
 
 						<div class="sidebar-progress-bar bg-gray">
-							<div class="bg-blue full-height" style="width: 75%"></div>
+							<div class="bg-blue full-height" style="width: <%= @percent_complete %>%"></div>
 						</div>
 						<p>
-							75% of goal met
+							<%= @percent_complete %>% of goal met
 						</p>
 
 						<p>

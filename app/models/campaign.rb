@@ -41,4 +41,12 @@ class Campaign < ActiveRecord::Base
     self.save
   end
   
+  def percent_complete
+    if self.goal.cents > 0 && self.amount_donated.cents > 0
+      [self.amount_donated / self.goal * 100, 100].min.round
+    else
+      0
+    end
+  end
+  
 end

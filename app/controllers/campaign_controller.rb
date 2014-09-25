@@ -6,6 +6,7 @@ class CampaignController < ApplicationController
   # GET /campaign/12345
   # the public page for the campaign
   def index
+    @percent_complete = @campaign.percent_complete
   end
 
   # GET /campaign/new
