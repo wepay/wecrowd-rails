@@ -85,7 +85,8 @@ class User < ActiveRecord::Base
       original_ip: ip,
       original_device: user_agent,
       tos_acceptance_time: Time.now.to_i,
-      callback_uri: self.callback_uri
+      callback_uri: self.callback_uri,
+      redirect_uri: self.redirect_uri
     })
     if response['error'].present?
       raise response['error_description']
@@ -146,6 +147,10 @@ class User < ActiveRecord::Base
   
   def callback_uri
     Rails.application.secrets.host + "/user/ipn/#{self.id}"
+  end
+  
+  def redirect_uri
+    Rails.application.secrets.host + "/user/view/#{self.id}"
   end
   
   def campaign
