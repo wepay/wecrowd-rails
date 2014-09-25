@@ -29,17 +29,17 @@
 		  	<tr>
 			  	<td class="sidebar">
 		  			<h1 class="inline-block">
-		  				$<%= @campaign.goal %>
+		  				$<%= @campaign.amount_donated %>
 	  				</h1>
 		  			<h5 class="inline-block">
-		  				<%= @campaign.goal.currency %>
+		  				<%= @campaign.amount_donated.currency %>
 		  			</h5>
 
 						<div class="sidebar-progress-bar bg-gray">
 							<div class="bg-blue full-height" style="width: <%= @percent_complete %>%"></div>
 						</div>
 						<p>
-							<%= @percent_complete %>% of goal met
+							<%= @percent_complete %>% of $<%= @campaign.goal %> goal met
 						</p>
 
 						<p>
