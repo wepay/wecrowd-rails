@@ -14,6 +14,15 @@
 	font-weight: 400;
 }
 
+.user h3.upper {
+	color: #3a4b53;
+	font-size: 20px;
+	font-weight: 400;
+	letter-spacing: 1px;
+	margin-bottom: 30px;
+	text-transform: uppercase;
+}
+
 .user hr {
     border: 2px solid #ef5e27;
     margin-top: 40px;
@@ -50,4 +59,89 @@ td.account-details {
 /* iframe */
 .embed-responsive .embed-responsive-item, .embed-responsive iframe {
 	border: 1px solid #dddddd;
+}
+
+
+/* Centering */
+.col-center {
+	margin: 0 auto;
+	float: none;
+}
+
+.col-center.spacing {
+	margin-bottom: 45px;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.row-push {
+	margin-top: 5%;
+}
+
+
+/* Form */
+.input-lg.gray {
+	border-radius: 0;
+	box-shadow: none;
+	color: #728186;
+	font-size: 20px;
+	font-weight: 300;
+	height: 60px;
+	padding: 15px;
+}
+
+label {
+	color: #728186;
+	margin-bottom: 20px;
+}
+
+.form-control.gray {
+	border: 2px solid #f2f2f2;
+	border-radius: 0;
+}
+
+.form-control::-webkit-input-placeholder {
+	color: #cccccc;
+}
+
+textarea:focus, 
+input[type="text"]:focus, 
+input[type="password"]:focus, 
+input[type="datetime"]:focus, 
+input[type="datetime-local"]:focus, 
+input[type="date"]:focus, 
+input[type="month"]:focus, 
+input[type="time"]:focus, 
+input[type="week"]:focus, 
+input[type="number"]:focus, 
+input[type="email"]:focus, 
+input[type="url"]:focus, 
+input[type="search"]:focus, 
+input[type="tel"]:focus, 
+input[type="color"]:focus, 
+.uneditable-input:focus {
+    border-color: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    outline: none;
+}
+
+
+/* Orange Button */
+.btn-orange {
+	background-color: #ef5e27;
+	border-radius: 0;
+	color: #ffffff;
+	font-size: 16px;
+	letter-spacing: 1px;
+	outline: 0;
+	padding: 25px 0;
+	text-transform: uppercase;
+	width: 100%;
+}
+
+.btn-orange:hover {
+	color: #ffffff;
 }
