@@ -86,3 +86,7 @@
 	border-right: 7px solid transparent;
 	border-left: 7px solid transparent;
 }
+
+.wepay-iframe-container {
+	height:550px;
+}
