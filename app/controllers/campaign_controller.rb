@@ -126,7 +126,7 @@ class CampaignController < ApplicationController
       @user.add_role(User::ROLE_PAYER)
       @user.save
       message("Donation Made!")
-      redirect_to("/campaign/#{@campaign.id}/")
+      redirect_to("/campaign/donation_success/#{@campaign.id}/#{@payment.id}")
     else
       error(@payment.errors.full_messages)
       redirect_to("/campaign/donate/#{@campaign.id}")
@@ -134,6 +134,7 @@ class CampaignController < ApplicationController
   end
 
   def donation_success
+    @payment = Payment.find(params[:payment_id])
   end
   
   def ipn

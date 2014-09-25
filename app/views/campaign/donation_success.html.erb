@@ -1,2 +1,24 @@
-<h1>Campaign#donation_success</h1>
-<p>Find me in app/views/campaign/donation_success.html.erb</p>
+<div class="campaign-public">
+
+  <div id="spacer"></div>
+  
+  <div class="col-lg-12 main-content-feature text-center">
+    <div class="row">
+      <h1><%= @campaign.name %></h1>
+      <hr>
+    </div>
+  </div>
+  
+  <div class="col-lg-12 main-content-feature text-center">
+    <div class="row">
+      <h3>Thank you for your donation of $<%= @payment.amount %>!</h3>
+    </div>
+  </div>
+  
+  <div class="col-lg-12 main-content-feature text-center">
+    <div class="row">
+      <p><a href="/campaign/<%= @campaign.id %>">&larr; return to <%= @campaign.name %></a></p>
+    </div>
+  </div>
+  
+</div>
