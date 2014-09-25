@@ -87,23 +87,6 @@
         <%= text_field_tag(:campaign_goal, @campaign.goal, :class => 'form-control input-lg campaign-gray', :placeholder => '$5,000', :maxlength => 10) %>
       </div>
 
-      <div class="form-group">
-        <label for="email">Account Type</label>
-
-        <div class="dropdown">
-          <button class="btn btn-dropdown-campaign btn-default dropdown-toggle" type="button" id="dropdown-yy" data-toggle="dropdown">
-            Individual
-            <span class="caret-campaign right"></span>
-          </button>
-
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-yy">
-            <li role="presentation">
-              <%= select_tag(:account_type, options_for_select({ "Individual" => "personal", "Business" =>"business", "Non-profit" => "nonprofit"}, @campaign.account_type), :class => 'form-control input-lg campaign-gray', :placeholder => '$5,000', :maxlength => 10) %>
-            </li>
-          </ul>
-        </div>
-      </div>
-
       <div id="spacer"></div>
 
       <div class="form-group">
