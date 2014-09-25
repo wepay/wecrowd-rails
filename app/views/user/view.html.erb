@@ -65,10 +65,13 @@
         </tbody>
       </table>
       <% if @user.state != User::STATE_REGISTERED %>
-        <p>You still have not confirmed your account.<p>
-        <%= form_tag("/user/resend_confirmation_email/#{@user.id}", :class => '') do %>
-          <button class="btn btn-resend-orange">Resend Confirmation Email</button>
-        <% end %>
+        <h3>Please confirm your account.</h3>
+        <p><strong>Check your email for a confirmation message from WeCrowd.</strong></p>
+        <p>Need us to resend the email?
+          <%= form_tag("/user/resend_confirmation_email/#{@user.id}", :class => '') do %>
+            <button class="btn btn-resend-orange">Resend</button>
+          <% end %>
+        </p>
       <% end %>
     </div>
 
