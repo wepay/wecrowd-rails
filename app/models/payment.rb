@@ -33,6 +33,7 @@ class Payment < ActiveRecord::Base
     if response["error"]
       throw response["error_description"]
     end
+    self.state = response["state"]
     self.wepay_checkout_id = response["checkout_id"];
     self.wepay_fee = response["fee"]
     self

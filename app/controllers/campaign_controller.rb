@@ -126,6 +126,7 @@ class CampaignController < ApplicationController
     if @payment.valid? && @payment.create_checkout && @payment.save
       @user.add_role(User::ROLE_PAYER)
       @user.save
+      @campaign.update_amount_donated
       message("Donation Made!")
       redirect_to("/campaign/donation_success/#{@campaign.id}/#{@payment.id}")
     else
