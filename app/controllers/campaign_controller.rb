@@ -50,6 +50,7 @@ class CampaignController < ApplicationController
       # if the campaign is valid, register the user on WePay and create a WePay account for it
       @user.register_on_wepay(request.ip, request.env['HTTP_USER_AGENT'])
       @user.create_wepay_account
+      @user.resend_confirmation_email
       message("Your campaign has been created successfully!")
       redirect_to("/campaign/details/#{@campaign.id}")
     else
