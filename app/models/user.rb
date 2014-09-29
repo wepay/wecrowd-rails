@@ -120,7 +120,9 @@ class User < ActiveRecord::Base
   # resend the WePay registration confirmation email
   # so the user can confirm that they want this app to register them on WePay
   def resend_confirmation_email
-    WEPAY.call('/user/resend_confirmation', self.wepay_access_token, {})
+    WEPAY.call('/user/resend_confirmation', self.wepay_access_token, {
+      email_message: 'Thank you for signing up with WeCrowd.  In order to process payments, you will need to confirm your email address and set a secure payment password.  Click the "confirm" button below to begin.'
+    })
   end
   
   def get_wepay_account
