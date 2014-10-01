@@ -49,4 +49,10 @@ class Campaign < ActiveRecord::Base
     end
   end
   
+  # get the assets path for the image for this campaign
+  # since this is a sample app, we just rotate through the sample images we have
+  def image
+    "sample/#{self.id % 6}.jpg"
+  end
+  
 end
