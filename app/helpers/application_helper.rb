@@ -25,4 +25,8 @@ module ApplicationHelper
   def sha2(string)
     Digest::SHA2.hexdigest(string)
   end
+  
+  def intro_disabled
+    cookies["intro_disabled"] === "true"
+  end
 end
