@@ -18,6 +18,15 @@ class UserController < ApplicationController
 
   def edit
   end
+  
+  # GET /user/verify/12345
+  # lets the merchant verify their account on WePay
+  def verify
+    if !@user.has_access_token?
+      return redirect_to("/user/view/#{@user.id}")
+    end
+    @update_uri = @user.get_wepay_account_update_uri['uri']
+  end
 
   # GET/POST /login
   # lets people login to the site
