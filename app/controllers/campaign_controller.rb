@@ -24,7 +24,7 @@ class CampaignController < ApplicationController
       @user.add_role(User::ROLE_MERCHANT)
       @user.save
     else # otherwise register a user from the information provided
-      if !params[:wepay_terms]
+      if !params[:accept_terms]
         error("You must accept WePay's terms of service.")
         return redirect_to("/campaign/new")
       end

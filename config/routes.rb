@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   #welcome
   get 'welcome/index'
   get 'welcome/about'
+  get 'welcome/terms'
   
   root 'welcome#index'
 
