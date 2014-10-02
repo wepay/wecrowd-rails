@@ -152,7 +152,7 @@ class User < ActiveRecord::Base
   end
   
   def redirect_uri
-    Rails.application.secrets.host + "/user/view/#{self.id}"
+    Rails.application.secrets.host + "/user/verify/#{self.id}"
   end
   
   def campaign

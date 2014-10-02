@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/user/register', :to => "user#register"
   post '/user/register', :to => "user#create"
   get '/user/view/:user_id', :to => "user#view"
+  get '/user/verify/:user_id', :to => "user#verify"
   post '/user/resend_confirmation_email/:user_id', :to => "user#resend_confirmation_email"
   match '/user/ipn/:user_id', :to => "user#ipn", via: [:get, :post]
   
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
   #welcome
   get 'welcome/index'
   get 'welcome/about'
+  get 'welcome/terms'
   
   root 'welcome#index'
 

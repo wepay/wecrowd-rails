@@ -2,30 +2,30 @@
 <h3>Featured Campaigns</h3>
 </div>
 <div class="row text-center">
-	<% for i in (0...8) %>
+	<% @campaigns.each do |c| %>
   <div class="col-md-3 col-sm-6 main-content-feature">
     <div class="thumbnail">
-      <img src="http://placehold.it/800x500" alt="">
+      <img src="<%= asset_path c.image %>" alt="">
       <div class="caption">
-        <h3><a href="#">Campaign Name</a></h3>
+        <h3><a href="/campaign/<%= c.id %>"><%= c.name %></a></h3>
         <p>Palo Alto, CA</p>
       </div>
 
       <div class="absolute-bottom">
         <div class="thumbnail-footer">
           <h1 class="inline-block">
-            $25,000
+            <%= c.goal.currency.symbol %><%= c.goal %>
           </h1>
           <h5 class="inline-block">
-            USD
+            <%= c.goal.currency %>
           </h5>
 
           <div class="campaign-progress-bar bg-gray">
-            <div class="bg-orange full-height" style="width: 25%"></div>
+            <div class="bg-orange full-height" style="width: <%= c.percent_complete %>%"></div>
           </div>
 
           <p class="inline-block" id="percent">
-            25%
+            <%= c.percent_complete %>%
           </p>
           <p class="inline-block right">
             10 days left

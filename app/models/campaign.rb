@@ -26,14 +26,14 @@ class Campaign < ActiveRecord::Base
   end
   
   STATE_NEW         = 'new'
-   STATE_AUTHORIZED  = 'authorized'
-   STATE_RESERVED    = 'reserved'
-   STATE_CAPTURED     = 'captured'
-   STATE_CANCELLED   = 'cancelled'
-   STATE_REFUNDED    = 'refunded'
-   STATE_CHARGEBACK  = 'charged back'
-   STATE_FAILED      = 'failed'
-   STATE_EXPIRED     = 'expired'
+  STATE_AUTHORIZED  = 'authorized'
+  STATE_RESERVED    = 'reserved'
+  STATE_CAPTURED     = 'captured'
+  STATE_CANCELLED   = 'cancelled'
+  STATE_REFUNDED    = 'refunded'
+  STATE_CHARGEBACK  = 'charged back'
+  STATE_FAILED      = 'failed'
+  STATE_EXPIRED     = 'expired'
   
   def update_amount_donated
     total = Money.new(self.payments.where({state: [Payment::STATE_AUTHORIZED, Payment::STATE_CAPTURED] }).sum(:amount_cents))
@@ -47,6 +47,12 @@ class Campaign < ActiveRecord::Base
     else
       0
     end
+  end
+  
+  # get the assets path for the image for this campaign
+  # since this is a sample app, we just rotate through the sample images we have
+  def image
+    "sample/#{self.id % 10}.jpg"
   end
   
 end

@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-lg-7 main-content-feature">
+    <div class="row main-content-feature">
+        <% if @update_uri %>
+          <h3>Manage Your Payment Settings</h3>
+          <p>Use the panel below to sign into WePay and manage your payment settings.</p>
+          <p>Once you have verified your identity and added your bank account information, all money in your account will be automatically deposited into your bank account.</p>
+          <p><a href="/user/view/<%= @user.id %>">&larr; Back to my profile.</a></p>
+          <div id="spacer"></div>
+
+          <div class="wepay-iframe-container embed-responsive embed-responsive-16by9">
+            <iframe class="wepay-iframe barier embed-responsive-item" src="<%= @update_uri %>"></iframe>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>
