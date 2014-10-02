@@ -3,8 +3,10 @@ $(function() {
 		$.cookie('demo_state', "disabled");
 	});
 	
-	$("[data-start-demo]").click(function() {
+	$("[data-start-demo]").click(function(e) {
+		e.preventDefault();
 		$.cookie('demo_state', "enabled");
+		document.location.href = $(e.target).attr('href');
 	});
 	
 	if (demo_enabled()) {
