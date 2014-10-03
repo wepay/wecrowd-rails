@@ -1,5 +1,7 @@
 class UserController < ApplicationController
   
+  protect_from_forgery with: :exception, :except => [:ipn] # IPNs don't require the CSRF check
+  
   before_filter :check_user, :except => [ :register, :create, :login, :logout, :ipn]
   
   def index
