@@ -4,10 +4,11 @@
 <div class="row text-center">
 	<% @campaigns.each do |c| %>
   <div class="col-md-3 col-sm-6 main-content-feature">
+    <a href="/campaign/<%= c.id %>">
     <div class="thumbnail">
       <img src="<%= asset_path c.image %>" alt="">
       <div class="caption">
-        <h3><a href="/campaign/<%= c.id %>"><%= c.name %></a></h3>
+        <h3><%= c.name %></h3>
         <p>Palo Alto, CA</p>
       </div>
 
@@ -33,6 +34,7 @@
         </div>
       </div>
     </div>
+    </a>
   </div>
 	<% end %>
 </div>
