@@ -12,6 +12,22 @@
   <div class="col-lg-4 main-content-feature">
     
     <div class="row main-content-feature">
+      <h3>Your Campaigns</h3>
+      <p>This is a list of your campaigns. Click on each to view and edit its details.</p>
+      <table class="table table-bordered">
+        <tbody>
+          <% @campaigns.each do |c| %>
+          <tr>
+            <td>
+              <a href="/campaign/details/<%= c.id %>"><%= c.name %></a>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="row main-content-feature">
       <h3>Profile Details</h3>
       <table class="table table-bordered">
         <tbody>
@@ -73,22 +89,6 @@
           <% end %>
         </p>
       <% end %>
-    </div>
-
-    <div class="row main-content-feature">
-      <h3>Your Campaigns</h3>
-      <p>This is a list of your campaigns. Click on each to view and edit its details.</p>
-      <table class="table table-bordered">
-        <tbody>
-          <% @campaigns.each do |c| %>
-          <tr>
-            <td>
-              <a href="/campaign/details/<%= c.id %>"><%= c.name %></a>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
     </div>
 
   </div>

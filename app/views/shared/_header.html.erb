@@ -19,7 +19,7 @@
           <% if current_user.is_admin? %>
             <li><a href="/admin">Admin</a></li>
           <% end %>
-          <li><a href="/user/view/<%= current_user.id %>">Profile</a></li>
+          <li><a href="/user/view/<%= current_user.id %>">My Campaigns</a></li>
           <li><a href="/logout">Log Out</a></li>
         <% else %>
           <li><a href="/campaign/new">Create a Campaign</a></li>
