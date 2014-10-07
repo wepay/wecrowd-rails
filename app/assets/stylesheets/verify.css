@@ -1,0 +1,65 @@
+.verify p {
+	font-size: 16px;
+	line-height: 30px;
+}
+
+.verify h1 {
+	color: #ef5e27;
+	font-size: 37px;
+	font-weight: 300;
+}
+
+.verify h3 {
+	color: #3a4b53;
+	font-size: 20px;
+	font-weight: 400;
+}
+
+.verify h3.upper {
+	color: #3a4b53;
+	font-size: 20px;
+	font-weight: 400;
+	letter-spacing: 1px;
+	margin-bottom: 30px;
+	text-transform: uppercase;
+}
+
+.verify hr {
+    border: 2px solid #ef5e27;
+    margin-top: 40px;
+    width: 80px;
+}
+
+/* Table */
+td.category {
+	font-weight: 700;
+}
+
+td.account-details {
+	width: 37%;
+}
+
+
+/* iframe */
+.embed-responsive .embed-responsive-item, .embed-responsive iframe {
+	border: none;
+}
+
+
+/* Centering */
+.col-center {
+	margin: 0 auto;
+	float: none;
+}
+
+.col-center.spacing {
+	margin-bottom: 45px;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.row-push {
+	margin-top: 5%;
+}
