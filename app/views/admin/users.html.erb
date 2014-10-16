@@ -1,25 +1,31 @@
-<%= render("shared/admin_header")%>
+<div class="admin-details">
 
-<table class="table tablesorter table-hover">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Create Date</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>State</th>
-    </tr>
-  </thead>
+  <div id="spacer"></div>
+  
+  <%= render("shared/admin_header")%>
 
-  <tbody>
-    <% @users.each do |u| %>
+  <table class="table tablesorter table-hover">
+    <thead>
       <tr>
-        <td><a href="/admin/user/<%= u.id %>"><%= u.id %></a></td>
-        <td><%= u.created_at.strftime("%Y/%m/%d %I:%M%P %Z") %></td>
-        <td><%= u.name %></td>
-        <td><%= u.email %></td>
-        <td><%= u.state %></td>
+        <th>ID</th>
+        <th>Create Date</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>State</th>
       </tr>
-    <% end %>
-  </tbody>      
-</table>
+    </thead>
+
+    <tbody>
+      <% @users.each do |u| %>
+        <tr>
+          <td><a href="/admin/user/<%= u.id %>"><%= u.id %></a></td>
+          <td><%= u.created_at.strftime("%Y/%m/%d %I:%M%P %Z") %></td>
+          <td><%= u.name %></td>
+          <td><%= u.email %></td>
+          <td><%= u.state %></td>
+        </tr>
+      <% end %>
+    </tbody>      
+  </table>
+
+</div>
