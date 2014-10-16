@@ -2,7 +2,7 @@ class Payment < ActiveRecord::Base
   belongs_to :payer, :class_name => "User"
   belongs_to :campaign
   
-  monetize :amount_cents, :numericality => { :greater_than => 0 }
+  monetize :amount_cents, :numericality => { :greater_than => 1 }
   monetize :app_fee_cents, :allow_nil => true
   monetize :wepay_fee_cents, :allow_nil => true
   
