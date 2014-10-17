@@ -1,32 +1,38 @@
 <div class="user">
 
-  <div id="spacer"></div>
-
-  <div class="row row-push">
+  <div class="row row-push main-content-feature">
 		<%= form_tag("/login", :class => 'col-lg-6 main-content-feature col-center', 'data-persist' => 'garlic', 'data-destroy' => 'false') do %>
 
-		<div class="row">
-			<div class="col-lg-12 main-content-feature">
-				<label for="email">Email address</label>
-				<%= text_field_tag(:email, params[:email], :class => 'text form-control input-lg gray', :placeholder => 'jane.doe@gmail.com', :maxlength => 255) %>
+			<div class="row">
+				<div class="col-lg-12 main-content-feature">
+					<label for="email">Email address</label>
+					<%= text_field_tag(:email, params[:email], :class => 'text form-control input-lg gray', :placeholder => 'jane.doe@gmail.com', :maxlength => 255) %>
+				</div>
 			</div>
-		</div>
 
-		<div class="row">
-			<div class="col-lg-12 main-content-feature">
-				<label for="password">Password</label>
-				<%= password_field_tag(:password, nil, :class => 'password form-control input-lg gray', :maxlength => 255) %>
+			<div class="row">
+				<div class="col-lg-12 main-content-feature">
+					<label for="password">Password</label>
+					<%= password_field_tag(:password, nil, :class => 'password form-control input-lg gray', :maxlength => 255) %>
+				</div>
 			</div>
-		</div>
 
-    <div class="row">
-      <div class="col-md-4 main-content-feature col-center spacing">
-	      <button type="submit" class="btn btn-orange">Log In</button>
-      </div>
-    </div>
-			
-		<input type="hidden" name="redirect" value="<%= @redirect %>">
+	    <div class="row">
+	      <div class="col-md-8 main-content-feature col-center spacing">
+		      <button type="submit" class="btn btn-orange">Log In</button>
+	      </div>
+	    </div>
+				
+			<input type="hidden" name="redirect" value="<%= @redirect %>">
 		<% end %>
+
+		<div id="spacer"></div>
+
+		<div class="row">
+			<div class="col-md-6 main-content-feature col-center spacing text-center">
+				<img src="<%= asset_path 'wecrowd_login-icon-row.png' %>" alt="WeCrowd Login" />
+			</div>
+		</div>
 	</div>
 
-	</div>
+</div>
