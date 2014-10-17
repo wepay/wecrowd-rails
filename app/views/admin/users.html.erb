@@ -4,28 +4,30 @@
   
   <%= render("shared/admin_header")%>
 
-  <table class="table tablesorter table-hover">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Create Date</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>State</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @users.each do |u| %>
+  <div class="col-lg-12 main-content-feature">
+    <table class="table tablesorter table-hover">
+      <thead>
         <tr>
-          <td><a href="/admin/user/<%= u.id %>"><%= u.id %></a></td>
-          <td><%= u.created_at.strftime("%Y/%m/%d %I:%M%P %Z") %></td>
-          <td><%= u.name %></td>
-          <td><%= u.email %></td>
-          <td><%= u.state %></td>
+          <th>ID</th>
+          <th>Create Date</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>State</th>
         </tr>
-      <% end %>
-    </tbody>      
-  </table>
+      </thead>
+
+      <tbody>
+        <% @users.each do |u| %>
+          <tr>
+            <td><a href="/admin/user/<%= u.id %>"><%= u.id %></a></td>
+            <td><%= u.created_at.strftime("%Y/%m/%d %I:%M%P %Z") %></td>
+            <td><%= u.name %></td>
+            <td><%= u.email %></td>
+            <td><%= u.state %></td>
+          </tr>
+        <% end %>
+      </tbody>      
+    </table>
+  </div>
 
 </div>

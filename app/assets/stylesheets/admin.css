@@ -19,3 +19,8 @@
     margin-top: 40px;
     width: 80px;
 }
+
+.table > tbody > tr > td {
+	max-width: 100px;
+	word-wrap: break-word;
+}
