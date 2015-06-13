@@ -12,11 +12,18 @@ WePay Clear™ product offering.
 ## Prerequisites
 
 1. Install [Vagrant].
-1. Install [VirtualBox].
+1. Install [VirtualBox] (free, but slow) OR [VMware] + 
+   [VMware Provider for Vagrant] (costs, but fast).
 1. Checkout the WeCrowd repository.
 
    ```bash
    git checkout git@github.com:wepay/wecrowd-rails.git
+   ```
+
+1. Install the [vagrant-vbguest] plugin for Vagrant.
+
+   ```bash
+   vagrant plugin install vagrant-vbguest
    ```
 
 1. Move into the root of the repository and start Vagrant. This will start a 
@@ -24,7 +31,14 @@ WePay Clear™ product offering.
    along the way and also running the initial migration.
 
    ```bash
-   vagrant up
+   # For VirtualBox
+   vagrant up --provider=virtualbox
+
+   # For VMware Fusion (OS X)
+   vagrant up --provider=vmware_fusion
+
+   # For VMware Workstation (Linux/Windows)
+   vagrant up --provider=vmware_workstation
    ```
 
 
@@ -54,7 +68,7 @@ WePay Clear™ product offering.
    rails server
    ```
 
-1. Visit <http://192.168.50.105:3000> in your web browser to see the app running.
+1. Visit <http://0.0.0.0:3000> in your web browser to see the app running.
 
 
 ## Contributing
@@ -80,4 +94,7 @@ Licensed for use under the terms of the [Apache 2.0] license.
   [Apache 2.0]: http://opensource.org/licenses/Apache-2.0
   [Keybase]: https://keybase.io
   [Vagrant]: http://vagrantup.com
+  [vagrant-vbguest]: https://github.com/dotless-de/vagrant-vbguest
   [VirtualBox]: https://www.virtualbox.org/wiki/Downloads
+  [VMware]: https://www.vmware.com/products/
+  [VMware Provider for Vagrant]: https://www.vagrantup.com/vmware

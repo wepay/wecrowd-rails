@@ -10,6 +10,19 @@ Vagrant.configure("2") do | config |
   config.vm.network :private_network, ip: "192.168.50.105"
   config.ssh.forward_agent = true
 
+  # Cache the yum packages locally if we can
+  if Vagrant.has_plugin?("vagrant-cachier")
+    config.cache.scope = :machine
+    config.cache.auto_detect = true
+    config.cache.enable :apt
+  end
+
+  # Check for vbguest plugin
+  if Vagrant.has_plugin?("vagrant-vbguest")
+    config.vbguest.auto_update = true
+    config.vbguest.no_remote = false
+  end
+
   # Synced folders
   if Vagrant::Util::Platform.windows?
     config.vm.synced_folder "", "/vagrant", type: "smb"
