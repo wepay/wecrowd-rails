@@ -32,7 +32,7 @@ sudo -u postgres psql -c "CREATE DATABASE wecrowd OWNER wecrowd;"
 
 # Install Node.js
 echo 'Installing Node.js'
-curl -sL https://deb.nodesource.com/setup | sudo bash -
+curl -sL https://deb.nodesource.com/setup_0.10 | sudo bash -
 sudo apt-get install nodejs
 
 # Update Gems
@@ -48,6 +48,9 @@ sudo -u vagrant echo 'export RAILS_ENV=development' >> /home/vagrant/.profile
 echo "Running migrations..."
 sudo -u vagrant -i rake -f /vagrant/Rakefile db:migrate
 sudo -u vagrant -i rake -f /vagrant/Rakefile db:seed
+
+echo 'Precompiling the static assets'
+sudo -u vagrant -i rake -f /vagrant/Rakefile assets:precompile
 
 echo 'Starting rails'
 cd '/vagrant'
