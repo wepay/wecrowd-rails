@@ -5,4 +5,9 @@ WEPAY_CONFIG = {
   account_id: Rails.application.secrets.account_id,
   use_stage: true
 }
-WEPAY = WePay.new(WEPAY_CONFIG[:client_id], WEPAY_CONFIG[:client_secret], WEPAY_CONFIG[:use_stage], true)
+
+WEPAY = WePay::Client.new(
+  WEPAY_CONFIG[:client_id],
+  WEPAY_CONFIG[:client_secret],
+  WEPAY_CONFIG[:use_stage]
+)
