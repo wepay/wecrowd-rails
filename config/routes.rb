@@ -36,7 +36,21 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get 'welcome/about'
   get 'welcome/terms'
-  
+
+  #api, can definitely change later
+  #namespace :api, path: '/', constraints: { subdomain: 'api' } do
+  #  resources :campaigns
+  #end
+
+ namespace :api do
+     resources :campaigns
+     resources :donate
+     resources :details
+ end
+
+
+
+
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
