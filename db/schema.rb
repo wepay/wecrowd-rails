@@ -24,12 +24,13 @@ ActiveRecord::Schema.define(version: 20140918230012) do
     t.integer  "amount_donated_cents",           default: 0, null: false
     t.string   "account_type"
     t.integer  "state",                limit: 2
+    t.integer  "featured"
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "featured"
   end
 
+  add_index "campaigns", ["featured"], name: "index_campaigns_on_featured", using: :btree
   add_index "campaigns", ["user_id"], name: "index_campaigns_on_user_id", using: :btree
 
   create_table "payments", force: true do |t|
