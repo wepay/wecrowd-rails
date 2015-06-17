@@ -26,3 +26,7 @@ public/assets/
 
 # Prod config
 prod/
+app/assets/*
+public/assets/*
+bin/*
+unicorn.stderr.log
