@@ -1,28 +1,15 @@
 module Api
   class CampaignsController < ApplicationController
 
-
+    #the index function corresponds to the HTTP GET request. No parameters needed for this
     def index
+        #get all the campaigns
         @campaigns = Campaign.all
-        render json: @campaigns, status: :ok
+        #loop through each campaign in the @campaigns object and store the campaign id, name and goal. The goal is originally in cents so we are displaying it in dollars
+        campaigns_hash_array = @campaigns.collect{|campaign| {"campaign_id"=> campaign.id, "campaign_name" => campaign.name, "campaign_goal" => campaign.goal_cents/100}}
+        render json: campaigns_hash_array, status: :ok
     end
-
-    def create
-        campaigns = Campaign.all
-        if id = params[:id]
-            campaigns = campaigns.where(id: id)
-        end
-        render json: campaigns
-    end
-
-    def show
-      render json: @campaign
-    end
-
-
   end
-
-
 end
 
 
