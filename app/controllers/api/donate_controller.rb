@@ -14,7 +14,7 @@ module Api
                                  amount: params[:amount],
                              })
       response = WEPAY.call("/checkout/create", @campaign.user.wepay_access_token, {
-                                                  account_id: user.wepay_account_id,
+                                                  account_id: @campaign.user.wepay_account_id,
                                                   short_description: "Donation",
                                                   type: "DONATION",
                                                   amount: params[:amount],
