@@ -1,20 +1,23 @@
 module Api
   class LoginController < ApplicationController
 
+    #the create function corresponds to the HTTP POST request. This function returns the authentication token when the user email and password are verified.
     def create
-
       #create local variables which store the user_email and user_password entered as in the parameters for the /login API call
       user_email = params[:user_email]
       user_password = params[:password]
-      is_user_authenticated = User.authenticate(user_email, user_password)
 
+      #check to see if the user is authenticated via their entered email and password
+      is_user_authenticated = User.authenticate(user_email, user_password)
+      #if the user is authenticated, then return the token. The merchant will need this token as a parameter to view his/her campaigns
       if(is_user_authenticated)
         user = User.find_by_email(user_email)
+        user_id = user.id
         user_hash = user.hash
         token = Digest::SHA2.hexdigest(user.hash)
-        render json: user
+        retIDandToken = {"user_id"=> user_id ,"token" => token}
+        render json: retIDandToken
       end
-
     end
 
     private
