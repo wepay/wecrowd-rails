@@ -35,6 +35,13 @@ module ErrorHelper
     return errorObj
   end
 
+  def donation_amount_error
+    code = 302
+    message = "The donation amount must be greater than 1. Please enter in a different amount to donate."
+    errorObj = {"error_code"=> code, "error_message"=> message}
+    return errorObj
+  end
+
   def token_auth_error
 
     code = 401
