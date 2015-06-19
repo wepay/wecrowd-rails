@@ -17,6 +17,9 @@ module Api
         token = Digest::SHA2.hexdigest(user.hash)
         retIDandToken = {"user_id"=> user_id ,"token" => token}
         render json: retIDandToken
+
+      else
+        render json: password_auth_error
       end
     end
 

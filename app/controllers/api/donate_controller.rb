@@ -11,10 +11,11 @@ module Api
                              email: params[:user_email]
                          })
         unless user.valid? && user.save
-          error(user.errors.full_messages)
+          render json: user_invalid_error
         end
       end
-      @campaign = Campaign.find(params[:campaign_id])
+      campaign_id = params[:campaign_id]
+      @campaign = Campaign.find_by_id(campaign_id)
       @user_id = user.id
 
 
@@ -36,7 +37,7 @@ module Api
                                                   payment_method_id: payment.wepay_credit_card_id,
                                                   callback_uri: payment.callback_uri})
       if response["error"]
-        throw response["error_description"]
+        render json: wepay_checkout_create_error
       end
       payment.state = response["state"]
       payment.wepay_checkout_id = response["checkout_id"]
@@ -46,6 +47,9 @@ module Api
       if payment.valid? && payment.save
         @campaign.update_amount_donated
         render json: response, status: 201
+
+      else
+        render json: payment_invalid_error
       end
 
     end

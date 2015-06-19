@@ -5,10 +5,13 @@ module Api
     def create
       campaign_id = params[:campaign_id]
       campaign = Campaign.find_by_id(campaign_id)
-      retDetails = {"campaign_id"=> campaign.id, "campaign_name"=> campaign.name, "campaign_description"=> campaign.description, "campaign_goal"=> campaign.goal_cents/100, "campaign_progress"=> campaign.amount_donated_cents/100}
-      render json: retDetails
+      if (campaign!=nil)
+        retDetails = {"campaign_id"=> campaign.id, "campaign_name"=> campaign.name, "campaign_description"=> campaign.description, "campaign_goal"=> campaign.goal_cents/100, "campaign_progress"=> campaign.amount_donated_cents/100}
+        render json: retDetails
+      else
+        render json: campaign_does_not_exist_error
+      end
     end
-
     private
     def campaign_params
       params.require(:campaign).permit(:campaign_id)

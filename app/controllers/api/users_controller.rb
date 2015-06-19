@@ -17,6 +17,8 @@ module Api
         users_campaigns = user.campaigns
         campaigns_hash_array = users_campaigns.collect{|campaign| {"campaign_id"=> campaign.id, "campaign_name"=> campaign.name, "campaign_description"=> campaign.description, "campaign_goal"=> campaign.goal_cents/100, "campaign_progress"=> campaign.amount_donated_cents/100}}
         render json: campaigns_hash_array
+      else
+        render json: token_auth_error
       end
    end
     private
