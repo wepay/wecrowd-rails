@@ -2,6 +2,7 @@ The WeCrowd API is an API written in Ruby on Rails for the existing wecrowd-rail
 
 The specifics of the endpoints are as follows:
 
+
 **API endpoint: /api/campaigns  (This is a HTTP GET request).**
 
 No parameters needed for this API call
@@ -30,6 +31,8 @@ Error codes:
 
 
 
+
+
 **API endpoint: /api/campaigns (This is a HTTP Post request)**
 
 Parameters:
@@ -39,12 +42,11 @@ Parameters:
 | campaign\_id | Yes | Integer | The unique ID of the campaign |
 
 Example:
-
+<pre><code>
  {
-
-  "campaign\_id" : 1234567
-
+    "campaign\_id" : 1234567
  }
+ </code></pre>
 
 **Response:**
 
@@ -66,6 +68,10 @@ Error codes:
 
 504: cannot\_create\_campaigns\_error: "Please create a new campaign through the website. This API endpoint does not allow for creating campaigns."
 
+
+
+
+
 **API Endpoint: /api/donate (This is a HTTP POST request)**
 
 Parameters:
@@ -79,21 +85,15 @@ Parameters:
 | amount | Yes | Integer | The amount the payer wants to donate to the campaign |
 
 Example:
-
+<pre><code>
 {
-
   "campaign\_id" : 1234567,
-
   "amount": 200.00,
-
   "name": "Bob Smith",
-
   "email": "test@example.com",
-
   "cc\_token": "0a1b2c3d4e"
-
- }
-
+}
+ </code></pre>
 **Response:**
 
 
@@ -119,6 +119,10 @@ Error codes:
 
 The merchant should be able to login to their WeCrowd account. They should be able to view their campaigns (that they have posted). They should be able to view the details of a campaign they have selected. Finally, the merchant should be able to charge a card for their campaign.
 
+
+
+
+
 **API Endpoint: /api/login (This is a HTTP POST request)**
 
 Parameters:
@@ -129,15 +133,12 @@ Parameters:
 | password | Yes | String | User's password |
 
 Example:
-
+<pre><code>
 {
-
- "email": "test@example.com",
-
- "password": "testpassword123"
-
+    "email": "test@example.com",
+    "password": "testpassword123"
 }
-
+ </code></pre>
 **Response:**
 
 
@@ -153,6 +154,10 @@ Error codes:
 
 501: only\_post\_error: "The only HTTP request that is associated with this API endpoint is POST. Please try again with the appropriate HTTP request configuration."
 
+
+
+
+
 **API Endpoint: /api/users (This is a HTTP POST request)**
 
 Parameters:
@@ -163,15 +168,12 @@ Parameters:
 | token | Yes | String | The token the user receives after logging into WeCrowd |
 
 Example:
-
+<pre><code>
 {
-
- "user\_id" : 1234342,
-
- "token": "1a3v56x7p89ac"
-
+    "user\_id" : 1234342,
+    "token": "1a3v56x7p89ac"
 }
-
+ </code></pre>
 **Response:**
 
 The response object will be an array of campaign objects that are associated with this user/merchant. Each campaign object will have its campaign ID, campaign name, campaign goal, and campaign progress (how much of goal has been so far). The following contains the fields of one of those arbitrary campaign objects:
