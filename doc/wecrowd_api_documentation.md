@@ -30,15 +30,11 @@ Error codes:
 
 504: cannot\_create\_campaigns\_error: "Please create a new campaign through the website. This API endpoint does not allow for creating campaigns."
 <br>
-
-
-
-
-
-
-
-
-</br>
+<br>
+<br>
+<br>
+<br>
+<br>
 **API endpoint: /api/campaigns (This is a HTTP Post request)**
 
 Parameters:
@@ -74,15 +70,11 @@ Error codes:
 
 504: cannot\_create\_campaigns\_error: "Please create a new campaign through the website. This API endpoint does not allow for creating campaigns."
 <br>
-
-
-
-
-
-
-
-
-</br>
+<br>
+<br>
+<br>
+<br>
+<br>
 **API Endpoint: /api/donate (This is a HTTP POST request)**
 
 Parameters:
@@ -126,24 +118,15 @@ Error codes:
 
 501: only\_post\_error: "The only HTTP request that is associated with this API endpoint is POST. Please try again with the appropriate HTTP request configuration."
 <br>
-
-
-
-
-
-
-
-
-</br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 **Merchant Side**
 
 The merchant should be able to login to their WeCrowd account. They should be able to view their campaigns (that they have posted). They should be able to view the details of a campaign they have selected. Finally, the merchant should be able to charge a card for their campaign.
-
-
-
-
-
 
 
 **API Endpoint: /api/login (This is a HTTP POST request)**
@@ -177,16 +160,11 @@ Error codes:
 
 501: only\_post\_error: "The only HTTP request that is associated with this API endpoint is POST. Please try again with the appropriate HTTP request configuration."
 <br>
-
-
-
-
-
-
-
-
-</br>
-
+<br>
+<br>
+<br>
+<br>
+<br>
 **API Endpoint: /api/users (This is a HTTP POST request)**
 
 Parameters:
