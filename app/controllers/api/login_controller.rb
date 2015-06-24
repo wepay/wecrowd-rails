@@ -19,32 +19,32 @@ module Api
         render json: retIDandToken
 
       else
-        render json: password_auth_error
+        render json: password_auth_error, :status => 400
       end
     end
 
     def index
-      render json: only_post_error
+      render json: only_post_error, :status => 404
     end
 
     def new
-      render json: only_post_error
+      render json: only_post_error, :status => 404
     end
 
     def show
-      render json: only_post_error
+      render json: only_post_error, :status => 404
     end
 
     def edit
-      render json: only_post_error
+      render json: only_post_error, :status => 404
     end
 
     def update
-      render json: only_post_error
+      render json: only_post_error, :status => 404
     end
 
     def destroy
-      render json: only_post_error
+      render json: only_post_error, :status => 404
     end
 
     private

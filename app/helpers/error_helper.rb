@@ -73,7 +73,7 @@ module ErrorHelper
 
   def only_get_and_post_error
     code = 502
-    message = "The only HTTP requests that are associated with this API endpoint are GET and POST. Please try again with the appropriate HTTP request configuration."
+    message = "The only HTTP request that is associated with this API endpoint are GET and POST. Please try again with the appropriate HTTP request configuration."
     errorObj = {"error_code"=> code, "error_message"=> message}
     return errorObj
   end

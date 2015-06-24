@@ -43,7 +43,7 @@
                                                     payment_method_id: payment.wepay_credit_card_id,
                                                     callback_uri: payment.callback_uri})
           if response["error"]
-            render json: wepay_checkout_create_error
+            render json: wepay_checkout_create_error, :status => 500
           end
           payment.state = response["state"]
           payment.wepay_checkout_id = response["checkout_id"]
@@ -54,38 +54,38 @@
             @campaign.update_amount_donated
             render json: {"checkout_id" => response['checkout_id']}, status: 201
           else
-            render json: payment_invalid_error
+            render json: payment_invalid_error, :status => 500
           end
         else
-          render json: campaign_does_not_exist_error
+          render json: campaign_does_not_exist_error, :status => 404
         end
         else
-          render json: donation_amount_error
+          render json: donation_amount_error, :status => 400
         end
       end
 
       def index
-        render json: only_post_error
+        render json: only_post_error, :status => 404
       end
 
       def new
-        render json: only_post_error
+        render json: only_post_error, :status => 404
       end
 
       def show
-        render json: only_post_error
+        render json: only_post_error, :status => 404
       end
 
       def edit
-        render json: only_post_error
+        render json: only_post_error, :status => 404
       end
 
       def update
-        render json: only_post_error
+        render json: only_post_error, :status => 404
       end
 
       def destroy
-        render json: only_post_error
+        render json: only_post_error, :status => 404
       end
 
 
