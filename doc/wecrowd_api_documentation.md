@@ -2,7 +2,8 @@ The WeCrowd API is an API written in Ruby on Rails for the existing wecrowd-rail
 
 The specifics of the endpoints are as follows:
 
-```
+
+
 **API endpoint: /api/campaigns  (This is a HTTP GET request).**
 
 No parameters needed for this API call
@@ -28,14 +29,16 @@ Error codes:
 503: cannot\_edit\_error: "Please make edits through the website. This API endpoint does not allow for edits."
 
 504: cannot\_create\_campaigns\_error: "Please create a new campaign through the website. This API endpoint does not allow for creating campaigns."
-```
+<br>
 
 
 
 
 
 
-```
+
+
+</br>
 **API endpoint: /api/campaigns (This is a HTTP Post request)**
 
 Parameters:
@@ -70,14 +73,16 @@ Error codes:
 503: cannot\_edit\_error: "Please make edits through the website. This API endpoint does not allow for edits."
 
 504: cannot\_create\_campaigns\_error: "Please create a new campaign through the website. This API endpoint does not allow for creating campaigns."
-```
+<br>
 
 
 
 
 
 
-```
+
+
+</br>
 **API Endpoint: /api/donate (This is a HTTP POST request)**
 
 Parameters:
@@ -120,10 +125,16 @@ Error codes:
 302: donation\_amount\_error: "The donation amount must be greater than 1. Please enter in a different amount to donate."
 
 501: only\_post\_error: "The only HTTP request that is associated with this API endpoint is POST. Please try again with the appropriate HTTP request configuration."
-```
+<br>
 
 
 
+
+
+
+
+
+</br>
 
 **Merchant Side**
 
@@ -135,7 +146,6 @@ The merchant should be able to login to their WeCrowd account. They should be ab
 
 
 
-```
 **API Endpoint: /api/login (This is a HTTP POST request)**
 
 Parameters:
@@ -166,14 +176,17 @@ Error codes:
 400: password\_auth\_error: "The user could not be authenticated with the given user email and password. Please try again."
 
 501: only\_post\_error: "The only HTTP request that is associated with this API endpoint is POST. Please try again with the appropriate HTTP request configuration."
-```
+<br>
 
 
 
 
 
 
-```
+
+
+</br>
+
 **API Endpoint: /api/users (This is a HTTP POST request)**
 
 Parameters:
@@ -209,4 +222,3 @@ Error codes:
 401: token\_auth\_error: "The user could not be authenticated with the given user ID and token. Please try again."
 
 501: only\_post\_error: "The only HTTP request that is associated with this API endpoint is POST. Please try again with the appropriate HTTP request configuration."
-```
