@@ -18,7 +18,32 @@ module Api
       else
         render json: token_auth_error
       end
-   end
+    end
+
+    def index
+      render json: only_post_error
+    end
+
+    def new
+      render json: only_post_error
+    end
+
+    def show
+      render json: only_post_error
+    end
+
+    def edit
+      render json: only_post_error
+    end
+
+    def update
+      render json: only_post_error
+    end
+
+    def destroy
+      render json: only_post_error
+    end
+
     private
     def users_params
       params.require(:user).permit(:user_id, :token)

@@ -52,7 +52,7 @@
           #if the payment is valid and saved, then update the campaign progress (how much money is donated towards the campaign)
           if payment.valid? && payment.save
             @campaign.update_amount_donated
-            render json: response, status: 201
+            render json: {"checkout_id" => response['checkout_id']}, status: 201
           else
             render json: payment_invalid_error
           end
@@ -62,7 +62,33 @@
         else
           render json: donation_amount_error
         end
-        end
+      end
+
+      def index
+        render json: only_post_error
+      end
+
+      def new
+        render json: only_post_error
+      end
+
+      def show
+        render json: only_post_error
+      end
+
+      def edit
+        render json: only_post_error
+      end
+
+      def update
+        render json: only_post_error
+      end
+
+      def destroy
+        render json: only_post_error
+      end
+
+
      private
       def payment_params
         params.require(:payment).permit(:campaign_id, :user_email, :user_name, :credit_card_id, :amount)

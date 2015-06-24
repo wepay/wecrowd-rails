@@ -42,6 +42,13 @@ module ErrorHelper
     return errorObj
   end
 
+  def password_auth_error
+    code = 400
+    message = "The user could not be authenticated with the given user email and password. Please try again."
+    errorObj = {"error_code"=> code, "error_message"=> message}
+    return errorObj
+  end
+
   def token_auth_error
 
     code = 401
@@ -50,11 +57,40 @@ module ErrorHelper
     return errorObj
   end
 
-
-  def password_auth_error
-    code = 400
-    message = "The user could not be authenticated with the given user email and password. Please try again."
+  def only_get_error
+    code = 500
+    message = "The only HTTP request that is associated with this API endpoint is GET. Please try again with the appropriate HTTP request configuration."
     errorObj = {"error_code"=> code, "error_message"=> message}
     return errorObj
   end
+
+  def only_post_error
+    code = 501
+    message = "The only HTTP request that is associated with this API endpoint is POST. Please try again with the appropriate HTTP request configuration."
+    errorObj = {"error_code"=> code, "error_message"=> message}
+    return errorObj
+  end
+
+  def only_get_and_post_error
+    code = 502
+    message = "The only HTTP requests that are associated with this API endpoint are GET and POST. Please try again with the appropriate HTTP request configuration."
+    errorObj = {"error_code"=> code, "error_message"=> message}
+    return errorObj
+  end
+
+  def cannot_edit_error
+    code = 503
+    message = "Please make edits through the website. This API endpoint does not allow for edits."
+    errorObj = {"error_code"=> code, "error_message"=> message}
+    return errorObj
+  end
+
+  def cannot_create_campaigns_error
+    code = 504
+    message = "Please create a new campaign through the website. This API endpoint does not allow for creating campaigns."
+    errorObj = {"error_code"=> code, "error_message"=> message}
+    return errorObj
+  end
+
+
 end

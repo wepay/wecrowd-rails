@@ -23,10 +23,36 @@ module Api
       end
     end
 
+    def index
+      render json: only_post_error
+    end
+
+    def new
+      render json: only_post_error
+    end
+
+    def show
+      render json: only_post_error
+    end
+
+    def edit
+      render json: only_post_error
+    end
+
+    def update
+      render json: only_post_error
+    end
+
+    def destroy
+      render json: only_post_error
+    end
+
     private
     def login_params
       params.require(:user).permit(:user_email, :password)
     end
+
+
 
   end
 end

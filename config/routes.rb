@@ -37,21 +37,12 @@ Rails.application.routes.draw do
   get 'welcome/about'
   get 'welcome/terms'
 
-  #api, can definitely change later
-  #namespace :api, path: '/', constraints: { subdomain: 'api' } do
-  #  resources :campaigns
-  #end
-
  namespace :api do
-     resources :campaigns
-     resources :donate
-     resources :details
-     resources :login
-     resources :users
-
+     resources :campaigns, defaults: {format: :json}
+     resources :donate, defaults: {format: :json}
+     resources :login, defaults: {format: :json}
+     resources :users, defaults: {format: :json}
  end
-
-
 
 
   root 'welcome#index'

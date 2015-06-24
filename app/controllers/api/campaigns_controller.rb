@@ -13,6 +13,51 @@ module Api
           render json: no_campaigns_error
         end
     end
+
+    #the create function corresponds to the HTTP POST request. The only parameter needed for this is campaign id. It will display more campaign details corresponding to the given campaign ID.
+    def create
+      campaign_id = params[:campaign_id]
+      campaign = Campaign.find_by_id(campaign_id)
+      if (campaign!=nil)
+        retDetails = {"campaign_id"=> campaign.id, "campaign_name"=> campaign.name, "campaign_description"=> campaign.description, "campaign_goal"=> campaign.goal_cents/100, "campaign_progress"=> campaign.amount_donated_cents/100}
+        render json: retDetails
+      else
+        render json: campaign_does_not_exist_error
+      end
+    end
+
+    #the show function corresponds to the HTTP GET request. However, this function takes in the campaign ID parameter. If the API user wanted to see details about the campaign which corresponds to campaign ID 5, they can use the endpoint GET  api/campaigns/5 and the details will be displayed accordingly
+    def show
+      campaign_id = params[:id]
+      campaign = Campaign.find(campaign_id)
+      if (campaign!=nil)
+        retDetails = {"campaign_id"=> campaign.id, "campaign_name"=> campaign.name, "campaign_description"=> campaign.description, "campaign_goal"=> campaign.goal_cents/100, "campaign_progress"=> campaign.amount_donated_cents/100}
+        render json: retDetails
+      else
+        render json: campaign_does_not_exist_error
+      end
+    end
+
+    def new
+      render json: cannot_create_campaigns_error
+    end
+
+    def edit
+      render json: cannot_edit_error
+    end
+
+    def update
+      render json: only_get_and_post_error
+    end
+
+    def destroy
+      render json: only_get_and_post_error
+    end
+
+    def campaign_params
+      params.require(:campaign).permit(:campaign_id)
+    end
+
   end
 end
 
