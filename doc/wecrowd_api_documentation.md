@@ -33,6 +33,9 @@ Error codes:
 
 
 
+
+
+
 **API endpoint: /api/campaigns (This is a HTTP Post request)**
 
 Parameters:
@@ -44,7 +47,7 @@ Parameters:
 Example:
 <pre><code>
  {
-    "campaign\_id" : 1234567
+    "campaign_id" : 1234567
  }
  </code></pre>
 
@@ -72,6 +75,9 @@ Error codes:
 
 
 
+
+
+
 **API Endpoint: /api/donate (This is a HTTP POST request)**
 
 Parameters:
@@ -87,11 +93,11 @@ Parameters:
 Example:
 <pre><code>
 {
-  "campaign\_id" : 1234567,
+  "campaign_id" : 1234567,
   "amount": 200.00,
   "name": "Bob Smith",
   "email": "test@example.com",
-  "cc\_token": "0a1b2c3d4e"
+  "cc_token": "0a1b2c3d4e"
 }
  </code></pre>
 **Response:**
@@ -118,6 +124,9 @@ Error codes:
 **Merchant Side**
 
 The merchant should be able to login to their WeCrowd account. They should be able to view their campaigns (that they have posted). They should be able to view the details of a campaign they have selected. Finally, the merchant should be able to charge a card for their campaign.
+
+
+
 
 
 
@@ -158,6 +167,9 @@ Error codes:
 
 
 
+
+
+
 **API Endpoint: /api/users (This is a HTTP POST request)**
 
 Parameters:
@@ -170,7 +182,7 @@ Parameters:
 Example:
 <pre><code>
 {
-    "user\_id" : 1234342,
+    "user_id" : 1234342,
     "token": "1a3v56x7p89ac"
 }
  </code></pre>
