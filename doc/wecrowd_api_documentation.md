@@ -1,9 +1,12 @@
 The WeCrowd API is an API written in Ruby on Rails for the existing wecrowd-rails repository, which contains the source code for the WeCrowd website. The API currently has endpoints for viewing all campaigns, viewing a specific campaign, donating to a specific campaign, a WeCrowd user logging in, and a WeCrowd user viewing his/her respective campaigns upon logging in. The API was created for the purpose of a client being able to easily interact with the WeCrowd server. A specific case of this interaction will be in the mobile demo of WeCrowd (currently in progress).
-
+<br>
 The specifics of the endpoints are as follows:
-
-
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 **API endpoint: /api/campaigns  (This is a HTTP GET request).**
 
 No parameters needed for this API call
@@ -11,8 +14,6 @@ No parameters needed for this API call
 **Response Object:**
 
 The response object will be an array of campaign objects which contain the campaign name and goal.
-
-
 
 | Response | Type | Description |
 | --- | --- | --- |
@@ -99,8 +100,6 @@ Example:
  </code></pre>
 **Response:**
 
-
-
 | Response | Type | Description |
 | --- | --- | --- |
 | checkout\_id | Integer | The unique ID (from the checkout/create call) |
@@ -123,12 +122,15 @@ Error codes:
 <br>
 <br>
 <br>
-
 **Merchant Side**
 
 The merchant should be able to login to their WeCrowd account. They should be able to view their campaigns (that they have posted). They should be able to view the details of a campaign they have selected. Finally, the merchant should be able to charge a card for their campaign.
-
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 **API Endpoint: /api/login (This is a HTTP POST request)**
 
 Parameters:
@@ -146,8 +148,6 @@ Example:
 }
  </code></pre>
 **Response:**
-
-
 
 | Response | Type | Description |
 | --- | --- | --- |
@@ -184,8 +184,6 @@ Example:
 **Response:**
 
 The response object will be an array of campaign objects that are associated with this user/merchant. Each campaign object will have its campaign ID, campaign name, campaign goal, and campaign progress (how much of goal has been so far). The following contains the fields of one of those arbitrary campaign objects:
-
-
 
 | Response | Type | Description |
 | --- | --- | --- |
