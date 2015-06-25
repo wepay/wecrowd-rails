@@ -36,7 +36,10 @@ Error codes:
 <br>
 <br>
 <br>
-**API endpoint: /api/campaigns/:campaign_id (This is a HTTP GET request. Enter in the campaign ID directly in the endpoint url. For example: /api/campaigns/1 to see the details of the campaign with campaign_id =1)**
+**API endpoint: /api/campaigns/:campaign_id 
+<br>
+<br>
+(This is a HTTP GET request. Enter in the campaign ID directly in the endpoint url. For example: /api/campaigns/1 to see the details of the campaign with campaign_id =1)**
 
 **Response:**
 
