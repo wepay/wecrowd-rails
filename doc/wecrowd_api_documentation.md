@@ -36,20 +36,7 @@ Error codes:
 <br>
 <br>
 <br>
-**API endpoint: /api/campaigns (This is a HTTP Post request)**
-
-Parameters:
-
-| Parameter | Required | Type | Description |
-| --- | --- | --- | --- |
-| campaign\_id | Yes | Integer | The unique ID of the campaign |
-
-Example:
-<pre><code>
- {
-    "campaign_id" : 1234567
- }
- </code></pre>
+**API endpoint: /api/campaigns/:campaign_id (This is a HTTP GET request. Enter in the campaign ID directly in the endpoint url. For example: /api/campaigns/1 to see the details of the campaign with campaign_id =1)**
 
 **Response:**
 
