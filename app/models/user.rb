@@ -1,11 +1,13 @@
 require 'bcrypt'
+require 'securerandom'
 
 class User < ActiveRecord::Base
-  
+
   validates :name,  :presence => true
   validates :email, :presence => true
   validates :email, :uniqueness => { :case_sensitive => false }
   validates :email, :format => { :with => /.+@.+\..+/, :message => " is invalid" }
+
   
   # each user can have many donation campaigns
   has_many :campaigns
@@ -90,6 +92,7 @@ class User < ActiveRecord::Base
     })
     if response['error'].present?
       raise response['error_description']
+
     end
     self.wepay_access_token = response['access_token']
     self.wepay_user_id      = response['user_id']
@@ -174,6 +177,8 @@ class User < ActiveRecord::Base
   def role
     super || ROLE_DEFAULT
   end
-  
+
+
+
   
 end

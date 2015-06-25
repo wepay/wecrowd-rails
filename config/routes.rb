@@ -36,7 +36,15 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get 'welcome/about'
   get 'welcome/terms'
-  
+
+ namespace :api do
+     resources :campaigns, defaults: {format: :json}
+     resources :donate, defaults: {format: :json}
+     resources :login, defaults: {format: :json}
+     resources :users, defaults: {format: :json}
+ end
+
+
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
