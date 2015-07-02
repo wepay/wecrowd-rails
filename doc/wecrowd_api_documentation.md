@@ -83,9 +83,7 @@ Example:
 {
   "campaign_id" : 1234567,
   "amount": 200.00,
-  "name": "Bob Smith",
-  "email": "test@example.com",
-  "cc_token": "0a1b2c3d4e"
+  "credit_card_id": "0a1b2c3d4e"
 }
  </code></pre>
 **Response:**

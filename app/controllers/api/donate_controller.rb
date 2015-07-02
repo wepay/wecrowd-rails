@@ -5,33 +5,21 @@
       def create
 
         campaign_id = params[:campaign_id]
-        user_email = params[:user_email]
-        user_name = params[:user_name]
         credit_card_id = params[:credit_card_id]
         amount = params[:amount]
+
+        #testing
+        campaign = Campaign.find_by_id(campaign_id)
+        user_id = campaign.user_id
         if(amount>1)
-          user = User.find_by_email(user_email)
-
-          if !user # if not, then create the user
-            user = User.new({
-                                 name: user_name,
-                                 email: user_email
-                             })
-            unless user.valid? && user.save
-              render json: user_invalid_error
-            end
-          end
-
-          @campaign = Campaign.find_by_id(campaign_id)
-          @user_id = user.id
-          if(@campaign!=nil)
+          if(campaign!=nil)
             #create the payment object
             payment = Payment.new({
-                                   campaign_id: campaign_id,
-                                   payer_id: @user_id,
-                                   wepay_credit_card_id: credit_card_id,
-                                   amount: amount,
-                               })
+                                      campaign_id: campaign_id,
+                                      payer_id: user_id,
+                                      wepay_credit_card_id: credit_card_id,
+                                      amount: amount,
+                                  })
             if !payment.valid?
               render json: error(payment.errors.full_messages)
             end
@@ -41,9 +29,9 @@
               render json: payment_invalid_error
             end
           end
-
         end
       end
+
 
       def index
         render json: only_post_error, :status => 404
@@ -72,7 +60,7 @@
 
      #private
       def payment_params
-        params.require(:payment).permit(:campaign_id, :user_email, :user_name, :credit_card_id, :amount)
+        params.require(:payment).permit(:campaign_id, :credit_card_id, :amount)
       end
 
     end
