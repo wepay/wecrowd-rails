@@ -24,6 +24,7 @@
               render json: error(payment.errors.full_messages)
             end
             if payment.valid? && payment.create_checkout && payment.save
+              campaign.update_amount_donated
               render json: {"checkout_id" => payment["wepay_checkout_id"]}
             else
               render json: payment_invalid_error
