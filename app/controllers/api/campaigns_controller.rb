@@ -1,6 +1,6 @@
 module Api
   class CampaignsController < ApplicationController
-
+    protect_from_forgery with: :null_session
     #the index function corresponds to the HTTP GET request. No parameters needed for this
     def index
         #get all the campaigns

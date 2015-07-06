@@ -1,6 +1,6 @@
   module Api
     class DonateController < ApplicationController
-
+      protect_from_forgery with: :null_session
       #the create function corresponds to the HTTP POST request. This function performs a donation to the given campaign (via campaign ID)
       def create
 
