@@ -1,0 +1,23 @@
+<%= form_tag("/mfa/challenge/#{@user.id}", :class => 'col-md-3') do %>
+    <head>
+      <h1>MFA</h1>
+      <h2>Verify Code</h2>
+      <p> Enter the security code sent from WeCrowd below.</p>
+    </head>
+
+    <div class="form-group">
+      <label for="code">Code<b>*</b></label>
+      <%= text_field_tag(:code, params[:code], :class => 'text form-control', :placeholder => '6 digit code', :maxlength => 255) %>
+    </div>
+
+    <div class="row main-content-feature">
+      <label for="trust_computer"><%= check_box_tag(:trust_computer, true, true) %>
+        Trust <a target="_blank" href="/mfa/trust"/a> this computer.
+      </label>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn-orange">Confirm Code</button>
+    </div>
+
+<% end %>

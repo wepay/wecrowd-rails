@@ -1,3 +1,14 @@
+GIT
+  remote: git://github.com/thoughtbot/paperclip.git
+  revision: b417ed8871346aacabd959edd0585d7ca9f39e9c
+  specs:
+    paperclip (4.3.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      cocaine (~> 0.5.5)
+      mime-types
+      mimemagic (= 0.3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -31,6 +42,10 @@ GEM
     bcrypt (3.1.10)
     benchmark-ips (2.2.0)
     builder (3.2.2)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.7)
+      climate_control (>= 0.0.3, < 1.0)
     dalli (2.7.4)
     diff-lcs (1.2.5)
     erubis (2.7.0)
@@ -56,6 +71,7 @@ GEM
       treetop (~> 1.4.8)
     metaclass (0.0.4)
     mime-types (1.25.1)
+    mimemagic (0.3.0)
     mini_portile (0.6.2)
     minitest (5.3.3)
     mocha (0.14.0)
@@ -172,6 +188,7 @@ DEPENDENCIES
   mocha (~> 0.14)
   money-rails
   nokogiri (>= 1.4.5)
+  paperclip!
   paranoia (~> 2.0)
   pg
   racc (>= 1.4.6)

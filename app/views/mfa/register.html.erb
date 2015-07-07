@@ -1,0 +1,60 @@
+<%= form_tag("/mfa/register/#{@user.id}", :class => 'col-md-3') do %>
+
+    <head>
+      <h1>MFA</h1>
+      <h2>Register Device</h2>
+      <b>
+
+      </b>
+      <p>WeCrowd will send a numeric code to your phone number whenever you sign in from an untrusted computer or device.</p>
+    </head>
+
+    <div class="form-group">
+      <label for="type">Type<b>*</b></label>
+      <%= select_tag(:type, options_for_select([['SMS', 'sms'], ['Voice-Call', 'voice'],['Google Authenticator', 'authenticator']], selected: :option)) %>
+
+    </div>
+
+    <div class="form-group" id = "phone_div">
+      <label for="phone">Which phone number should we send codes to?<b>*</b></label>
+      <%= text_field_tag(:phone_number, params[:phone_number], :class => 'text form-control', :placeholder => '(000) 000- 0000', :maxlength => 255) %>
+    </div>
+    <b>
+
+    </b>
+
+    <div class="form-group">
+      <label for="password">Enter a nickname for your device<b>*</b></label>
+      <%= text_field_tag(:nickname, params[:nickname], :class => 'text form-control', :placeholder => 'My iPhone', :maxlength => 255) %>
+    </div>
+
+    <input type="hidden" name="redirect" value="<%= @redirect %>">
+
+    <div class="form-group">
+      <button type="submit" class="btn-orange">Send Code</button>
+    </div>
+
+
+    <script>
+
+      $("#type").change(function(){
+
+                  var x = $("#type").val()
+
+                  if(x== "authenticator")
+                  {
+                      document.getElementById("phone_div").style.display = "none";
+                  }
+                  else
+                  {
+                      document.getElementById("phone_div").style.display = "inline";
+                  }
+              }
+      )
+
+
+    </script>
+
+<% end %>
+
+

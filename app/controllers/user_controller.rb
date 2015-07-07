@@ -41,14 +41,114 @@ class UserController < ApplicationController
         return redirect_to("/login")
       else
         sign_in(@user)
+        @get_user = User.find_by_email(params[:email])
+        mfa = Mfa.find_by_user_id(@get_user.id)
+        is_there_MFA = @get_user.wants_MFA_enabled
+        if is_there_MFA == true
+          cookie = cookies.signed[:mfa_remember]
+          if cookie == nil
+            mfa.send_challenge
+            redirect_to("/mfa/verify/#{@user.id}")
+          else
+            mfa_id = mfa.wepay_mfa_id
+            cookie_validation_response = $mfa.validate_cookie(mfa_id, cookie)
+            does_challenge_need_to_be_sent = cookie_validation_response["challenge_required"]
+            if(does_challenge_need_to_be_sent == true)
+              mfa.send_challenge
+              redirect_to("/mfa/verify/#{@user.id}")
+            else
+              redirect_to("/user/view/#{@user.id}")
+            end
+          end
+        else
+          sign_in(@user)
+          if params[:redirect] && session[:redirects]
+            url = session[:redirects][params[:redirect]] || "/user/view/#{@user.id}"
+            return redirect_to(url)
+          end
+          return redirect_to("/user/view/#{@user.id}")
+
+=begin
+          if params[:redirect] && session[:redirects]
+            url = session[:redirects][params[:redirect]] || "/user/view/#{@user.id}"
+            return redirect_to(url)
+          end
+          return redirect_to("/user/view/#{@user.id}")
+=end
+
+
+
+
+=begin
+            $mfa.send_challenge
+            redirect_to("/mfa/verify/#{@user.id}")
+          else
+            mfa_id = $mfa.wepay_mfa_id
+            cookie_validation_response = $mfa.validate_cookie(mfa_id, cookie)
+            does_challenge_need_to_be_sent = cookie_validation_response["challenge_required"]
+            if(does_challenge_need_to_be_sent == true)
+              $mfa.send_challenge
+              redirect_to("/mfa/verify/#{@user.id}")
+            else
+              redirect_to("/user/view/#{@user.id}")
+            end
+
+          end
+
+=end
+        #else
+=begin
+          sign_in(@user)
+          if params[:redirect] && session[:redirects]
+            url = session[:redirects][params[:redirect]] || "/user/view/#{@user.id}"
+            return redirect_to(url)
+          end
+          return redirect_to("/user/view/#{@user.id}")
+=end
+        #end
+
+      end
+    end
+    end
+    end
+
+
+
+
+
+
+
+
+=begin
+        get_cookie = @user.wants_MFA_enabled
+        if(get_cookie)
+          mfa_id = $mfa.wepay_mfa_id
+          cookie = cookies.signed["mfa_remember"]
+          if cookie["error"]
+            $mfa.send_challenge
+            redirect_to("/mfa/verify/#{user_id}")
+          else
+          cookie_validation_response = $mfa.validate_cookie(mfa_id, cookie)
+          does_challenge_need_to_be_sent = cookie_validation_response["challenge_required"]
+          if (does_challenge_need_to_be_sent == false)
+            redirect_to("/user/view/#{@user.id}")
+          else
+            $mfa.send_challenge
+            redirect_to("/mfa/verify/#{user_id}")
+          end
+          end
+        else
+        sign_in(@user)
         if params[:redirect] && session[:redirects]
           url = session[:redirects][params[:redirect]] || "/user/view/#{@user.id}"
           return redirect_to(url)
         end
         return redirect_to("/user/view/#{@user.id}")
+        end
       end
     end
   end
+=end
 
   # GET /logout
   # if you are logged in, log yourself out

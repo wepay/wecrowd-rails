@@ -1,0 +1,18 @@
+<%= form_tag("/mfa/confirm/#{@user.id}", :class => 'col-md-3') do %>
+    <head>
+      <h1> Your MFA has been enabled!</h1>
+    </head>
+    <body>
+
+    <p>The code that you entered on the previous page has been verified and confirmed.</p>
+    <p>Every time you log in from an unrecognized account, you will prompted to enter in the new code that you will receive on your phone. </p>
+
+    <p> Click here to view your campaigns.</p>
+    <div class="form-group">
+      <button type="submit" class="btn-orange">View your campaigns</button>
+    </div>
+
+
+    </body>
+<% end %>
+

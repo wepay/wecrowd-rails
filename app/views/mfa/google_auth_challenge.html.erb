@@ -1,0 +1,24 @@
+<%= form_tag("/mfa/google_auth_challenge/#{@user.id}", :class => 'col-md-3') do %>
+    <head>
+      <h2>MFA using Google Authenticator</h2>
+      <p> Scan this image using Google Authenticator and enter in the code you receive.</p>
+    </head>
+    <body>
+
+    <div class="row">
+
+     <%= image_tag @auth_url.to_s%>
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="code">Enter your code here<b>*</b></label>
+      <%= text_field_tag(:code, params[:code], :class => 'text form-control', :placeholder => '6 digit code', :maxlength => 255) %>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn-orange">Confirm Code</button>
+    </div>
+    </body>
+<% end %>

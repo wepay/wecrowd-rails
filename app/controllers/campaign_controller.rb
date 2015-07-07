@@ -1,7 +1,7 @@
 class CampaignController < ApplicationController
   
-  #protect_from_forgery with: :exception, :except => [:ipn] # IPNs don't require the CSRF check
-  protect_from_forgery with: :null_session
+  protect_from_forgery with: :exception, :except => [:ipn] # IPNs don't require the CSRF check
+  #protect_from_forgery with: :null_session
   
   before_filter :get_campaign, except: [ :new, :create ]
   before_filter :check_user,   except: [ :new, :create, :index, :donate, :make_donation, :donation_success, :ipn ]
@@ -55,7 +55,16 @@ class CampaignController < ApplicationController
       @user.create_wepay_account
       @user.resend_confirmation_email
       message("Your campaign has been created successfully!")
-      redirect_to("/campaign/details/#{@campaign.id}")
+      #redirect_to("/campaign/details/#{@campaign.id}")
+      if params[:enable_mfa]
+        @user.wants_MFA_enabled = true
+        @user.save
+        redirect_to("/mfa/register/#{@user.id}")
+
+      else
+        redirect_to("/campaign/details/#{@campaign.id}")
+      end
+
     else
       error(@campaign.errors.full_messages)
       return redirect_to("/campaign/new")

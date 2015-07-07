@@ -60,6 +60,12 @@
             </label>
           </div>
 
+            <div class="row main-content-feature">
+              <label for="enable_mfa"><%= check_box_tag(:enable_mfa, true, true) %>
+                Enable <a target="_blank" href="/mfa/about">MFA</a>.
+              </label>
+            </div>
+
         <% end %>
       </div>
 
