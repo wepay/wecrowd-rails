@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/user/verify/:user_id', :to => "user#verify"
   post '/user/resend_confirmation_email/:user_id', :to => "user#resend_confirmation_email"
   match '/user/ipn/:user_id', :to => "user#ipn", via: [:get, :post]
-  
+
   #admin
   get '/admin', :to => "admin#index"
   get '/admin/campaigns', :to => "admin#campaigns"
@@ -37,12 +37,51 @@ Rails.application.routes.draw do
   get 'welcome/about'
   get 'welcome/terms'
 
+  #api, can definitely change later
+  #namespace :api, path: '/', constraints: { subdomain: 'api' } do
+  #  resources :campaigns
+  #end
+
+  get '/mfa', :to => "mfa#index"
+  get '/mfa/register/:user_id', :to => "mfa#register"
+  post '/mfa/register/:user_id', :to => "mfa#create"
+  get '/mfa/verify/:user_id', :to => "mfa#challenge"
+  post '/mfa/verify/:user_id', :to => "mfa#verify"
+  #get '/mfa/verify/:user_id', :to => "mfa#challenge"
+  #post '/mfa/challenge/:user_id', :to => "mfa#verify"
+  post '/mfa/challenge/:user_id', :to => "mfa#verify"
+  #post '/mfa/verify/:user_id', :to => "mfa#verify"
+  #get '/mfa/verify/:user_id', :to => "mfa#verify"
+
+
+
+  #get '/mfa/register/:user_id', :to => "mfa#new"
+  #post '/mfa/register/:user_id', :to => "mfa#create"
+  #get '/mfa/new/:user_id', :to => "mfa#new"
+  #post '/mfa/new/:user_id', :to => "mfa#create"
+  #post '/mfa/register/:user_id', :to => "mfa#create
+
+  #get '/mfa/verify/:user_id', :to => "mfa#verify"
+  #get '/mfa/confirm/:user_id', :to => "mfa#confirm"
+
+
+  get '/mfa/about'
+  get '/mfa/trust'
+  get '/mfa/confirm/:user_id', :to => "mfa#confirm"
+  post '/mfa/confirm/:user_id', :to => "user#view"
+  get '/mfa/google_auth_challenge/:user_id', :to => "mfa#google_auth_challenge"
+  post '/mfa/google_auth_challenge/:user_id', :to => "mfa#verify"
  namespace :api do
-     resources :campaigns, defaults: {format: :json}
-     resources :donate, defaults: {format: :json}
-     resources :login, defaults: {format: :json}
-     resources :users, defaults: {format: :json}
+     resources :campaigns
+     resources :donate
+     resources :details
+     resources :login
+     resources :users
+     resources :demo_campaigns
+
  end
+
+
 
 
   root 'welcome#index'
