@@ -50,6 +50,7 @@ Error codes:
 | campaign\_description | String | The description of the campaign (cause, purpose, etc.) |
 | campaign\_goal | Integer | How much money the campaign host/merchant  is trying to raise |
 | campaign\_progress | Integer | How much of the goal has been met so far |
+| campaign\_image\_url | String | The url corresponding to the image provided for the campaign |
 
 Error codes:
 
@@ -83,9 +84,7 @@ Example:
 {
   "campaign_id" : 1234567,
   "amount": 200.00,
-  "name": "Bob Smith",
-  "email": "test@example.com",
-  "cc_token": "0a1b2c3d4e"
+  "credit_card_id": "0a1b2c3d4e"
 }
  </code></pre>
 **Response:**
@@ -188,3 +187,33 @@ Error codes:
 401: token\_auth\_error: "The user could not be authenticated with the given user ID and token. Please try again."
 
 501: only\_post\_error: "The only HTTP request that is associated with this API endpoint is POST. Please try again with the appropriate HTTP request configuration."
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+**API endpoint: /api/featured_campaigns 
+<br>
+<br>
+(This is a HTTP GET request. You will be able to view all the featured campaigns.)**
+
+**Response:**
+
+| Response | Type | Description |
+| --- | --- | --- |
+| campaign\_id | Integer | The unique ID of the campaign |
+| campaign\_name | String | The name of the campaign |
+| campaign\_goal | Integer | How much money the campaign host/merchant  is trying to raise |
+| campaign\_image\_url | String | The url corresponding to the image provided for the campaign |
+
+Error codes:
+
+102: no\_featured\_campaigns\_error: "There are no campaigns that exist corresponding to the campaign ID provided. Please try a different campaign ID"
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+

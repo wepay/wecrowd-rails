@@ -1,6 +1,6 @@
 module Api
   class UsersController < ApplicationController
-
+    protect_from_forgery with: :null_session
     def create
 
       #create local variables which store the user_id and token entered as in the parameters for the /users API call
