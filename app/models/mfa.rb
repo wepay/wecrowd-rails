@@ -27,11 +27,6 @@ class Mfa < ActiveRecord::Base
 
                                             })
     end
-    if response["error"]
-      throw response["error_description"]
-    end
-    self.wepay_mfa_id = response['mfa_id']
-    self.save
     return response
 
   end
@@ -57,18 +52,42 @@ class Mfa < ActiveRecord::Base
     mfa_id = self.wepay_mfa_id
     code = code.to_s  #local variable code set equal to the parameter passed in, also named code
     cookie_domain = cookie_domain.to_s
+    if(keep_session == true)
+      challenge = {"code" => code, "keep_session" => keep_session, "cookie_domain" => cookie_domain}
+    else
+      challenge = {"code" => code}
+    end
+
+    response = WEPAY.call("/user/mfa/confirm", access_token, {
+                                                   mfa_id: mfa_id,
+                                                   challenge: challenge
+                                               })
+
+
+
+    return response
+
+
+
+
+
+=begin
+    access_token = self.user.wepay_access_token
+    mfa_id = self.wepay_mfa_id
+    code = code.to_s  #local variable code set equal to the parameter passed in, also named code
+    cookie_domain = cookie_domain.to_s
     challenge = {"code" => code, "keep_session" => keep_session, "cookie_domain" => cookie_domain}
     response = WEPAY.call("/user/mfa/confirm", access_token, {
                                                         mfa_id: mfa_id,
                                                         challenge: challenge
                                                     })
 
-    if response["error"]
-      throw response["error_description"]
-    end
-    self.state = "confirmed"
-    self.save
     return response
+=end
+
+
+
+
   end
 
   def image(url)

@@ -31,19 +31,20 @@ class MfaController < ApplicationController
     if $mfa.valid? && $mfa.save
       #render json: phone_number
       mfa_created = $mfa.register_mfa(phone_number)
+      if(mfa_created["error_description"] == "Invalid phone number.")
+        error("The phone number you entered is not valid. Please enter a valid phone number.")
+        redirect_to("/mfa/register/#{@user.id}")
+      else
       wepay_mfa_id = mfa_created['mfa_id']
       $mfa.wepay_mfa_id = wepay_mfa_id
+      $mfa.save
       if(mfa_type=="authenticator")
         @auth_url = mfa_created["challenge_data"]["qr"]["@2x"]
         render :action => 'google_auth_challenge', :user_id => @user.id
       else
       challenge_sent = $mfa.send_challenge
-      #redirect_to("/mfa/verify/#{:user_id}")
-      #redirect_to("/mfa/verify/#{@user.id}")
-      #render json: mfa_created
-
-      #uncomment the following line:
       redirect_to("/mfa/verify/#{@user.id}")
+      end
       end
     else
       $mfa.state = "failure"
@@ -70,13 +71,25 @@ class MfaController < ApplicationController
     if(params[:trust_computer])
       keep_session = true
     end
+    #render json: keep_session
+
     cookie_domain = request.host
     challenge_verified = $mfa.confirm_challenge(code, keep_session, cookie_domain)
-    $mfa.state = challenge_verified['state']
-    cookie_returned_by_wepay = challenge_verified['cookie']['signature']
-    cookie = cookie_returned_by_wepay.to_s
-    cookies.signed[:mfa_remember] = {:value => cookie, :expires => 1.minute.from_now}
-    redirect_to("/mfa/confirm/#{@user.id}")
+    if(challenge_verified["error_description"] == "Invalid code")
+      error("The code you entered is incorrect. Please enter the security code sent to your mobile device.")
+      redirect_to("/mfa/verify/#{@user.id}")
+    else
+      $mfa.state = challenge_verified['state']
+      $mfa.save
+      if(keep_session == true)
+        cookie_returned_by_wepay = challenge_verified['cookie']['signature']
+        cookie = cookie_returned_by_wepay.to_s
+      else
+        cookie = nil
+      end
+      cookies.signed[:mfa_remember] = {:value => cookie, :expires => 30.days.from_now}
+      redirect_to("/mfa/confirm/#{@user.id}")
+    end
 
   end
 

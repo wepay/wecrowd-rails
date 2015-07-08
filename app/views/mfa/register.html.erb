@@ -24,7 +24,7 @@
     </b>
 
     <div class="form-group">
-      <label for="password">Enter a nickname for your device<b>*</b></label>
+      <label for="password">Enter a nickname for your device</label>
       <%= text_field_tag(:nickname, params[:nickname], :class => 'text form-control', :placeholder => 'My iPhone', :maxlength => 255) %>
     </div>
 
@@ -39,7 +39,7 @@
 
       $("#type").change(function(){
 
-                  var x = $("#type").val()
+                  var x = $("#type").val();
 
                   if(x== "authenticator")
                   {
