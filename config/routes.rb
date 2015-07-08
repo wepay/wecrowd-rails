@@ -43,12 +43,9 @@ Rails.application.routes.draw do
      resources :details
      resources :login
      resources :users
-     resources :demo_campaigns
+     resources :featured_campaigns
 
  end
-
-
-
 
   root 'welcome#index'
 

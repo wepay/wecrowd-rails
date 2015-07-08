@@ -14,6 +14,13 @@ module ErrorHelper
     return errorObj
   end
 
+  def no_featured_campaigns_error
+    code = 102
+    message = "There are no featured campaigns available."
+    errorObj = {"error_code"=> code, "error_message"=> message}
+    return errorObj
+  end
+
   def user_invalid_error
     code = 200
     message = "This user is invalid. Please try specifying a different user name and email address."
