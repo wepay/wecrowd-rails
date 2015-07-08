@@ -1,6 +1,6 @@
 module Api
   class CampaignsController < ApplicationController
-
+    protect_from_forgery with: :null_session
     #the index function corresponds to the HTTP GET request. No parameters needed for this
     def index
         #get all the campaigns
@@ -31,7 +31,7 @@ module Api
       campaign_id = params[:id]
       campaign = Campaign.find(campaign_id)
       if (campaign!=nil)
-        retDetails = {"campaign_id"=> campaign.id, "campaign_name"=> campaign.name, "campaign_description"=> campaign.description, "campaign_goal"=> campaign.goal_cents/100, "campaign_progress"=> campaign.amount_donated_cents/100}
+        retDetails = {"campaign_id"=> campaign.id, "campaign_name"=> campaign.name, "campaign_description"=> campaign.description, "campaign_goal"=> campaign.goal_cents/100, "campaign_progress"=> campaign.amount_donated_cents/100, "campaign_image_url" => campaign.getimageurl(campaign.image)}
         render json: retDetails
       else
         render json: campaign_does_not_exist_error, :status => 404

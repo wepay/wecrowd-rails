@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/user/verify/:user_id', :to => "user#verify"
   post '/user/resend_confirmation_email/:user_id', :to => "user#resend_confirmation_email"
   match '/user/ipn/:user_id', :to => "user#ipn", via: [:get, :post]
-  
+
   #admin
   get '/admin', :to => "admin#index"
   get '/admin/campaigns', :to => "admin#campaigns"
@@ -36,14 +36,16 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get 'welcome/about'
   get 'welcome/terms'
-
+  
  namespace :api do
-     resources :campaigns, defaults: {format: :json}
-     resources :donate, defaults: {format: :json}
-     resources :login, defaults: {format: :json}
-     resources :users, defaults: {format: :json}
- end
+     resources :campaigns
+     resources :donate
+     resources :details
+     resources :login
+     resources :users
+     resources :featured_campaigns
 
+ end
 
   root 'welcome#index'
 

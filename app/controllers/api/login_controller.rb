@@ -1,5 +1,6 @@
 module Api
   class LoginController < ApplicationController
+    protect_from_forgery with: :null_session
 
     #the create function corresponds to the HTTP POST request. This function returns the authentication token when the user email and password are verified.
     def create
