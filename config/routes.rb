@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get 'welcome/about'
   get 'welcome/terms'
-  
+
 
   get '/mfa', :to => "mfa#index"
   get '/mfa/register/:user_id', :to => "mfa#register"
@@ -60,10 +60,6 @@ Rails.application.routes.draw do
      resources :users
 
  end
-
-
-
-
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

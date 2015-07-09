@@ -1,5 +1,4 @@
 require 'open-uri'
-require 'paperclip'
 class Mfa < ActiveRecord::Base
   belongs_to :user
   attr_accessor :picture

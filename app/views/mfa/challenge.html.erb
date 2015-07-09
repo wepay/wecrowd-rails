@@ -13,7 +13,8 @@
     <div class="row main-content-feature">
       <label for="trust_computer"><%= check_box_tag(:trust_computer, true, true) %>
       <!--  Trust <a target="_blank" href="/mfa/trust"/a> this computer. -->
-        <a data-toggle="modal" onclick = "load_modal()" >Trust this computer.</a>
+        Trust this computer
+        <a data-toggle="modal" onclick = "load_modal()" >?</a>
       </label>
     </div>
 
@@ -23,7 +24,7 @@
 
 <% end %>
 
-
+<!--
 <div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -32,6 +33,23 @@
     </div>
   </div>
 </div>
+-->
+
+<div class="modal fade" id = "myModal" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Trust this computer for 30 days</h4>
+      </div>
+      <div class="modal-body">
+        <p> You can choose to remember this computer for 30 days. This means that you can log in to WeCrowd without having to go through the MFA flow while the computer remains trusted. </p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 
 <script type="text/javascript">
     function load_modal(){
