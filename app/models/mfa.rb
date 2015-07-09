@@ -63,31 +63,7 @@ class Mfa < ActiveRecord::Base
                                                    challenge: challenge
                                                })
 
-
-
     return response
-
-
-
-
-
-=begin
-    access_token = self.user.wepay_access_token
-    mfa_id = self.wepay_mfa_id
-    code = code.to_s  #local variable code set equal to the parameter passed in, also named code
-    cookie_domain = cookie_domain.to_s
-    challenge = {"code" => code, "keep_session" => keep_session, "cookie_domain" => cookie_domain}
-    response = WEPAY.call("/user/mfa/confirm", access_token, {
-                                                        mfa_id: mfa_id,
-                                                        challenge: challenge
-                                                    })
-
-    return response
-=end
-
-
-
-
   end
 
   def image(url)
