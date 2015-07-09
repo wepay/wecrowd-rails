@@ -10,8 +10,6 @@ gem 'mocha', '~> 0.14', require: false
 gem 'rack-cache', '~> 1.2'
 gem 'jquery-rails', '~> 3.1.0'
 
-gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
-
 # require: false so bcrypt is loaded only when has_secure_password is used.
 # This is to avoid ActiveModel (and by extension the entire framework)
 # being dependent on a binary library.
