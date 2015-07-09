@@ -42,38 +42,61 @@ class UserController < ApplicationController
       else
         sign_in(@user)
         @get_user = User.find_by_email(params[:email])
-        mfa = Mfa.find_by_user_id(@get_user.id)
         is_there_MFA = @get_user.wants_MFA_enabled
+
+
+
+
+        #if the user wants MFA enabled
         if is_there_MFA == true
-          cookie = cookies.signed[:mfa_remember]
-          if cookie == nil
-            mfa.send_challenge
-            redirect_to("/mfa/verify/#{@user.id}")
-          else
-            mfa_id = mfa.wepay_mfa_id
-            cookie_validation_response = $mfa.validate_cookie(mfa_id, cookie)
-            does_challenge_need_to_be_sent = cookie_validation_response["challenge_required"]
-            if(does_challenge_need_to_be_sent == true)
-              mfa.send_challenge
-              redirect_to("/mfa/verify/#{@user.id}")
+          #get the user's MFA
+          mfa = Mfa.find_by_user_id(@get_user.id)
+          #check if mfa is nil. mfa could be null if the user indicated that he wanted MFA upon signing up but never went through with it (never went through the verification step). if mfa is null then go to the mfa register step.
+          if(mfa!=nil)
+
+            #here the mfa is not null but we are going to check if the state is confirmed. The state would be confirmed if the user went through the verification step and his/her security code is confirmed by WeCrowd
+
+            state = mfa.state
+            #if the state is confirmed, then check cookies. If it's not confirmed, then go to the verify step.
+            if(state == "confirmed")
+              cookie = cookies.signed[:mfa_remember]
+              if cookie == nil
+                mfa.send_challenge
+                redirect_to("/mfa/verify/#{@user.id}")
+              else
+                #mfa_id = mfa.wepay_mfa_id
+                mfa_id = mfa.wepay_mfa_id
+                cookie_validation_response = mfa.validate_cookie(mfa_id, cookie)
+                does_challenge_need_to_be_sent = cookie_validation_response["challenge_required"]
+                if(does_challenge_need_to_be_sent == true)
+                  mfa.send_challenge
+                  return redirect_to("/mfa/verify/#{@user.id}")
+                else
+                  return redirect_to("/user/view/#{@user.id}")
+                end
+              end
             else
-              redirect_to("/user/view/#{@user.id}")
+              #render json: mfa
+              return redirect_to("/mfa/verify/#{@get_user.id}")
             end
+          else
+              return redirect_to("/mfa/register/#{@get_user.id}")
+
           end
 
+
+        #the user did not want MFA enabled, so just
         else
-          sign_in(@user)
+          #sign_in(@user)
           if params[:redirect] && session[:redirects]
             url = session[:redirects][params[:redirect]] || "/user/view/#{@user.id}"
             return redirect_to(url)
           end
           return redirect_to("/user/view/#{@user.id}")
-
+        end
       end
     end
-    end
-
-    end
+  end
 
   # GET /logout
   # if you are logged in, log yourself out
