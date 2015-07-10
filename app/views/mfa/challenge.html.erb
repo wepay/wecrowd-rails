@@ -1,9 +1,9 @@
-<%= form_tag("/mfa/challenge/#{@user.id}", :class => 'col-md-3') do %>
-    <head>
+<%= form_tag("/mfa/challenge/#{@user.id}", :class => 'col-md-3 col-md-offset-4') do %>
+
       <h1>MFA</h1>
-      <h2>Verify Code</h2>
+      <h3>Verify Code</h3>
+
       <p> Enter the security code sent from WeCrowd below.</p>
-    </head>
 
     <div class="form-group">
       <label for="code">Code<b>*</b></label>

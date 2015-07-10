@@ -1,14 +1,9 @@
-<%= form_tag("/mfa/register/#{@user.id}", :class => 'col-md-3') do %>
+<%= form_tag("/mfa/register/#{@user.id}", :class => 'col-md-3 col-md-offset-4') do %>
 
-    <head>
       <h1>MFA</h1>
-      <h2>Register Device</h2>
-      <b>
+      <h3>Register Device</h3>
 
-      </b>
-
-      <p>WeCrowd will send a numeric code to your phone number whenever you sign in from an untrusted computer or device.</p>
-    </head>
+      <p>WeCrowd will send a numeric security code to your mobile device.</p>
 
     <div class="form-group">
       <label for="type">Type<b>*</b></label>
