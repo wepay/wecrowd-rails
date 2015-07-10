@@ -9,13 +9,10 @@ class MfaController < ApplicationController
     phone_number = params[:phone_number]
     state = "unconfirmed"
     #store the user's ID whose enabling MFA, the type of MFA they want, and nickname. The state is unconfirmed until after the call is made to WePay and confirmed
-    $mfa = Mfa.new({
-                                 user_id: @user.id,
-                                 mfa_type: mfa_type,
-                                 nickname: nickname,
-                                 state: state
-
-                             })
+    $mfa = Mfa.new({user_id: @user.id,
+                    mfa_type: mfa_type,
+                    nickname: nickname,
+                    state: state})
 
     if $mfa.valid? && $mfa.save
       #call the register_mfa method from the mfa model

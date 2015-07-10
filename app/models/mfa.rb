@@ -3,7 +3,6 @@ class Mfa < ActiveRecord::Base
   belongs_to :user
 
   def register_mfa(phone_number)
-
     access_token = self.user.wepay_access_token
     type = self.mfa_type
     nickname = self.nickname
@@ -18,7 +17,7 @@ class Mfa < ActiveRecord::Base
                                               })
 
     else
-    response = WEPAY.call("/user/mfa/create", access_token, {
+      response = WEPAY.call("/user/mfa/create", access_token, {
                                                 type: type,
                                                 nickname: nickname,
                                                 setup_data: set_up_data
@@ -26,26 +25,19 @@ class Mfa < ActiveRecord::Base
                                             })
     end
     return response
-
   end
 
   def send_challenge
-
     access_token = self.user.wepay_access_token
     mfa_id = self.wepay_mfa_id
-    response = WEPAY.call("/user/mfa/send_challenge", access_token, {
-                                                mfa_id: mfa_id
-
-                                            })
+    response = WEPAY.call("/user/mfa/send_challenge", access_token, {mfa_id: mfa_id})
     if response["error"]
       throw response["error_description"]
     end
     return response
-
   end
 
   def confirm_challenge(code, keep_session, cookie_domain)
-
     access_token = self.user.wepay_access_token
     mfa_id = self.wepay_mfa_id
     code = code.to_s  #local variable code set equal to the parameter passed in, also named code
@@ -57,10 +49,8 @@ class Mfa < ActiveRecord::Base
     end
 
     response = WEPAY.call("/user/mfa/confirm", access_token, {
-                                                   mfa_id: mfa_id,
-                                                   challenge: challenge
-                                               })
-
+                                                 mfa_id: mfa_id,
+                                                 challenge: challenge})
     return response
   end
 
@@ -68,11 +58,8 @@ class Mfa < ActiveRecord::Base
     mfa_id = mfa_id
     access_token = self.user.wepay_access_token
     response = WEPAY.call("/user/mfa/validate_cookie", access_token, {
-                                                 mfa_id: mfa_id,
-                                                 cookie: cookie
-                                             })
+                                                         mfa_id: mfa_id,
+                                                         cookie: cookie})
     return response
-
-
   end
 end
