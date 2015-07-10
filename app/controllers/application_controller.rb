@@ -6,12 +6,4 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include UserHelper
   include ErrorHelper
-
-
-  protected
-
-  def login_user(user)
-    session[:user_id] = user.id
-  end
-
 end

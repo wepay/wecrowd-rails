@@ -1,8 +1,6 @@
-require 'open-uri'
+
 class Mfa < ActiveRecord::Base
   belongs_to :user
-  attr_accessor :picture
-
 
   def register_mfa(phone_number)
 
@@ -10,6 +8,7 @@ class Mfa < ActiveRecord::Base
     type = self.mfa_type
     nickname = self.nickname
     set_up_data = {"phone_number" => phone_number}
+    cookie = nil
     #cookie = "WSIG=Ap4P….GTEq; Domain=foo.com; Path=/; Expires=Wed, 13 Jan 2015 22:23:01 GMT; Secure; HttpOnly"
 
     if(type == "authenticator")
@@ -65,11 +64,6 @@ class Mfa < ActiveRecord::Base
     return response
   end
 
-  def image(url)
-    self.picture = open(url)
-
-  end
-
   def validate_cookie(mfa_id, cookie)
     mfa_id = mfa_id
     access_token = self.user.wepay_access_token
@@ -80,9 +74,5 @@ class Mfa < ActiveRecord::Base
     return response
 
 
-  end
-
-  def getMfa(user_id)
-    return self.id
   end
 end

@@ -54,7 +54,6 @@ class CampaignController < ApplicationController
       @user.create_wepay_account
       @user.resend_confirmation_email
       message("Your campaign has been created successfully!")
-      #redirect_to("/campaign/details/#{@campaign.id}")
       if params[:enable_mfa]
         @user.wants_MFA_enabled = true
         @user.save

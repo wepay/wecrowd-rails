@@ -64,7 +64,6 @@ class UserController < ApplicationController
                 mfa.send_challenge
                 redirect_to("/mfa/verify/#{@user.id}")
               else
-                #mfa_id = mfa.wepay_mfa_id
                 mfa_id = mfa.wepay_mfa_id
                 cookie_validation_response = mfa.validate_cookie(mfa_id, cookie)
                 does_challenge_need_to_be_sent = cookie_validation_response["challenge_required"]
@@ -76,8 +75,14 @@ class UserController < ApplicationController
                 end
               end
             else
-              #render json: mfa
-              return redirect_to("/mfa/verify/#{@get_user.id}")
+              if(mfa.mfa_type == "authenticator")
+                phone_number = nil
+                mfa_created = mfa.register_mfa(phone_number)
+                @auth_url = mfa_created["challenge_data"]["qr"]["@2x"]
+                render :action => "../mfa/google_auth_challenge", :user_id => @user.id
+              else
+                return redirect_to("/mfa/verify/#{@get_user.id}")
+              end
             end
           else
               return redirect_to("/mfa/register/#{@get_user.id}")

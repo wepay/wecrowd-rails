@@ -45,9 +45,6 @@ Rails.application.routes.draw do
   post '/mfa/verify/:user_id', :to => "mfa#verify"
   post '/mfa/challenge/:user_id', :to => "mfa#verify"
 
-
-  get '/mfa/about'
-  get '/mfa/trust'
   get '/mfa/confirm/:user_id', :to => "mfa#confirm"
   post '/mfa/confirm/:user_id', :to => "user#view"
   get '/mfa/google_auth_challenge/:user_id', :to => "mfa#google_auth_challenge"
