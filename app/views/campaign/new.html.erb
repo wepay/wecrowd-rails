@@ -63,7 +63,7 @@
             <div class="row main-content-feature">
               <label for="enable_mfa"><%= check_box_tag(:enable_mfa, true, true) %>
                 Enable MFA
-                <a data-toggle="modal" onclick = "load_modal()" >?</a>
+                <a data-toggle ="modal" data-target = "#myModal">?</a>
 
               </label>
             </div>
@@ -111,7 +111,10 @@
 </div><!-- /.modal -->
 
 <script type="text/javascript">
-    function load_modal(){
-        $('#myModal').modal('show');
-    }
+        $("#myModal").change(function()
+                {
+                    $("#myModal").modal('show');
+
+                }
+        )
 </script>
