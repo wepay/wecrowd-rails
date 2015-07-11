@@ -76,15 +76,15 @@ class MfaController < ApplicationController
   end
 
   def confirm
-
+    #note: don't delete this function. It is necessary to render the corresponding view.
   end
 
   def challenge
-
+    #note: don't delete this function. It is necessary to render the corresponding view.
   end
 
   def google_auth_challenge
-
+    #note: don't delete this function. It is necessary to render the corresponding view.
   end
 
 end

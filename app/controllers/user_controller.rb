@@ -41,21 +41,14 @@ class UserController < ApplicationController
         return redirect_to("/login")
       else
         sign_in(@user)
-        @get_user = User.find_by_email(params[:email])
-        is_there_MFA = @get_user.wants_MFA_enabled
-
-
-
-
+        is_there_MFA = @user.wants_MFA_enabled
         #if the user wants MFA enabled
         if is_there_MFA == true
           #get the user's MFA
-          mfa = Mfa.find_by_user_id(@get_user.id)
+          mfa = Mfa.find_by_user_id(@user.id)
           #check if mfa is nil. mfa could be null if the user indicated that he wanted MFA upon signing up but never went through with it (never went through the verification step). if mfa is null then go to the mfa register step.
           if(mfa!=nil)
-
             #here the mfa is not null but we are going to check if the state is confirmed. The state would be confirmed if the user went through the verification step and his/her security code is confirmed by WeCrowd
-
             state = mfa.state
             #if the state is confirmed, then check cookies. If it's not confirmed, then go to the verify step.
             if(state == "confirmed")
@@ -75,24 +68,21 @@ class UserController < ApplicationController
                 end
               end
             else
+              #this case would be if the state is not confirmed (the user indicated that they wanted to enable MFA but never went through the flow of setting it up.)
               if(mfa.mfa_type == "authenticator")
                 phone_number = nil
                 mfa_created = mfa.register_mfa(phone_number)
                 @auth_url = mfa_created["challenge_data"]["qr"]["@2x"]
                 render :action => "../mfa/google_auth_challenge", :user_id => @user.id
               else
-                return redirect_to("/mfa/verify/#{@get_user.id}")
+                return redirect_to("/mfa/verify/#{@user.id}")
               end
             end
           else
-              return redirect_to("/mfa/register/#{@get_user.id}")
-
+              return redirect_to("/mfa/register/#{@user.id}")
           end
-
-
         #the user did not want MFA enabled, so just
         else
-          #sign_in(@user)
           if params[:redirect] && session[:redirects]
             url = session[:redirects][params[:redirect]] || "/user/view/#{@user.id}"
             return redirect_to(url)
