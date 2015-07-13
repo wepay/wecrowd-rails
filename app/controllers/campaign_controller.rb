@@ -1,11 +1,7 @@
 class CampaignController < ApplicationController
   
   protect_from_forgery with: :exception, :except => [:ipn] # IPNs don't require the CSRF check
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> mfaBranch
   before_filter :get_campaign, except: [ :new, :create ]
   before_filter :check_user,   except: [ :new, :create, :index, :donate, :make_donation, :donation_success, :ipn ]
   
