@@ -60,6 +60,14 @@
             </label>
           </div>
 
+            <div class="row main-content-feature">
+              <label for="enable_mfa"><%= check_box_tag(:enable_mfa, true, true) %>
+                Enable MFA
+                <a data-toggle ="modal" data-target = "#myModal">?</a>
+
+              </label>
+            </div>
+
         <% end %>
       </div>
 
@@ -85,3 +93,28 @@
     <p class="p-modal"><b>Click Create</b> to continue the demo.</p>
   </div>
 </div>
+
+
+<div class="modal fade" id = "myModal" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">What is MFA?</h4>
+      </div>
+      <div class="modal-body">
+        <p>Multi Factor Access (MFA) adds an extra layer of protection to your account if you prefer to add it. WeCrowd provides three options (SMS, Voice-call, and Google Authenticator) to choose from to send a security code to your mobile device.</p>
+        <p>You can choose whether or not you would like to save your computer as a trusted computer. If you choose to trust your computer, you won't be prompted to enter in a security code for the next 30 days. </p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+        $("#myModal").change(function()
+                {
+                    $("#myModal").modal('show');
+
+                }
+        )
+</script>

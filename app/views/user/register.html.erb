@@ -13,10 +13,11 @@
 	<label for="password">Choose a password<b>*</b></label>
 	<%= password_field_tag(:password, nil, :class => 'password form-control', :maxlength => 255) %>
 	</div>
-	
 	<input type="hidden" name="redirect" value="<%= @redirect %>">
 	
 	<div class="form-group">
 		<button type="submit" class="btn-orange">Register</button>
 	</div>
+
+
 <% end %>
