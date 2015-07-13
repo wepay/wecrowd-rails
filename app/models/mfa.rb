@@ -8,7 +8,7 @@ class Mfa < ActiveRecord::Base
     nickname = self.nickname
     set_up_data = {"phone_number" => phone_number}
     cookie = nil
-    
+
     if(type == "authenticator")
       response = WEPAY.call("/user/mfa/create", access_token, {
                                                   type: type,
