@@ -36,7 +36,21 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get 'welcome/about'
   get 'welcome/terms'
+<<<<<<< HEAD
   
+=======
+
+
+  get '/mfa', :to => "mfa#index"
+  get '/mfa/register/:user_id', :to => "mfa#register"
+  post '/mfa/register/:user_id', :to => "mfa#create"
+  get '/mfa/verify/:user_id', :to => "mfa#challenge"
+  post '/mfa/verify/:user_id', :to => "mfa#verify"
+  post '/mfa/challenge/:user_id', :to => "mfa#verify"
+
+  get '/mfa/google_auth_challenge/:user_id', :to => "mfa#google_auth_challenge"
+  post '/mfa/google_auth_challenge/:user_id', :to => "mfa#verify"
+>>>>>>> mfaBranch
  namespace :api do
      resources :campaigns
      resources :donate
@@ -46,7 +60,10 @@ Rails.application.routes.draw do
      resources :featured_campaigns
 
  end
+<<<<<<< HEAD
 
+=======
+>>>>>>> mfaBranch
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

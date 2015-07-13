@@ -1,0 +1,47 @@
+<%= form_tag("/mfa/challenge/#{@user.id}", :class => 'col-md-3 col-md-offset-4') do %>
+
+      <h1>MFA</h1>
+      <h3>Verify Code</h3>
+
+      <p> Enter the security code sent from WeCrowd below.</p>
+
+    <div class="form-group">
+      <label for="code">Code<b>*</b></label>
+      <%= text_field_tag(:code, params[:code], :class => 'text form-control', :placeholder => '6 digit code', :maxlength => 255) %>
+    </div>
+
+    <div class="row main-content-feature">
+      <label for="trust_computer"><%= check_box_tag(:trust_computer, true, true) %>
+        Trust this computer
+        <a data-toggle="modal" data-target = "#myModal" >?</a>
+      </label>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn-orange">Confirm Code</button>
+    </div>
+
+<% end %>
+
+<div class="modal fade" id = "myModal" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Trust this computer for 30 days</h4>
+      </div>
+      <div class="modal-body">
+        <p> You can choose to remember this computer for 30 days. This means that you can log in to WeCrowd without having to go through the MFA flow while the computer remains trusted. </p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+    $("#myModal").change(function()
+            {
+                $("#myModal").modal('show');
+
+            }
+    )
+</script>
