@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918230012) do
+ActiveRecord::Schema.define(version: 20150630174655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(version: 20140918230012) do
 
   add_index "campaigns", ["featured"], name: "index_campaigns_on_featured", using: :btree
   add_index "campaigns", ["user_id"], name: "index_campaigns_on_user_id", using: :btree
+
+  create_table "mfas", force: true do |t|
+    t.integer "user_id"
+    t.string  "nickname"
+    t.string  "state"
+    t.integer "wepay_mfa_id"
+    t.string  "mfa_type"
+  end
 
   create_table "payments", force: true do |t|
     t.integer  "campaign_id"
@@ -59,6 +67,7 @@ ActiveRecord::Schema.define(version: 20140918230012) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state"
+    t.boolean  "wants_MFA_enabled"
   end
 
   add_index "users", ["deleted_at"], name: "index_users_on_deleted_at", using: :btree

@@ -36,6 +36,16 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get 'welcome/about'
   get 'welcome/terms'
+
+  get '/mfa', :to => "mfa#index"
+  get '/mfa/register/:user_id', :to => "mfa#register"
+  post '/mfa/register/:user_id', :to => "mfa#create"
+  get '/mfa/verify/:user_id', :to => "mfa#challenge"
+  post '/mfa/verify/:user_id', :to => "mfa#verify"
+  post '/mfa/challenge/:user_id', :to => "mfa#verify"
+  
+  get '/mfa/google_auth_challenge/:user_id', :to => "mfa#google_auth_challenge"
+  post '/mfa/google_auth_challenge/:user_id', :to => "mfa#verify"
   
  namespace :api do
      resources :campaigns
@@ -46,6 +56,9 @@ Rails.application.routes.draw do
      resources :featured_campaigns
 
  end
+
+
+
 
   root 'welcome#index'
 
