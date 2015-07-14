@@ -82,6 +82,8 @@
       </table>
     </div>
 
+
+
     <div class="row main-content-feature">
       <% if @user.state != User::STATE_REGISTERED %>
         <h3>Please confirm your account.</h3>
@@ -122,3 +124,33 @@
     <p class="p-modal">Now it's time to complete setup. You should have an email from WeCrowd. (Check your spam folder, if necessary). <b>Open the email and click the confirmation link</b> to continue setup.</p>
   </div>
 </div>
+
+<% if !@mfa.nil? %>
+
+    <div class="col-lg-5 col-sm-offset-3 main-content-feature" id = "mfa">
+    <h3>MFA Devices</h3>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+        <th>Type</th>
+        <th>Nickname</th>
+        <th>State</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td><%=   @mfa.mfa_type    %></td>
+        <td><%=   @mfa.nickname   %></td>
+        <td><%=   @mfa.state   %></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+<% end%>
+
+<script>
+
+  document.getElementById("mfa").style.margin = "-90px -50px 400px 300px";
+
+</script>
+

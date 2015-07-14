@@ -16,6 +16,7 @@ class UserController < ApplicationController
     @balance = Money.new(@account_details["balances"][0]["balance"]*100, @account_details["balances"][0]["currency"])
     @campaigns = @user.campaigns
     @update_uri = @user.get_wepay_account_update_uri['uri']
+    @mfa = Mfa.find_by_user_id(@user.id)
   end
 
   def edit
