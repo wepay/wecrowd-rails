@@ -25,6 +25,7 @@
   <%= form_tag("/campaign/donate/#{@campaign.id}", :class => 'donate-form col-lg-12') do %>
     <input type="hidden" name="client_id" value="<%= WEPAY_CONFIG[:client_id] %>" />
     <input type="hidden" name="credit_card_id" value="" />
+    <input type = "hidden" name = "bank_account_id" value = ""/>
 
     <div class="row">
       <div class="col-md-4 col-center spacing">
@@ -47,14 +48,14 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" id = "CCNUMBER">
         <div class="col-lg-12 main-content-feature">
           <label>Credit Card Number</label>
           <%= text_field_tag(:cc_number, params[:cc_number], :class => 'form-control input-lg gray', :placeholder => '5496198584584769', :maxlength => 255) %>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" id = "EXPDATE">
         <div class="col-sm-5 col-md-6 main-content-feature">
           <label>Expiration Date</label>
           <div class="row">
@@ -101,4 +102,50 @@
   </div>
 </div>
 
+  <input type="button" id="bank_popup" value="Pay with bank?">
 
+  <script type="text/javascript">
+      (function() {
+          WePay.set_endpoint("stage");  // change this “production” when live
+
+          // Shortcuts
+          var d = document;
+          d.id = d.getElementById,
+                  valueById = function(id) {
+                      return d.id(id).value;
+                  };
+
+          // For those not using DOM libraries
+          var addEvent = function(e,v,f) {
+              if (!!window.attachEvent) { e.attachEvent('on' + v, f); }
+              else { e.addEventListener(v, f, false); }
+          };
+
+
+          var bank_account_ID = null;
+          // Attach the event to the DOM
+          addEvent(d.id('bank_popup'), 'click', function() {
+              $("#CCNUMBER").hide();
+              $("#EXPDATE").hide();
+              response = WePay.bank_account.create({
+                          'client_id': <%= WEPAY_CONFIG[:client_id] %>  // Your client_id goes here
+                      }, function(data) {
+                          nextData = JSON.parse(data)
+                          console.log(nextData["bank_account_id"]);
+                          bank_account_ID = nextData["bank_account_id"];
+                          if (data.error) {
+                              console.log(data);
+                              // handle error response
+                          } else {
+                              $(".donate-form input[name=bank_account_id]").val(bank_account_ID);
+                              // call your own app's API to save the token inside the data;
+                              // show a success page
+                          }
+                      }
+              );
+
+
+
+          });
+      })();
+  </script>
