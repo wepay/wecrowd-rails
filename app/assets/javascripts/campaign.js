@@ -78,5 +78,18 @@ $(function() {
         }
     );
 });
-//})();
+});
+
+
+$(function()
+{
+    $("#cc_payment").click(function(e)
+    {
+        $("#CCNUMBER").slideDown();
+        $("#EXPDATE").slideDown();
+        $("#donation-button").prop("disabled", false);
+        $("#bank_popup").show();
+        $("#cc_payment").hide();
+
+    });
 });

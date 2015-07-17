@@ -85,7 +85,6 @@
 
       <div class="row">
         <div class="col-md-4 main-content-feature col-center spacing">
-          <!-- <button type = "button" id = "cc_payment" value = "Pay with credit card?" style = "display: none;"> -->
           <button id="donation-button" type="submit" class="btn btn-orange">Donate</button>
 
         </div>
@@ -105,21 +104,6 @@
 
   <input type="button" id="bank_popup" value="Pay with bank?" style="margin: -500px -300px 500px 750px;">
   <input type = "button" id = "cc_payment" value = "Pay with credit card?" style = "display: none;">
-
-<script>
-  $(function()
-          {
-              $("#cc_payment").click(function(e)
-                      {
-                          $("#CCNUMBER").slideDown();
-                          $("#EXPDATE").slideDown();
-                          $("#donation-button").prop("disabled", false);
-                          $("#bank_popup").show();
-                          $("#cc_payment").hide();
-
-                      });
-          });
-</script>
 
 
 
