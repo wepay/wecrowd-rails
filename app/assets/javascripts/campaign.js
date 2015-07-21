@@ -36,7 +36,6 @@ $(function() {
 	});
 });
 
-
 $(function()
 {
     $("#cc_payment").click(function(e)
@@ -49,7 +48,6 @@ $(function()
 
     });
 });
-
 
 $(function() {
     WePay.set_endpoint("stage");

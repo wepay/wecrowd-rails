@@ -144,7 +144,6 @@ class CampaignController < ApplicationController
       error(@payment.errors.full_messages)
       redirect_to("/campaign/donate/#{@campaign.id}")
     end
-
   end
 
   def donation_success
