@@ -156,3 +156,17 @@ select {
 .btn-orange:hover {
 	color: #ffffff;
 }
+
+.btn-payment{
+    background: white;
+    border-color: #7ac9ea;
+    float: right;
+    box-shadow: none;
+    border-style:solid;
+    padding: 5px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: grey;
+    border-radius: 0;
+}
