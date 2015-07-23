@@ -120,13 +120,13 @@ class CampaignController < ApplicationController
         return redirect_to("/campaign/donate/#{@campaign.id}")
       end
     end
-    
     # create the payment object with the details provided
     @payment = Payment.new({
       campaign_id: @campaign.id,
       payer_id: @user.id,
-      wepay_credit_card_id: params[:credit_card_id],
-      amount: params[:amount],
+      wepay_payment_id: params[:payment_method_id],
+      wepay_payment_type: params[:payment_method_type],
+      amount: params[:amount]
     })
     if !@payment.valid?
       error(@payment.errors.full_messages)

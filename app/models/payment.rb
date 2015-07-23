@@ -26,8 +26,8 @@ class Payment < ActiveRecord::Base
       type: "DONATION",
       amount: self.amount.to_s,
       fee_payer: "payer",
-      payment_method_type: "credit_card",
-      payment_method_id: self.wepay_credit_card_id,
+      payment_method_type: self.wepay_payment_type,
+      payment_method_id: self.wepay_payment_id,
       callback_uri: self.callback_uri
     })
     if response["error"]
