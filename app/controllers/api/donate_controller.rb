@@ -11,14 +11,16 @@
         #testing
         campaign = Campaign.find_by_id(campaign_id)
         user_id = campaign.user_id
+        wepay_payment_type = "credit_card"
         if(amount>1)
           if(campaign!=nil)
             #create the payment object
             payment = Payment.new({
                                       campaign_id: campaign_id,
                                       payer_id: user_id,
-                                      wepay_credit_card_id: credit_card_id,
-                                      amount: amount,
+                                      wepay_payment_id: credit_card_id,
+                                      wepay_payment_type: wepay_payment_type,
+                                      amount: amount
                                   })
             if !payment.valid?
               render json: error(payment.errors.full_messages)
