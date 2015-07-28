@@ -148,9 +148,6 @@ class CampaignController < ApplicationController
     #do not delete this function. It is necessary to render the corresponding view.
   end
 
-  def iframe_checkout
-
-  end
   # POST /campaign/donate/12345
   # handles the form POST from the donation page
   # credit card info is not sent to the server,
