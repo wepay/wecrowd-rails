@@ -30,7 +30,13 @@ class CampaignController < ApplicationController
         error("You must accept WePay's terms of service.")
         return redirect_to("/campaign/new")
       end
-      @user = User.new({:name => params[:user_name], :email => params[:user_email]})
+      if params[:checkout] == "Custom Checkout"
+        checkout_method = "custom"
+      elsif params[:checkout] == "iFrame Checkout"
+        checkout_method = "iframe"
+      end
+
+      @user = User.new({:name => params[:user_name], :email => params[:user_email], :checkout_method => checkout_method})
       @user.add_role(User::ROLE_MERCHANT)
       @user.password = params[:user_password]
       if @user.valid? && @user.save
@@ -94,6 +100,12 @@ class CampaignController < ApplicationController
   # GET /campaign/donate/12345
   # the donation page, asks for donation amount and billing details
   def donate
+    @campaign = Campaign.find_by_id(params[:campaign_id])
+    @user = User.find_by_id(@campaign.user_id)
+    if(@user.checkout_method == "iframe")
+      redirect_to("/campaign/donate_iframe/#{@campaign.id}")
+    end
+    params[:checkout_method] = @user.checkout_method
     params[:user_name] ||= "Test User"
     params[:user_email] ||= "test@example.com"
     params[:cc_number] ||= "5496198584584769"
@@ -102,7 +114,45 @@ class CampaignController < ApplicationController
     params[:expiration_month] ||= "11"
     params[:expiration_year] ||= "2015"
   end
-  
+
+  def donate_iframe
+
+  end
+
+  def make_donation_iframe
+    amount = params[:amount]
+    @payment = Payment.new({
+                               campaign_id: @campaign.id,
+                               payer_id: @user.id,
+                               amount: params[:amount]
+                           })
+    if !@payment.valid?
+      error(@payment.errors.full_messages)
+      return redirect_to("/campaign/donate/#{@campaign.id}")
+    end
+
+    if @payment.valid? && @payment.save
+      @response = @payment.create_checkout
+      @checkout_uri = @response["checkout_uri"]
+      @payment.state = @response["state"]
+      @payment.wepay_checkout_id = @response["checkout_id"]
+      if(@response["fee"] == nil)
+        @payment.wepay_fee_cents = 0
+      end
+      @payment.save
+    end
+    @user.add_role(User::ROLE_PAYER)
+    @user.save
+    render :action => 'iframe', :user_id => @campaign.id
+
+  end
+  def iframe
+
+  end
+
+  def iframe_checkout
+
+  end
   # POST /campaign/donate/12345
   # handles the form POST from the donation page
   # credit card info is not sent to the server,
@@ -148,8 +198,18 @@ class CampaignController < ApplicationController
 
   def donation_success
     @payment = Payment.find(params[:payment_id])
+    @campaign = Campaign.find_by_id(params[:campaign_id])
+    @user = User.find_by_id(@campaign.user_id)
+
+    if(@user.checkout_method == "iframe")
+      @payment.handle_ipn(@payment.wepay_checkout_id)
+      @payment.save
+      message("Donation Made!")
+      @campaign.update_amount_donated
+    end
+
   end
-  
+
   def ipn
     @payment = Payment.find_by_wepay_checkout_id(params[:checkout_id])
     if !@payment

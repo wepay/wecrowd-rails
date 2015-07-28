@@ -68,11 +68,17 @@
               </label>
             </div>
 
+            <div class = "row main-content-feature">
+              <%= radio_button_tag(:checkout, "iFrame Checkout") %>
+              <label for = "checkout_iFrame_Checkout">iFrame Checkout</label>
+              <%= radio_button_tag(:checkout, "Custom Checkout") %>
+              <label for = "checkout_Custom_Checkout">Custom Checkout</label>
+            </div>
         <% end %>
       </div>
 
       <div class="row">
-        <div class="col-md-3 col-center">
+        <div class="col-md-4 col-md-offset-4 main-content-feature">
           <button type="submit" class="btn btn-orange">Create</button>
         </div>
       </div>
