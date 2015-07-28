@@ -10,16 +10,6 @@
 
   <%= form_tag("/campaign/iframe/#{@campaign.id}", :class => 'donate-form col-lg-12', :method => "post") do %>
       <div class="main-content-feature text-center">
-        <iframe width="600" height="400" src = "<%= @checkout_uri %>"/>
+        <iframe width="600" height="300" frameborder="0" src = "<%= @checkout_uri %>"/>
       </div>
-      <div class="col-md-offset-8 main-content-feature ">
-        <input type = "button" id = "Continue-button" value = "Continue">
-      </div>
-
-
   <% end %>
-  <script type="text/javascript" src="https://www.wepay.com/js/iframe.wepay.js">
-
-  <script type="text/javascript">
-              WePay.iframe_checkout("iframe_id", <%= @checkout_uri %>);
-  </script>

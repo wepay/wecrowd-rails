@@ -116,7 +116,7 @@ class CampaignController < ApplicationController
   end
 
   def donate_iframe
-
+    #do not delete this function. It is necessary to render the corresponding view.
   end
 
   def make_donation_iframe
@@ -130,7 +130,6 @@ class CampaignController < ApplicationController
       error(@payment.errors.full_messages)
       return redirect_to("/campaign/donate/#{@campaign.id}")
     end
-
     if @payment.valid? && @payment.save
       @response = @payment.create_checkout
       @checkout_uri = @response["checkout_uri"]
@@ -144,10 +143,9 @@ class CampaignController < ApplicationController
     @user.add_role(User::ROLE_PAYER)
     @user.save
     render :action => 'iframe', :user_id => @campaign.id
-
   end
   def iframe
-
+    #do not delete this function. It is necessary to render the corresponding view.
   end
 
   def iframe_checkout

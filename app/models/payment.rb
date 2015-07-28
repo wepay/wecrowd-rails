@@ -25,11 +25,7 @@ class Payment < ActiveRecord::Base
     checkout_method = @user.checkout_method
     if(checkout_method == "iframe")
         mode = "iframe"
-        #redir = redirect_to("/campaign/donation_success/#{self.campaign_id}/#{self.id}")
-        #redir = Rails.application.secrets.host + "/campaign/donation_success/#{self.campaign_id}/#{self.id}"
-        #redir = "/campaign/donation_success/#{self.campaign_id}/#{self.id}"
-        #redir = url_for controller: 'campaign', action: "donation_success", host: Rails.application.secrets.host, port:'3000', campaign_id: self.campaign_id, payment_id: self.id
-        redir = "http://192.168.50.105:3000" + "/campaign/donation_success/#{self.campaign_id}/#{self.id}"
+        redir = Rails.application.secrets.host + "/campaign/donation_success/#{self.campaign_id}/#{self.id}"
 
 
         response = WEPAY.call("/checkout/create", self.campaign.user.wepay_access_token, {
@@ -41,7 +37,6 @@ class Payment < ActiveRecord::Base
                                                     redirect_uri: redir
                                                 })
       return response
-
     else
 
     response = WEPAY.call("/checkout/create", self.campaign.user.wepay_access_token, {
