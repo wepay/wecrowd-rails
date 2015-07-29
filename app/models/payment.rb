@@ -28,8 +28,10 @@ class Payment < ActiveRecord::Base
         response = WEPAY.call("/checkout/create", self.campaign.user.wepay_access_token, {
           account_id: self.campaign.user.wepay_account_id,
           short_description: "Donation to #{self.campaign.name}",
-          type: "SERVICE",
+          type: "DONATION",
           amount: self.amount.to_s,
+          fee_payer: "payer",
+          callback_uri: self.callback_uri,
           mode: mode,
           redirect_uri: redir
       })
