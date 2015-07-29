@@ -35,7 +35,6 @@ class CampaignController < ApplicationController
       elsif params[:checkout] == "iFrame Checkout"
         checkout_method = "iframe"
       end
-
       @user = User.new({:name => params[:user_name], :email => params[:user_email], :checkout_method => checkout_method})
       @user.add_role(User::ROLE_MERCHANT)
       @user.password = params[:user_password]
@@ -105,7 +104,6 @@ class CampaignController < ApplicationController
     if(@user.checkout_method == "iframe")
       redirect_to("/campaign/donate_iframe/#{@campaign.id}")
     end
-    params[:checkout_method] = @user.checkout_method
     params[:user_name] ||= "Test User"
     params[:user_email] ||= "test@example.com"
     params[:cc_number] ||= "5496198584584769"
@@ -195,7 +193,6 @@ class CampaignController < ApplicationController
     @payment = Payment.find(params[:payment_id])
     @campaign = Campaign.find_by_id(params[:campaign_id])
     @user = User.find_by_id(@campaign.user_id)
-
     if(@user.checkout_method == "iframe")
       @payment.handle_ipn(@payment.wepay_checkout_id)
       @payment.save

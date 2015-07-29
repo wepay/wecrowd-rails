@@ -20,35 +20,31 @@ class Payment < ActiveRecord::Base
   
   # make the /checkout/create call to immediately charge the credit card associated with this payment
   def create_checkout
-
     @user = User.find_by_id(self.payer_id)
     checkout_method = @user.checkout_method
     if(checkout_method == "iframe")
         mode = "iframe"
         redir = Rails.application.secrets.host + "/campaign/donation_success/#{self.campaign_id}/#{self.id}"
-
-
         response = WEPAY.call("/checkout/create", self.campaign.user.wepay_access_token, {
-                                                    account_id: self.campaign.user.wepay_account_id,
-                                                    short_description: "Donation to #{self.campaign.name}",
-                                                    type: "SERVICE",
-                                                    amount: self.amount.to_s,
-                                                    mode: mode,
-                                                    redirect_uri: redir
-                                                })
+          account_id: self.campaign.user.wepay_account_id,
+          short_description: "Donation to #{self.campaign.name}",
+          type: "SERVICE",
+          amount: self.amount.to_s,
+          mode: mode,
+          redirect_uri: redir
+      })
       return response
     else
-
-    response = WEPAY.call("/checkout/create", self.campaign.user.wepay_access_token, {
-      account_id: self.campaign.user.wepay_account_id,
-      short_description: "Donation to #{self.campaign.name}",
-      type: "DONATION",
-      amount: self.amount.to_s,
-      fee_payer: "payer",
-      payment_method_type: self.wepay_payment_type,
-      payment_method_id: self.wepay_payment_id,
-      callback_uri: self.callback_uri
-    })
+        response = WEPAY.call("/checkout/create", self.campaign.user.wepay_access_token, {
+          account_id: self.campaign.user.wepay_account_id,
+          short_description: "Donation to #{self.campaign.name}",
+          type: "DONATION",
+          amount: self.amount.to_s,
+          fee_payer: "payer",
+          payment_method_type: self.wepay_payment_type,
+          payment_method_id: self.wepay_payment_id,
+          callback_uri: self.callback_uri
+      })
     end
     if response["error"]
       throw response["error_description"]
