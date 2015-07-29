@@ -22,9 +22,6 @@
   </div>
 
   <%= form_tag("/campaign/donate_iframe/#{@campaign.id}", :class => 'donate-form col-lg-12') do %>
-      <input type="hidden" name="client_id" value="<%= WEPAY_CONFIG[:client_id] %>" />
-      <input type = "hidden" name = "payment_method_id" value = ""/>
-      <input type = "hidden" name = "payment_method_type" value = ""/>
       <div class="row">
         <div class="col-md-4 col-center spacing">
           <%= text_field_tag(:amount, params[:amount], :class => 'form-control input-lg blue', :placeholder => '$', :maxlength => 255) %>
@@ -34,6 +31,4 @@
         </div>
       </div>
   <% end %>
-
-  <script type="text/javascript" src="https://static.wepay.com/min/js/tokenization.v2.js"></script>
 

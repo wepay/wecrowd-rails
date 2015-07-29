@@ -199,7 +199,6 @@ class CampaignController < ApplicationController
       message("Donation Made!")
       @campaign.update_amount_donated
     end
-
   end
 
   def ipn
