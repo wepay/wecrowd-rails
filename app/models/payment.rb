@@ -22,37 +22,29 @@ class Payment < ActiveRecord::Base
   def create_checkout
     @user = User.find_by_id(self.payer_id)
     checkout_method = @user.checkout_method
+    checkout_params = {
+        account_id: self.campaign.user.wepay_account_id,
+        short_description: "Donation to #{self.campaign.name}",
+        type: "DONATION",
+        amount: self.amount.to_s,
+        fee_payer: "payer",
+        callback_uri: self.callback_uri
+    }
     if(checkout_method == "iframe")
-        mode = "iframe"
-        redir = Rails.application.secrets.host + "/campaign/donation_success/#{self.campaign_id}/#{self.id}"
-        response = WEPAY.call("/checkout/create", self.campaign.user.wepay_access_token, {
-          account_id: self.campaign.user.wepay_account_id,
-          short_description: "Donation to #{self.campaign.name}",
-          type: "DONATION",
-          amount: self.amount.to_s,
-          fee_payer: "payer",
-          callback_uri: self.callback_uri,
-          mode: mode,
-          redirect_uri: redir
-      })
-      return response
+      mode = "iframe"
+      redir = Rails.application.secrets.host + "/campaign/donation_success/#{self.campaign_id}/#{self.id}"
+      checkout_params[:mode] = mode
+      checkout_params[:redirect_uri] = redir
     else
-        response = WEPAY.call("/checkout/create", self.campaign.user.wepay_access_token, {
-          account_id: self.campaign.user.wepay_account_id,
-          short_description: "Donation to #{self.campaign.name}",
-          type: "DONATION",
-          amount: self.amount.to_s,
-          fee_payer: "payer",
-          payment_method_type: self.wepay_payment_type,
-          payment_method_id: self.wepay_payment_id,
-          callback_uri: self.callback_uri
-      })
+      checkout_params[:payment_method_type] = self.wepay_payment_type
+      checkout_params[:payment_method_id] = self.wepay_payment_id
     end
+    response = WEPAY.call("/checkout/create", self.campaign.user.wepay_access_token, checkout_params)
     if response["error"]
       throw response["error_description"]
     end
     self.state = response["state"]
-    self.wepay_checkout_id = response["checkout_id"];
+    self.wepay_checkout_id = response["checkout_id"]
     self.wepay_fee = response["fee"]
     return response
   end
