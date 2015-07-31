@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   post '/campaign/donate/:campaign_id', :to => "campaign#make_donation"
   get '/campaign/donation_success/:campaign_id/:payment_id', :to => "campaign#donation_success"
   match '/campaign/ipn/:campaign_id', :to => "campaign#ipn", via: [:get, :post]
+  get '/campaign/donate_iframe/:campaign_id', :to => "campaign#donate_iframe"
+  post '/campaign/donate_iframe/:campaign_id', :to => "campaign#make_donation_iframe"
+  get '/campaign/iframe/:campaign_id', :to => "campaign#iframe"
+  get '/campaign/donation_success/:campaign_id/:payment_id/:checkout_id', :to => "campaign#donation_success"
 
   #user
   match '/login', :to => "user#login", :via => [:get,:post]
@@ -56,10 +60,6 @@ Rails.application.routes.draw do
      resources :featured_campaigns
 
  end
-
-
-
-
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
