@@ -69,16 +69,14 @@
             </div>
 
             <div class = "row main-content-feature">
-              <div class = "col-md-0">
-                <div class = "col-md-offset-0" style = "display: inline">
+                <div class = "col-xs" style = "display: inline">
                   <%= radio_button_tag(:checkout, "iFrame Checkout") %>
                   <label for = "checkout_iFrame_Checkout">iFrame Checkout</label>
                 </div>
-                <div class = "col-md-offset-1" style = "display: inline">
+                <div class = "col-xs-offset-1" style = "display: inline">
                   <%= radio_button_tag(:checkout, "Custom Checkout", :checked => true) %>
                   <label for = "checkout_Custom_Checkout">Custom Checkout</label>
                 </div>
-              </div>
             </div>
         <% end %>
       </div>
