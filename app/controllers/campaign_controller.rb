@@ -3,7 +3,7 @@ class CampaignController < ApplicationController
   protect_from_forgery with: :exception, :except => [:ipn] # IPNs don't require the CSRF check
   
   before_filter :get_campaign, except: [ :new, :create ]
-  before_filter :check_user,   except: [ :new, :create, :index, :donate, :make_donation, :donation_success, :ipn ]
+  before_filter :check_user,   except: [ :new, :create, :index, :donate, :make_donation, :donation_success, :ipn, :donate_iframe, :make_donation_iframe ]
   
   # GET /campaign/12345
   # the public page for the campaign
@@ -113,10 +113,14 @@ class CampaignController < ApplicationController
     params[:expiration_year] ||= "2015"
   end
 
+  # GET /campaign/donate_iframe/12345
+  # the donation page in iframe mode, asks for donation amount
   def donate_iframe
     #do not delete this function. It is necessary to render the corresponding view.
   end
 
+  # POST /campaign/donate_iframe/12345
+  # handles the form POST from the iframe donation page
   def make_donation_iframe
     amount = params[:amount]
     @payment = Payment.new({
