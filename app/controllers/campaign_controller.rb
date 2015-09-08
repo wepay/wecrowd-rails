@@ -122,6 +122,18 @@ class CampaignController < ApplicationController
   # POST /campaign/donate_iframe/12345
   # handles the form POST from the iframe donation page
   def make_donation_iframe
+    # try to see if the donor is already in the database
+    @user = User.find_by_email(params[:payer_email])
+    if !@user # if not, then create the user
+      @user = User.new({
+        name: params[:payer_email],
+        email: params[:payer_email]
+      })
+      unless @user.valid? && @user.save
+        error(@user.errors.full_messages)
+        return redirect_to("/campaign/donate/#{@campaign.id}")
+      end
+    end
     amount = params[:amount]
     @payment = Payment.new({
                                campaign_id: @campaign.id,
@@ -146,6 +158,7 @@ class CampaignController < ApplicationController
     @user.save
     render :action => 'iframe', :user_id => @campaign.id
   end
+
   def iframe
     #do not delete this function. It is necessary to render the corresponding view.
   end
