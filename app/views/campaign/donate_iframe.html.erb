@@ -24,7 +24,12 @@
   <%= form_tag("/campaign/donate_iframe/#{@campaign.id}", :class => 'donate-form col-lg-12') do %>
       <div class="row">
         <div class="col-md-4 col-center spacing">
+          <label>Amount</label>
           <%= text_field_tag(:amount, params[:amount], :class => 'form-control input-lg blue', :placeholder => '$', :maxlength => 255) %>
+        </div>
+        <div class="col-md-4 col-center main-content-feature">
+          <label>Email</label>
+          <%= text_field_tag(:payer_email, params[:payer_email], :class => 'form-control input-lg blue', :placeholder => '@', :maxlength => 255) %>
         </div>
         <div class="col-md-2 col-md-offset-8 main-content-feature ">
           <button id="next-button" type= "submit" class="btn btn-orange">Next</button>

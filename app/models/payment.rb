@@ -20,8 +20,7 @@ class Payment < ActiveRecord::Base
   
   # make the /checkout/create call to immediately charge the credit card associated with this payment
   def create_checkout
-    @user = User.find_by_id(self.payer_id)
-    checkout_method = @user.checkout_method
+    checkout_method = self.campaign.user.checkout_method
     checkout_params = {
         account_id: self.campaign.user.wepay_account_id,
         short_description: "Donation to #{self.campaign.name}",
