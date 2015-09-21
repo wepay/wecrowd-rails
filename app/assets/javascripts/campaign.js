@@ -53,7 +53,8 @@ $(function() {
         $("#expdate").slideUp();
         $("#donation-button").prop("disabled", true);
         response = WePay.bank_account.create({
-                "client_id": $(".donate-form input[name=client_id]").val()
+                "client_id": $(".donate-form input[name=client_id]").val(),
+                "email": $(".donate-form input[name=user_email]").val()
             }, function(data) {
                 if (data.error) {
                     console.log(data);
