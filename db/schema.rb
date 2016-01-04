@@ -24,27 +24,37 @@ ActiveRecord::Schema.define(version: 20160104180932) do
     t.integer  "amount_donated_cents",           default: 0, null: false
     t.string   "account_type"
     t.integer  "state",                limit: 2
+    t.integer  "featured"
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "featured"
   end
 
+  add_index "campaigns", ["featured"], name: "index_campaigns_on_featured", using: :btree
   add_index "campaigns", ["user_id"], name: "index_campaigns_on_user_id", using: :btree
+
+  create_table "mfas", force: true do |t|
+    t.integer "user_id"
+    t.string  "nickname"
+    t.string  "state"
+    t.integer "wepay_mfa_id"
+    t.string  "mfa_type"
+  end
 
   create_table "payments", force: true do |t|
     t.integer  "campaign_id"
     t.integer  "payer_id"
-    t.integer  "wepay_checkout_id",    limit: 8
-    t.integer  "wepay_credit_card_id", limit: 8
-    t.integer  "amount_cents",                   default: 0, null: false
-    t.integer  "app_fee_cents",                  default: 0, null: false
-    t.integer  "wepay_fee_cents",                default: 0, null: false
+    t.integer  "wepay_checkout_id",  limit: 8
+    t.integer  "wepay_payment_id",   limit: 8
+    t.integer  "amount_cents",                 default: 0, null: false
+    t.integer  "app_fee_cents",                default: 0, null: false
+    t.integer  "wepay_fee_cents",              default: 0, null: false
     t.string   "state"
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "currency"
+    t.string   "wepay_payment_type"
   end
 
   create_table "users", force: true do |t|
@@ -60,6 +70,8 @@ ActiveRecord::Schema.define(version: 20160104180932) do
     t.datetime "updated_at"
     t.string   "state"
     t.string   "country"
+    t.boolean  "wants_MFA_enabled"
+    t.string   "checkout_method"
   end
 
   add_index "users", ["deleted_at"], name: "index_users_on_deleted_at", using: :btree

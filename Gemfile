@@ -31,7 +31,7 @@ group :doc do
 end
 
 #app
-gem 'wepay'
+gem 'wepay', '~> 0.2.2'
 gem 'money-rails'
 gem 'paranoia', '~> 2.0'
 
@@ -40,6 +40,13 @@ gem 'unicorn'
 
 # AS
 gem 'dalli', '>= 2.2.1'
+
+#api testing stuff
+group :test do
+  gem "rspec-rails", "~> 2.14"
+  gem "factory_girl_rails"
+  gem 'ffaker'
+end
 
 # Add your own local bundler stuff
 local_gemfile = File.dirname(__FILE__) + "/.Gemfile"

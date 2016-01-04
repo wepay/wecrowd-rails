@@ -1,4 +1,5 @@
 require 'bcrypt'
+require 'securerandom'
 
 class User < ActiveRecord::Base
   
@@ -97,6 +98,7 @@ class User < ActiveRecord::Base
     })
     if response['error'].present?
       raise response['error_description']
+
     end
     self.wepay_access_token = response['access_token']
     self.wepay_user_id      = response['user_id']
@@ -191,6 +193,8 @@ class User < ActiveRecord::Base
   def role
     super || ROLE_DEFAULT
   end
-  
+
+
+
   
 end

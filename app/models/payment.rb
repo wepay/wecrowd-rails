@@ -26,24 +26,33 @@ class Payment < ActiveRecord::Base
   
   # make the /checkout/create call to immediately charge the credit card associated with this payment
   def create_checkout
-    response = WEPAY.call("/checkout/create", self.campaign.user.wepay_access_token, {
-      account_id: self.campaign.user.wepay_account_id,
-      short_description: "Donation to #{self.campaign.name}",
-      type: "DONATION",
-      amount: self.amount.to_s,
-      currency: self.currency,
-      fee_payer: "payer",
-      payment_method_type: "credit_card",
-      payment_method_id: self.wepay_credit_card_id,
-      callback_uri: self.callback_uri
-    })
+    checkout_method = self.campaign.user.checkout_method
+    checkout_params = {
+        account_id: self.campaign.user.wepay_account_id,
+        short_description: "Donation to #{self.campaign.name}",
+        type: "DONATION",
+        amount: self.amount.to_s,
+        fee_payer: "payer",
+        callback_uri: self.callback_uri,
+        currency: self.currency,
+    }
+    if(checkout_method == "iframe")
+      mode = "iframe"
+      redir = Rails.application.secrets.host + "/campaign/donation_success/#{self.campaign_id}/#{self.id}"
+      checkout_params[:mode] = mode
+      checkout_params[:redirect_uri] = redir
+    else
+      checkout_params[:payment_method_type] = self.wepay_payment_type
+      checkout_params[:payment_method_id] = self.wepay_payment_id
+    end
+    response = WEPAY.call("/checkout/create", self.campaign.user.wepay_access_token, checkout_params)
     if response["error"]
       throw response["error_description"]
     end
     self.state = response["state"]
-    self.wepay_checkout_id = response["checkout_id"];
+    self.wepay_checkout_id = response["checkout_id"]
     self.wepay_fee = response["fee"]
-    self
+    return response
   end
   
   def handle_ipn(checkout_id)

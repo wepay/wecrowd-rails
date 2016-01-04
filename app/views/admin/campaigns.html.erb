@@ -1,27 +1,35 @@
-<%= render("shared/admin_header")%>
+<div class="admin-details">
 
-<table class="table tablesorter table-hover">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Create Date</th>
-      <th>Merchant</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Amount Donated</th>
-    </tr>
-  </thead>
+  <div id="spacer"></div>
+  
+  <%= render("shared/admin_header")%>
 
-  <tbody>
-    <% @campaigns.each do |c| %>
-      <tr>
-        <td><a href="/admin/campaign/<%= c.id %>"><%= c.id %></a></td>
-        <td><%= c.created_at.strftime("%Y/%m/%d %I:%M%P %Z") %></td>
-        <td><a href="/admin/user/<%= c.user_id %>"><%= c.user.name %> (<%= c.user_id %>)</a></td>
-        <td><a href="/admin/campaign/<%= c.id %>"><%= c.name %></a></td>
-        <td><%= c.description %></td>
-        <td><%= c.amount_donated %></td>
-      </tr>
-    <% end %>
-  </tbody>      
-</table>
+  <div class="col-lg-12 main-content-feature">
+    <table class="table tablesorter table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Create Date</th>
+          <th>Merchant</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Amount Donated</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @campaigns.each do |c| %>
+          <tr>
+            <td><a href="/admin/campaign/<%= c.id %>"><%= c.id %></a></td>
+            <td><%= c.created_at.strftime("%Y/%m/%d %I:%M%P %Z") %></td>
+            <td><a href="/admin/user/<%= c.user_id %>"><%= c.user.name %> (<%= c.user_id %>)</a></td>
+            <td><a href="/admin/campaign/<%= c.id %>"><%= c.name %></a></td>
+            <td><%= c.description %></td>
+            <td><%= c.amount_donated %></td>
+          </tr>
+        <% end %>
+      </tbody>      
+  </table>
+  </div>
+
+</div>

@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   post '/campaign/donate/:campaign_id', :to => "campaign#make_donation"
   get '/campaign/donation_success/:campaign_id/:payment_id', :to => "campaign#donation_success"
   match '/campaign/ipn/:campaign_id', :to => "campaign#ipn", via: [:get, :post]
+  get '/campaign/donate_iframe/:campaign_id', :to => "campaign#donate_iframe"
+  post '/campaign/donate_iframe/:campaign_id', :to => "campaign#make_donation_iframe"
+  get '/campaign/iframe/:campaign_id', :to => "campaign#iframe"
+  get '/campaign/donation_success/:campaign_id/:payment_id/:checkout_id', :to => "campaign#donation_success"
 
   #user
   match '/login', :to => "user#login", :via => [:get,:post]
@@ -20,7 +24,7 @@ Rails.application.routes.draw do
   get '/user/verify/:user_id', :to => "user#verify"
   post '/user/resend_confirmation_email/:user_id', :to => "user#resend_confirmation_email"
   match '/user/ipn/:user_id', :to => "user#ipn", via: [:get, :post]
-  
+
   #admin
   get '/admin', :to => "admin#index"
   get '/admin/campaigns', :to => "admin#campaigns"
@@ -36,7 +40,26 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get 'welcome/about'
   get 'welcome/terms'
+
+  get '/mfa', :to => "mfa#index"
+  get '/mfa/register/:user_id', :to => "mfa#register"
+  post '/mfa/register/:user_id', :to => "mfa#create"
+  get '/mfa/verify/:user_id', :to => "mfa#challenge"
+  post '/mfa/verify/:user_id', :to => "mfa#verify"
+  post '/mfa/challenge/:user_id', :to => "mfa#verify"
   
+  get '/mfa/google_auth_challenge/:user_id', :to => "mfa#google_auth_challenge"
+  post '/mfa/google_auth_challenge/:user_id', :to => "mfa#verify"
+  
+ namespace :api do
+     resources :campaigns
+     resources :donate
+     resources :details
+     resources :login
+     resources :users
+     resources :featured_campaigns
+
+ end
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

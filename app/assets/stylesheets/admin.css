@@ -1,0 +1,26 @@
+.admin-details p {
+	font-size: 14px;
+}
+
+.admin-details h1 {
+	color: #ef5e27;
+	font-size: 37px;
+	font-weight: 300;
+}
+
+.admin-details h3 {
+	color: #3a4b53;
+	font-size: 20px;
+	font-weight: 400;
+}
+
+.admin-details hr {
+    border: 2px solid #ef5e27;
+    margin-top: 40px;
+    width: 80px;
+}
+
+.table > tbody > tr > td {
+	max-width: 100px;
+	word-wrap: break-word;
+}

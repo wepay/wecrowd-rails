@@ -54,5 +54,11 @@ class Campaign < ActiveRecord::Base
   def image
     "sample/#{self.id % 10}.jpg"
   end
+
+  def getimageurl(image)
+    assets_part_of_url = "/assets/"
+    secret = Rails.application.secrets.host
+    return secret + assets_part_of_url + ActionController::Base.helpers.asset_digest_path(image)
+  end
   
 end
