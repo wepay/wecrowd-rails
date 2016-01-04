@@ -6,6 +6,12 @@ class Payment < ActiveRecord::Base
   monetize :app_fee_cents, :allow_nil => true
   monetize :wepay_fee_cents, :allow_nil => true
   
+  CURRENCIES = {
+    "US" => "USD",
+    "CA" => "CAD",
+    "GB" => "GBP",
+  }
+  
   acts_as_paranoid # use the paranoia gem to handle user deletion
   
   STATE_NEW         = 'new'
@@ -25,6 +31,7 @@ class Payment < ActiveRecord::Base
       short_description: "Donation to #{self.campaign.name}",
       type: "DONATION",
       amount: self.amount.to_s,
+      currency: self.currency,
       fee_payer: "payer",
       payment_method_type: "credit_card",
       payment_method_id: self.wepay_credit_card_id,
@@ -70,6 +77,10 @@ class Payment < ActiveRecord::Base
   
   def total_fee
     self.wepay_fee + self.app_fee
+  end
+  
+  def currency
+    self.campaign.user.currency
   end
   
   def callback_uri

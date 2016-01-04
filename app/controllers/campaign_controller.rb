@@ -30,7 +30,7 @@ class CampaignController < ApplicationController
         error("You must accept WePay's terms of service.")
         return redirect_to("/campaign/new")
       end
-      @user = User.new({:name => params[:user_name], :email => params[:user_email]})
+      @user = User.new({:name => params[:user_name], :email => params[:user_email], :country => params[:country]})
       @user.add_role(User::ROLE_MERCHANT)
       @user.password = params[:user_password]
       if @user.valid? && @user.save

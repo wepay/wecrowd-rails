@@ -70,7 +70,7 @@ class UserController < ApplicationController
   # handles the form post from the user register page
   def create
     if request.post?
-      @user = User.new({:name => params[:name], :email => params[:email]})
+      @user = User.new({:name => params[:name], :email => params[:email], :country => params[:country]})
       @user.password = params[:password]
       if @user.valid? && @user.save
         sign_in(@user)

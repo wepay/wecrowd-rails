@@ -8,6 +8,11 @@
 	<label for="email">Your email address<b>*</b></label>
 	<%= text_field_tag(:email, params[:email], :class => 'text form-control', :placeholder => 'jane.doe@gmail.com', :maxlength => 255) %>
 	</div>
+	
+	<div class="row main-content-feature">
+    <label for="email">Your country<b>*</b></label>
+    <%= select_tag(:country, options_for_select(User::VALID_COUNTRIES.invert, "US"), :class => 'text form-control') %>
+  </div>
 
 	<div class="form-group">
 	<label for="password">Choose a password<b>*</b></label>
