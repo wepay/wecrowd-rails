@@ -8,8 +8,8 @@ class Campaign < ActiveRecord::Base
   
   # use the money-rails gem to automatically convert the goal_cents column into a Money object
   # this Money object will be accessible via the goal property on all Campaign objects
-  monetize :goal_cents
-  monetize :amount_donated_cents
+  monetize :goal_cents, with_model_currency: :currency
+  monetize :amount_donated_cents, with_model_currency: :currency
   
   acts_as_paranoid # use the paranoia gem to handle user deletion
   
@@ -36,7 +36,7 @@ class Campaign < ActiveRecord::Base
   STATE_EXPIRED     = 'expired'
   
   def update_amount_donated
-    total = Money.new(self.payments.where({state: [Payment::STATE_AUTHORIZED, Payment::STATE_CAPTURED] }).sum(:amount_cents))
+    total = Money.new(self.payments.where({state: [Payment::STATE_AUTHORIZED, Payment::STATE_CAPTURED] }).sum(:amount_cents), self.user.currency)
     self.amount_donated = total
     self.save
   end
@@ -59,6 +59,10 @@ class Campaign < ActiveRecord::Base
     assets_part_of_url = "/assets/"
     secret = Rails.application.secrets.host
     return secret + assets_part_of_url + ActionController::Base.helpers.asset_digest_path(image)
+  end
+  
+  def currency
+    self.user.currency
   end
   
 end
