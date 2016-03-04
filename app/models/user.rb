@@ -2,12 +2,18 @@ require 'bcrypt'
 require 'securerandom'
 
 class User < ActiveRecord::Base
-
+  
+  VALID_COUNTRIES = {
+    "US" => "United States of America",
+    "CA" => "Canada",
+    "GB" => "United Kingdom",
+  }
+  
   validates :name,  :presence => true
   validates :email, :presence => true
   validates :email, :uniqueness => { :case_sensitive => false }
   validates :email, :format => { :with => /.+@.+\..+/, :message => " is invalid" }
-
+  validates :country, :inclusion => { :in => User::VALID_COUNTRIES.keys, :message => "%{value} is not a valid country" }, :allow_nil => true
   
   # each user can have many donation campaigns
   has_many :campaigns
@@ -107,7 +113,9 @@ class User < ActiveRecord::Base
     response = WEPAY.call("/account/create", self.wepay_access_token, {
       name: self.campaign.name,
       description: self.campaign.description,
-      type: self.campaign.account_type
+      type: self.campaign.account_type,
+      country: self.country,
+      currencies: [ self.currency ],
     })
     if response['error'].present?
       raise response['error_description']
@@ -156,6 +164,14 @@ class User < ActiveRecord::Base
   
   def redirect_uri
     Rails.application.secrets.host + "/user/verify/#{self.id}"
+  end
+  
+  def currency
+    currency = Payment::CURRENCIES[self.country]
+    if currency.nil?
+      currency = "USD" # default value
+    end
+    currency
   end
   
   def campaign

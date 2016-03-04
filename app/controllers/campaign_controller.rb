@@ -35,7 +35,7 @@ class CampaignController < ApplicationController
       elsif params[:checkout] == "iFrame Checkout"
         checkout_method = "iframe"
       end
-      @user = User.new({:name => params[:user_name], :email => params[:user_email], :checkout_method => checkout_method})
+      @user = User.new({:name => params[:user_name], :email => params[:user_email], :checkout_method => checkout_method, :country => params[:country]})
       @user.add_role(User::ROLE_MERCHANT)
       @user.password = params[:user_password]
       if @user.valid? && @user.save
@@ -110,7 +110,7 @@ class CampaignController < ApplicationController
     params[:cvv] ||= "123"
     params[:zip] ||= "12345"
     params[:expiration_month] ||= "11"
-    params[:expiration_year] ||= "2015"
+    params[:expiration_year] ||= "2025"
   end
 
   # GET /campaign/donate_iframe/12345

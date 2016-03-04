@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150723193717) do
+ActiveRecord::Schema.define(version: 20160104180932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20150723193717) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "currency"
     t.string   "wepay_payment_type"
   end
 
@@ -68,6 +69,7 @@ ActiveRecord::Schema.define(version: 20150723193717) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state"
+    t.string   "country"
     t.boolean  "wants_MFA_enabled"
     t.string   "checkout_method"
   end
