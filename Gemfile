@@ -25,7 +25,7 @@ gem 'yui-compressor'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
-  gem 'redcarpet', '~> 2.2.2', platforms: :ruby
+  gem 'redcarpet', '~> 3.5.1', platforms: :ruby
   gem 'w3c_validators'
   gem 'kindlerb'
 end
